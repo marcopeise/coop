@@ -143,7 +143,37 @@ const manifest = {
             }
         },
         {
-            plugin: './server/web/index'
+            plugin: './server/web/home'
+        },
+        {
+            plugin: './server/web/public'
+        },
+        {
+            plugin: './server/web/impressum'
+        },
+        {
+            plugin: './server/web/coop3000'
+        },
+        {
+            plugin: './server/web/fuellhorn'
+        },
+        {
+            plugin: './server/web/bildungswerke'
+        },
+        {
+            plugin: './server/web/registrierung'
+        },
+        {
+            plugin: './server/web/registrierung02'
+        },
+        {
+            plugin: './server/web/registrierungfehler'
+        },
+        {
+            plugin: './server/web/newsletter'
+        },
+        {
+            plugin: './server/web/loginUser'
         }
     ]
 };

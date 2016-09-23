@@ -1,13 +1,14 @@
-### Welcome Aboard
+### Willkommen bei COOP3000
 
-Thanks for signing up. As requested, your account has been created.
-Here are your login credentials:
+Danke das Du Dich registriert hast. Dein Account im digitalen Teil des Konzerns wurde nun erstellt.
+Hier sind Deine Logindaten für coop3000.net:
 
-| Details   |              |
-| ---------:|:------------ |
-| Username: | {{username}} |
-| Email:    | {{email}}    |
+| Details     |              |
+| -----------:|:------------ |
+| Username:   | {{username}} |
+| Passwort:   | {{password}} |
+| Mail:       | {{email}}    |
+| Mobilnummer:| {{mobile}}   |
+| Ort:        | {{town}}     |
 
-Love,
-
-The Plot Device
+Wir freuen uns, gemeinsam mit Dir die Gründung von COOP3000 voran zu treiben.

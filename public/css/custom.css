@@ -1,0 +1,675 @@
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-Thin-Web.eot');
+	src: url('../files/fonts/GiorgioSans-Thin-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-Thin-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-Thin-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-Thin-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 100;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-ThinItalic-Web.eot');
+	src: url('../files/fonts/GiorgioSans-ThinItalic-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-ThinItalic-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-ThinItalic-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-ThinItalic-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 100;
+	font-style: italic;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-Extralight-Web.eot');
+	src: url('../files/fonts/GiorgioSans-Extralight-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-Extralight-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-Extralight-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-Extralight-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 200;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-ExtralightItalic-Web.eot');
+	src: url('../files/fonts/GiorgioSans-ExtralightItalic-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-ExtralightItalic-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-ExtralightItalic-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-ExtralightItalic-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 200;
+	font-style: italic;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-Light-Web.eot');
+	src: url('../files/fonts/GiorgioSans-Light-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-Light-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-Light-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-Light-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-LightItalic-Web.eot');
+	src: url('../files/fonts/GiorgioSans-LightItalic-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-LightItalic-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-LightItalic-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-LightItalic-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 300;
+	font-style: italic;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-Regular-Web.eot');
+	src: url('../files/fonts/GiorgioSans-Regular-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-Regular-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-Regular-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-Regular-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-RegularItalic-Web.eot');
+	src: url('../files/fonts/GiorgioSans-RegularItalic-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-RegularItalic-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-RegularItalic-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-RegularItalic-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 400;
+	font-style: italic;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-Medium-Web.eot');
+	src: url('../files/fonts/GiorgioSans-Medium-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-Medium-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-Medium-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-Medium-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-MediumItalic-Web.eot');
+	src: url('../files/fonts/GiorgioSans-MediumItalic-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-MediumItalic-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-MediumItalic-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-MediumItalic-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 500;
+	font-style: italic;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-Bold-Web.eot');
+	src: url('../files/fonts/GiorgioSans-Bold-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-Bold-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-Bold-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-Bold-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-BoldItalic-Web.eot');
+	src: url('../files/fonts/GiorgioSans-BoldItalic-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-BoldItalic-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-BoldItalic-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-BoldItalic-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 700;
+	font-style: italic;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-Heavy-Web.eot');
+	src: url('../files/fonts/GiorgioSans-Heavy-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-Heavy-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-Heavy-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-Heavy-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 900;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-HeavyItalic-Web.eot');
+	src: url('../files/fonts/GiorgioSans-HeavyItalic-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-HeavyItalic-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-HeavyItalic-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-HeavyItalic-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 900;
+	font-style: italic;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-Black-Web.eot');
+	src: url('../files/fonts/GiorgioSans-Black-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-Black-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-Black-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-Black-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 800;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: 'Giorgio Sans Web';
+	src: url('../files/fonts/GiorgioSans-BlackItalic-Web.eot');
+	src: url('../files/fonts/GiorgioSans-BlackItalic-Web.eot?#iefix') format('embedded-opentype'),
+	url('../files/fonts/GiorgioSans-BlackItalic-Web.woff') format('woff'),
+	url('../files/fonts/GiorgioSans-BlackItalic-Web.ttf') format('truetype'),
+	url('../files/fonts/GiorgioSans-BlackItalic-Web.svg#Giorgio Sans Web') format('svg');
+	font-weight: 800;
+	font-style: italic;
+	font-stretch: normal;
+}
+
+
+/* DEFAULTS */
+
+* {
+	font-family
+  	margin: 0;
+  	padding: 0;
+  	color: #000000;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6,a,button,label {
+	font-family: 'Giorgio Sans Web';
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+  	font-family: 'Giorgio Sans Web';
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+h1 {
+	font-size: 28px;
+	margin-bottom: 20px;
+}
+
+a, a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+p {
+	margin-bottom: 20px;
+}
+
+input.form-control {
+	height: 60px;
+	border: 7px solid #000000;
+	border-radius: 0;
+}
+
+
+p,
+small,
+p a,
+small a {
+	font-family: 'Minion Pro';
+	font-size: 26px;
+	font-weight: 400;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+small,
+small a {
+	font-size: 18px;
+	letter-spacing: auto;
+}
+
+small a {
+	text-decoration: underline;
+}
+
+button {
+	background-color: #000000;
+	border: none;
+	color: #ffffff;
+	font-size: 28px;
+	box-shadow: 15px 4px #000000;
+	padding: 10px 10px;
+}
+
+label {
+	font-size: 15px;
+}
+
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {   
+    border-color: #000000;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.075) inset, 0 0 8px rgba(255, 255, 255, 0.6);
+    outline: 0 none;
+}
+
+
+
+/* LAYOUT */
+
+#header {
+	position: absolute;
+	height: 105px;
+	display: block;
+	width: 100%;
+	background: none;
+	z-index: 9;
+	text-align: center;
+	color: #f2f2f2;
+	padding: 0;
+}
+
+#footer {
+	position:fixed;
+	height: 50px;
+	display: block;
+	width: 100%;
+	background: none;
+	z-index:9;
+	text-align:center;
+	color: #f2f2f2;
+	padding: 20px 0 0 0;
+}
+
+#header{
+	top:0px;
+}
+
+#footer{
+	bottom:0px;
+}
+
+
+/* HEADER */
+
+.header-logo {
+	display: inline-block;
+	height: 105px;
+	width: auto;
+}
+
+#nav-icon {
+	z-index: 10000;
+	width: 35px;
+  	height: 35px;
+  	position: absolute;
+  	top: 40px;
+	left: 40px;
+	-webkit-transform: rotate(0deg);
+  	-moz-transform: rotate(0deg);
+  	-o-transform: rotate(0deg);
+  	transform: rotate(0deg);
+  	-webkit-transition: .5s ease-in-out;
+  	-moz-transition: .5s ease-in-out;
+  	-o-transition: .5s ease-in-out;
+  	transition: .5s ease-in-out;
+  	cursor: pointer;
+}
+
+#nav-icon span{
+  	display: block;
+  	position: absolute;
+  	height: 5px;
+  	width: 100%;
+  	background: #000000;
+  	border-radius: 9px;
+  	opacity: 1;
+  	left: 0;
+  	-webkit-transform: rotate(0deg);
+  	-moz-transform: rotate(0deg);
+  	-o-transform: rotate(0deg);
+  	transform: rotate(0deg);
+  	-webkit-transition: .25s ease-in-out;
+  	-moz-transition: .25s ease-in-out;
+  	-o-transition: .25s ease-in-out;
+  	transition: .25s ease-in-out;
+}
+
+#nav-icon span:nth-child(1) {
+	top: 0px;
+}
+
+#nav-icon span:nth-child(2),#nav-icon span:nth-child(3) {
+	top: 10px;
+}
+
+#nav-icon span:nth-child(4) {
+	top: 20px;
+}
+
+#nav-icon.open span:nth-child(1) {
+	top: 18px;
+	width: 0%;
+	left: 50%;
+}
+
+#nav-icon.open span:nth-child(2) {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#nav-icon.open span:nth-child(3) {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+#nav-icon.open span:nth-child(4) {
+	top: 18px;
+	width: 0%;
+	left: 50%;
+}
+
+#main-nav {
+	display: none;
+	width: 100%;
+	height: 100%;
+	background-color: #FF0035;
+	position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;	
+}
+
+#main-nav .content,
+section .content {
+	margin-top: 150px;
+	text-align: center;
+}
+
+
+#main-nav .content {
+	margin-top: 200px;
+}
+
+
+#main-nav ul {
+	list-style: none;
+}
+
+#main-nav li {
+	font-size: 28px;
+	padding: 7px;
+	font-weight: 700;
+}
+
+/* FOOTER */
+
+#footer {
+	height: 75px;
+}
+
+#footer a {
+	font-size: 15px;
+	font-weight: 500;
+}
+
+
+/* SECTIONS */
+
+section {
+	height: 100%;
+}
+
+#section0 {
+    background-color: #FF0035;
+}
+
+section .container-fluid {
+	height: 100%;
+	background-position: 50% 50%;
+    background-repeat: no-repeat;
+	background-position: 50% 0px;
+}
+
+#section0 .container-fluid {
+	background-image: url('../files/images/COO_HOME.jpg');
+}
+
+#section1 {
+    background-color: #6DFF96;
+}
+
+#section1 button {
+	background-color: #3600b7;
+	box-shadow: 15px 4px #3600b7;
+}
+
+#section1 .container-fluid {
+	background-image: url('../files/images/COO_02.jpg');
+}
+
+#section1 .force-to-bottom {
+  bottom: 380px;
+}
+
+#section2 {
+    background: #FFFF65;
+}
+
+#section2 .container-fluid {
+	background-image: url('../files/images/COO_REGISTRIERUNG_PART01.jpg');
+}
+
+
+
+
+#section1 .container > .container {
+	display: table-cell;
+    float: none;
+    vertical-align: bottom;
+}
+
+
+
+/* HOME */
+#home h2 {
+	color: #ffffff;
+}
+
+.force-to-bottom {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+}
+
+.row.force-to-bottom {
+	margin: 0px;
+}
+
+/* COOP 3000 */
+
+#coop3000 #section0 .container-fluid {
+	background-image: none;
+}
+
+#coop3000 #section0 {
+	background-color: #FFFF65;
+}
+
+#coop3000 p {
+	font-size: 18px;
+}
+
+/* DAS FUELLHORN */
+
+#fuellhorn #section0 .container-fluid {
+	background-image: none;
+}
+
+#fuellhorn #section0 {
+	background-color: #6DFF96;
+}
+
+#fuellhorn p {
+	font-size: 18px;
+}
+
+/* DIE BILDUNGSWERKE */
+
+#bildungswerke #section0 .container-fluid {
+	background-image: none;
+}
+
+#bildungswerke #section0 {
+	background-color: #FFFF65;
+}
+
+#bildungswerke p {
+	font-size: 18px;
+}
+
+/* REGISTRIERUNG */
+
+#registrierung #section0 .container-fluid {
+	background-image: none;
+}
+
+#registrierung #section0 {
+	background-color: #FFFF65;
+}
+
+#registrierung p {
+	font-size: 18px;
+}
+
+/* NEWSLETTER */
+
+#newsletter #section0 .container-fluid {
+	background-image: url('../files/images/COO_NEWSLETTER_PART01.jpg');
+}
+
+#newsletter #section0 {
+	background-color: #88A1FF;
+}
+
+#newsletter p {
+	font-size: 18px;
+}
+
+/* 404 */
+
+#error #section0 .container-fluid {
+	background-image: url('../files/images/COO_404.jpg');
+}
+
+#error #section0 {
+	background-color: #FFFFFF;
+}
+
+/* LOGIN */
+
+#login #section0 .container-fluid {
+	background-image: none;
+}
+
+#login #section0 {
+	background-color: #88A1FF;
+}
+
+#login p {
+	font-size: 18px;
+}
+
+/* IMPRESSUM */
+
+#impressum #section0 .container-fluid {
+	background-image: none;
+}
+
+#impressum #section0 {
+	background-color: #FFFF65;
+}
+
+#impressum p {
+	font-size: 18px;
+}
+
+
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+	section .container-fluid {
+	    background-size: auto 85% ;
+	}
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+	section .container-fluid {
+	    background-size: auto 85%;
+	}
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+	section .container-fluid {
+	    background-size: 100% auto;
+	}
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+	section .container-fluid {
+	    background-size: 100% auto;
+	}
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+	section .container-fluid {
+	    background-size: 100% auto;
+	}
+	
+	.force-to-bottom {
+	  position: relative;
+	  bottom: 0;
+	  width: 100%;
+	}
+}
+

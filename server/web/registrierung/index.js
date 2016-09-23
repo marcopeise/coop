@@ -3,9 +3,15 @@
 
 exports.register = function (server, options, next) {
 
+    server.views({
+        engines: { ejs: require('ejs') },
+        relativeTo: __dirname,
+        path: '.'
+    });
+
     server.route({
         method: 'GET',
-        path: '/',
+        path: '/registrierung',
         handler: function (request, reply) {
 
             return reply.view('index');
@@ -18,6 +24,5 @@ exports.register = function (server, options, next) {
 
 
 exports.register.attributes = {
-    name: 'home',
-    dependencies: 'visionary'
+    name: 'registrierung'
 };

@@ -1,11 +1,7 @@
-### Forgot your password?
+### Passwort vergessen?
 
-We received a request to reset the password for your account. You'll
-need this key to do it.
+Wir haben eine Anfrage bekommen um Dein Passwort Deines COOP3000 Accounts zurück zu setzen.
+Wenn Du das möchtest brauchst du den folgenden Schlüssel:
 
-__Key:__  
-{{key}}
-
-Love,
-
-The Plot Device
+Schlüssel
+{{baseHref}}/{{email}}/{{key}}

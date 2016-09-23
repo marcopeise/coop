@@ -1,11 +1,9 @@
-### Contact Form
+### Kontaktformular
 
-| Field    | Value       |
+| Feld     | Wert        |
 | --------:|:----------- |
 | Name:    | {{name}}    |
 | Email:   | {{email}}   |
 | Message: | {{message}} |
 
-Love,
-
-The Plot Device
+Dein COOP3000

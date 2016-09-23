@@ -24,12 +24,53 @@ internals.applyRoutes = function (server, next) {
                     name: Joi.string().required(),
                     email: Joi.string().email().lowercase().required(),
                     username: Joi.string().token().lowercase().required(),
-                    password: Joi.string().required()
+                    mobile: Joi.number().integer().required(),
+                    town: Joi.string().required()
                 }
             },
             pre: [{
                 assign: 'usernameCheck',
                 method: function (request, reply) {
+
+                    //generate Password
+                    var generatePassword = require("password-generator");
+
+                    var maxLength = 10;
+                    var minLength = 6;
+                    var uppercaseMinCount = 2;
+                    var lowercaseMinCount = 2;
+                    var numberMinCount = 1;
+                    var specialMinCount = 1;
+                    var UPPERCASE_RE = /([A-Z])/g;
+                    var LOWERCASE_RE = /([a-z])/g;
+                    var NUMBER_RE = /([\d])/g;
+                    var SPECIAL_CHAR_RE = /([\?\-])/g;
+                    var NON_REPEATING_CHAR_RE = /([\w\d\?\-])\1{2,}/g;
+
+                    function isStrongEnough(password) {
+                        var uc = password.match(UPPERCASE_RE);
+                        var lc = password.match(LOWERCASE_RE);
+                        var n = password.match(NUMBER_RE);
+                        var sc = password.match(SPECIAL_CHAR_RE);
+                        var nr = password.match(NON_REPEATING_CHAR_RE);
+                        return password.length >= minLength &&
+                            !nr &&
+                            uc && uc.length >= uppercaseMinCount &&
+                            lc && lc.length >= lowercaseMinCount &&
+                            n && n.length >= numberMinCount &&
+                            sc && sc.length >= specialMinCount;
+                    }
+
+                    function customPassword() {
+                        var password = "";
+                        var randomLength = Math.floor(Math.random() * (maxLength - minLength)) + minLength;
+                        while (!isStrongEnough(password)) {
+                            password = generatePassword(randomLength, false, /[\w\d\?\-]/);
+                        }
+                        return password;
+                    }
+
+                    request.payload.password = customPassword();
 
                     const conditions = {
                         username: request.payload.username
@@ -123,10 +164,13 @@ internals.applyRoutes = function (server, next) {
                 welcome: ['linkUser', 'linkAccount', function (results, done) {
 
                     const emailOptions = {
-                        subject: 'Your ' + Config.get('/projectName') + ' account',
+                        subject: 'Dein ' + Config.get('/projectName') + ' account',
                         to: {
                             name: request.payload.name,
-                            address: request.payload.email
+                            address: request.payload.email,
+                            password: request.payload.password,
+                            mobile: request.payload.mobile,
+                            town: request.payload.town
                         }
                     };
                     const template = 'welcome';

@@ -12,7 +12,7 @@ const criteria = {
 
 const config = {
     $meta: 'This file configures the plot device.',
-    projectName: 'Frame',
+    projectName: 'COOP3000',
     port: {
         web: {
             $filter: 'env',
@@ -36,7 +36,7 @@ const config = {
                 $filter: 'env',
                 production: process.env.MONGODB_URI,
                 test: 'mongodb://localhost:27017/frame-test',
-                $default: 'mongodb://localhost:27017/frame'
+                $default: 'mongodb://localhost:27017/coop3000'
             }
         },
         autoIndex: true
@@ -46,18 +46,18 @@ const config = {
         port: 465,
         secure: true,
         auth: {
-            user: 'jedireza@gmail.com',
+            user: 'nowCOOP3000@gmail.com',
             pass: process.env.SMTP_PASSWORD
         }
     },
     system: {
         fromAddress: {
-            name: 'Frame',
-            address: 'jedireza@gmail.com'
+            name: 'COOP3000',
+            address: 'nowcoop3000@gmail.com'
         },
         toAddress: {
-            name: 'Frame',
-            address: 'jedireza@gmail.com'
+            name: 'COOP3000',
+            address: 'zentrale@coop3000.net'
         }
     }
 };

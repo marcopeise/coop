@@ -174,7 +174,16 @@ const manifest = {
         },
         {
             plugin: './server/web/loginUser'
-        }
+        },
+        {
+            plugin: './server/web/registrierungsuccess'
+        },
+        {
+            plugin: './server/web/404'
+        },
+        {
+            plugin: './server/web/profil'
+        },
     ]
 };
 

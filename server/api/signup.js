@@ -122,8 +122,10 @@ internals.applyRoutes = function (server, next) {
                     const username = request.payload.username;
                     const password = request.payload.password;
                     const email = request.payload.email;
+                    const mobile = request.payload.mobile;
+                    const town = request.payload.town;
 
-                    User.create(username, password, email, done);
+                    User.create(username, password, email, mobile, town, done);
                 },
                 account: ['user', function (results, done) {
 
@@ -203,11 +205,13 @@ internals.applyRoutes = function (server, next) {
                         _id: user._id,
                         username: user.username,
                         email: user.email,
-                        roles: user.roles
+                        roles: user.roles,
+                        mobile: user.mobile,
+                        town: user.town
                     },
                     session: results.session,
                     authHeader
-                });
+                }).redirect('/registrierungsuccess');
             });
         }
     });

@@ -37,7 +37,7 @@
 		</script>
 		<!-- End Google Analytics -->
 	</head>
-	<body id="newsletter">
+	<body id="registrierung">
 		
 		<div id="nav-icon">
 			<span></span>
@@ -58,11 +58,12 @@
 						<div class="content">
 							<nav>
 								<ul>
+									
 									<li><a href="/coop3000">Coop 3000</a></li>
 									<li><a href="/fuellhorn">Das Füllhorn</a></li>
 									<li><a href="/bildungswerke">Die Bildungswerke</a></li>
 									<li><a href="/registrierung">Registrierung</a></li>
-									<li><a href="/loginUser">Login</a></li>
+									<li><a href="/">Logout</a></li>
 									<li><a href="/impressum">Impressum</a></li>
 								</ul>
 							</nav>
@@ -79,35 +80,40 @@
 						<div class="col-12">
 							<div id="header">
 								<a href="/">
-									<img src="/public/files/images/COO_Newsletter_Logo.png" class="header-logo" title="Logo Coop3000" />
+									<img src="/public/files/images/COO_03_Registrierung_Logo.png" class="header-logo" title="Logo Coop3000" />
 								</a>	
 							</div>
 							
 							<div class="container">
 								<div class="row">
-									<div class="col-lg-10 col-lg-offset-1">
+									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												NEWSLETTER-ANMELDUNG
+												Profil!
 											</h1>
 											<p>
-												Erhalte gelegentliche Updates, wie es weitergeht im Concern &amp; wo die nächsten Veranstaltungen sind von COOP 3000!<br />
-												Jetzt anmelden, Abmeldung jederzeit möglich.
+												Du hast einen Anteil am neuen Concern auf Dich eintragen lassen!
+												Du wirst nun alles bekommen, was der Concern hat. Kannst alles erfahren, was der Concern weiß.
+
+												<br>
+												<br>
+												USERNAME: <%= username %>
+												<br>
+												MAIL: <%= email %>
+												<br>
+												MOBILNUMMER: <%= mobile %>
+												<br>
+												ORT: <%= town %>
+												<br>
+												<br>
+
+												Am 2. Oktober um 19:30 Uhr in der Aula der Berufskollegs/SHOWSPIELHAUS geht es los.
+												<br>
+												Open End, inklusive Preisverleihung
+												<br>
+												Eintritt frei
 											</p>
 										</div>
-									</div>	
-									<div class="col-lg-6 col-lg-offset-3 text-center">
-										<form action="//coop3000.us14.list-manage.com/subscribe/post?u=176738e9ca79bd3e38fbe66b7&amp;id=784c1de34e" method="post" id="reg-form" name="myForm" onsubmit="return validateForm()" target="_blank" novalidate>
-										  	<div class="form-group">
-										  		<label for="email">E-MAIL-ADRESSE</label>
-										    	<input type="email" required class="form-control" name="EMAIL" id="email" placeholder="Hier bitte Deine E-Mail Adresse eingeben">
-										  	</div>
-												<div id="mce-responses" class="clear">
-													<div class="response" id="mce-error-response" style="display:none"></div>
-													<div class="response" id="mce-success-response" style="display:none"></div>
-												</div>
-											<button class="buttonHover">Anmelden</button>
-										</form>
 									</div>							
 								</div>
 							</div>

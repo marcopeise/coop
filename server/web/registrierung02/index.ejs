@@ -38,9 +38,6 @@
 		<!-- End Google Analytics -->
 	</head>
 	<body id="registrierung">
-		<div id="footer">
-			<a href="/impressum">Impressum</a>
-		</div>
 		
 		<div id="nav-icon">
 			<span></span>
@@ -55,7 +52,7 @@
 					<div class="col-12">
 						<div id="header">
 							<a href="/">
-								<img src="/public/files/images/coop3000-logo-home.jpg" class="header-logo" title="Logo Coop3000" />
+								<img src="/public/files/images/COO_MENU_Logo.jpg" class="header-logo" title="Logo Coop3000" />
 							</a>								
 						</div>
 						<div class="content">
@@ -67,6 +64,7 @@
 									<li><a href="/bildungswerke">Die Bildungswerke</a></li>
 									<li><a href="/registrierung">Registrierung</a></li>
 									<li><a href="/loginUser">Login</a></li>
+									<li><a href="/impressum">Impressum</a></li>
 								</ul>
 							</nav>
 						</div>						
@@ -100,7 +98,7 @@
 										</div>
 									</div>	
 									<div class="col-lg-6 col-lg-offset-3 text-center">
-										<form action="/api/signup" method="POST" id="regform" enctype="application/json">
+										<form action="/api/signup" method="POST" id="reg-form" enctype="application/json">
 											<div class="form-group">
 												<label for="username">Nick/Name</label>
 										    	<input type="text" class="form-control" name="username" id="name" placeholder="Auf welchen Namen soll Dein Anteil eingetragen werden?">
@@ -121,7 +119,7 @@
 										    	<input type="text" class="form-control" name="town" id="town" placeholder="Wo lebst Du? COOP3000 wird wachsen…">
 										  	</div>
 											<input type="hidden" name="name" value=username/>
-											<button>Anmelden</button>
+											<button class="buttonHover">Anmelden</button>
 										</form>
 									</div>							
 								</div>

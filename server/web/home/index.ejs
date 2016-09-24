@@ -38,9 +38,6 @@
 		<!-- End Google Analytics -->
 	</head>
 	<body id="home">
-		<div id="footer">
-			<a href="/impressum">Impressum</a>
-		</div>
 		
 		<div id="nav-icon">
 			<span></span>
@@ -55,7 +52,7 @@
 					<div class="col-12">
 						<div id="header">
 							<a href="/">
-								<img src="/public/files/images/coop3000-logo-home.jpg" class="header-logo" title="Logo Coop3000" />
+								<img src="/public/files/images/COO_MENU_Logo.jpg" class="header-logo" title="Logo Coop3000" />
 							</a>								
 						</div>
 						<div class="content">
@@ -67,6 +64,7 @@
 									<li><a href="/bildungswerke">Die Bildungswerke</a></li>
 									<li><a href="/registrierung">Registrierung</a></li>
 									<li><a href="/loginUser">Login</a></li>
+									<li><a href="/impressum">Impressum</a></li>
 								</ul>
 							</nav>
 						</div>						
@@ -102,7 +100,7 @@
 							</div>
 							<div class="row force-to-bottom">
 								<div class="col-lg-12 text-center">
-									<button>Finde raus, ob dein Los gewonnen hat</button>
+									<button id="goToReg">Finde raus, ob dein Los gewonnen hat</button>
 								</div>							
 							</div>
 						</div>
@@ -122,7 +120,7 @@
 							
 							<div class="container">
 								<div class="row">
-									<div class="col-lg-6 col-lg-offset-3">
+									<div class="col-lg-6 col-lg-offset-3 col-xs-8 col-xs-offset-2">
 										<div class="content">
 											<h1>
 												Registrierung
@@ -130,15 +128,16 @@
 											<p>
 												Gib den Code von Deinem Los ein &amp; erfahre, was Du gewinnen kannst
 											</p>
-											
-											<form method="" id="reg-form">
-												<div class="form-group">
-											    	<input type="text" class="form-control" id="ticketNumber" placeholder="Registrierungs-Nummer">
-											  	</div>
-												<button>Senden</button>
-											</form>
-											
 										</div>
+									</div>	
+											
+									<div class="col-lg-6 col-lg-offset-3 col-xs-8 col-xs-offset-2 text-center">	
+										<form method="" id="reg-form">
+											<div class="form-group">
+										    	<input type="text" class="form-control" id="ticketNumber">
+										  	</div>
+											<button class="buttonHover">Senden</button>
+										</form>
 									</div>							
 								</div>
 							</div>

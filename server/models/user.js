@@ -32,7 +32,7 @@ class User extends MongoModels {
         });
     }
 
-    static create(username, password, email, callback) {
+    static create(username, password, email, mobile, town, callback) {
 
         const self = this;
 
@@ -45,7 +45,9 @@ class User extends MongoModels {
                     username: username.toLowerCase(),
                     password: results.passwordHash.hash,
                     email: email.toLowerCase(),
-                    timeCreated: new Date()
+                    timeCreated: new Date(),
+                    mobile: mobile,
+                    town: town
                 };
 
                 self.insertOne(document, done);
@@ -182,6 +184,8 @@ User.schema = Joi.object().keys({
     username: Joi.string().token().lowercase().required(),
     password: Joi.string(),
     email: Joi.string().email().lowercase().required(),
+    mobile: Joi.number(),
+    town: Joi.string(),
     roles: Joi.object().keys({
         admin: Joi.object().keys({
             id: Joi.string().required(),

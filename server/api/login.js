@@ -107,7 +107,9 @@ internals.applyRoutes = function (server, next) {
                     _id: request.pre.user._id,
                     username: request.pre.user.username,
                     email: request.pre.user.email,
-                    roles: request.pre.user.roles
+                    roles: request.pre.user.roles,
+                    mobile: request.pre.user.mobile,
+                    town: request.pre.user.town
                 },
                 session: request.pre.session,
                 authHeader

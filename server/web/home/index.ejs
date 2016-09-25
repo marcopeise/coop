@@ -79,9 +79,7 @@
 					<div class="row">
 						<div class="col-12">
 							<div id="header">
-								<a href="/">
 									<img src="/public/files/images/UKR-logo.jpg" class="header-logo" title="Logo Urbane Künste Ruhr" />
-								</a>	
 							</div>
 						</div>
 					</div>
@@ -132,9 +130,10 @@
 									</div>	
 											
 									<div class="col-lg-6 col-lg-offset-3 col-xs-8 col-xs-offset-2 text-center">
-										<form action="/registrierung02"  method="" id="reg-form">
+										<form action="/registrierung02"  method="" id="reg-form" data-toggle="validator" role="form">
 											<div class="form-group">
-												<input type="text" class="form-control" id="ticketNumber" placeholder="">
+												<input type="text" class="form-control" name="ticketNumber" id="ticketNumber" placeholder="" pattern="^[A-Z0-9-_\.]{12,18}$" title="Diesen COOP3000 Code gibt es nicht." required>
+												<div class="help-block with-errors"></div>
 											</div>
 											<button class="buttonHover">Senden</button>
 										</form>

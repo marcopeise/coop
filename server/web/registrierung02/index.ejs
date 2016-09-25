@@ -34,8 +34,15 @@
 
 			ga('create', 'UA-84474181-1', 'auto');
 			ga('send', 'pageview');
+
 		</script>
 		<!-- End Google Analytics -->
+
+		<script>
+			function FillName(f) {
+					f.name.value = f.username.value;
+			}
+		</script>
 	</head>
 	<body id="registrierung">
 		
@@ -98,28 +105,32 @@
 										</div>
 									</div>	
 									<div class="col-lg-6 col-lg-offset-3 text-center">
-										<form action="/api/signup" method="POST" id="reg-form" enctype="application/json">
+										<form action="/api/signup" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 											<div class="form-group">
 												<label for="username">Nick/Name</label>
-										    	<input type="text" class="form-control" name="username" id="name" placeholder="Auf welchen Namen soll Dein Anteil eingetragen werden?">
-										  	</div>
+										    	<input type="text" class="form-control" name="username" id="username" placeholder="Auf welchen Namen soll Dein Anteil eingetragen werden?" data-minlength="1" data-error="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf." required>
+												  <div class="help-block with-errors"></div>
+											</div>
 										  	
 										  	<div class="form-group">
 										  		<label for="email">Mail</label>
-										    	<input type="text" class="form-control" name="email" id="email" placeholder="Für gelegentliche Concern-Berichte">
-										  	</div>
+										    	<input type="email" class="form-control" name="email" id="email" placeholder="Für gelegentliche Concern-Berichte" data-error="Deine richtige E-Mail Adresse wäre hier nicht schlecht. z.B.: mustermann@web.de" required>
+												  <div class="help-block with-errors"></div>
+											  </div>
 										  	
 										  	<div class="form-group">
 										  		<label for="mobile">Mobilnummer</label>
-										    	<input type="text" class="form-control" name="mobile" id="mobile" placeholder="Für spezielle Insider-Infos">
-										  	</div>
+										    	<input type="text" class="form-control" name="mobile" id="mobile" placeholder="Für spezielle Insider-Infos ... z.B.: +490123456789" data-error="Deine echte Mobilfunknummer wäre hier super. z.B.: +490123456789">
+												  <div class="help-block with-errors"></div>
+											  </div>
 										  	
 										  	<div class="form-group">
 										  		<label for="town">Ort</label>
-										    	<input type="text" class="form-control" name="town" id="town" placeholder="Wo lebst Du? COOP3000 wird wachsen…">
-										  	</div>
-											<input type="hidden" name="name" value=username/>
-											<button class="buttonHover">Anmelden</button>
+										    	<input type="text" class="form-control" name="town" id="town" placeholder="Wo lebst Du? COOP3000 wird wachsen…" pattern="^[_A-z0-9]{1,}$" maxlength="30">
+												  <div class="help-block with-errors"></div>
+											  </div>
+											<input type="hidden" name="name" value="">
+											<button class="buttonHover" onclick="FillName(this.form)">Anmelden</button>
 										</form>
 									</div>							
 								</div>

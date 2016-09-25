@@ -24,8 +24,8 @@ internals.applyRoutes = function (server, next) {
                     name: Joi.string().required(),
                     email: Joi.string().email().lowercase().required(),
                     username: Joi.string().token().lowercase().required(),
-                    mobile: Joi.number().integer().required(),
-                    town: Joi.string().required()
+                    mobile: Joi.any().optional(),
+                    town: Joi.any().optional()
                 }
             },
             pre: [{
@@ -115,7 +115,7 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             const mailer = request.server.plugins.mailer;
-
+            //console.log("name: ", request.payload.username)
             Async.auto({
                 user: function (done) {
 

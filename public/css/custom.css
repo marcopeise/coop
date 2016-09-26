@@ -548,7 +548,8 @@ section .container-fluid {
 	background-color: #FFFF65;
 }
 
-#coop3000 p {
+#coop3000 p,
+#coop3000 p a {
 	font-size: 18px;
 }
 
@@ -562,7 +563,8 @@ section .container-fluid {
 	background-color: #6DFF96;
 }
 
-#fuellhorn p {
+#fuellhorn p,
+#fuellhorn p a {
 	font-size: 18px;
 }
 
@@ -643,7 +645,7 @@ section .container-fluid {
 }
 
 #impressum p,
-#impressum p a {
+#impressum p a, {
 	font-size: 18px;
 }
 

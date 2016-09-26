@@ -96,7 +96,7 @@
 												<br><br>
 												Jetzt, wo Du Dein flüchtiges Losglück in eine sichere Münze bei COOP3000 eingetauscht hast, läßt es sich entspannt mit allen Anwesenden im FÜLLHORN feiern:
 												<br><br>
-												Komm am 2. Oktober zum großen <b><u><a href="http://favoriten2016.de/56-0-COOP-3000---eine-neosolidarische-concerngruendung.html" target="_blank">Abschlußball</a></u></b> des FAVORITEN-FESTIVALS in Dortmund – dort prägen wir gemeinsam die COINS, mit denen der Concern weiter wachsen & neue COOPS stiften wird.
+												Komm am 2. Oktober zum großen <a href="http://favoriten2016.de/56-0-COOP-3000---eine-neosolidarische-concerngruendung.html" target="_blank">Abschlußball</a> des FAVORITEN-FESTIVALS in Dortmund – dort prägen wir gemeinsam die COINS, mit denen der Concern weiter wachsen & neue COOPS stiften wird.
 
 												<br><br>
 												Eine rauschende Ballnacht voller Shares of Vergnügen, solidarischen Extensions, Peters Knappenbar & der Managerin des Gemüsefonds, sowie handwerklich hochkarätiger Tanzmusik vom Wiener Gemeindebau-Walzer bis zum Discofox Rheinhausen.
@@ -109,15 +109,31 @@
 												<br><br>
 												Hier sind Deine Angaben, auf denen Dein Anteil nun registriert ist:
 												<br>
-												USERNAME: <%= username %>
-												<br>
-												MAIL: <%= email %>
-												<br>
-												MOBILNUMMER: <%= mobile %>
-												<br>
-												ORT: <%= town %>
-												<br>
-												<br>
+												<div class="col-lg-6 col-lg-offset-3 text-center">
+													<form action="" method="" id="reg-form">
+														<div class="form-group">
+															<label for="name">Nick/Name</label>
+															<input type="text" class="form-control" name="username" id="username" value=<%=username%> data-minlength="1" pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen." required>
+														</div>
+
+														<div class="form-group">
+															<label for="email">E-Mail-Adresse</label>
+															<input type="email" class="form-control" name="email" id="email" value=<%= email %> title="Deine richtige E-Mail Adresse wäre hier nicht schlecht. z.B.: mustermann@web.de" required>
+														</div>
+
+														<div class="form-group">
+															<label for="mobile">Mobilnummer</label>
+															<input type="text" class="form-control" name="mobile" id="mobile" value=<%= mobile %> pattern="^[0-9_.]+$" title="Deine echte Mobilfunknummer wäre hier super. z.B.: 00490123456789">
+														</div>
+
+														<div class="form-group">
+															<label for="town">Ort</label>
+															<input type="text" class="form-control" name="town" id="town" value=<%= town %>>
+														</div>
+
+														<button class="buttonHover" disabled>Ändern</button>
+													</form>
+												</div>
 											</p>
 										</div>
 									</div>							

@@ -249,16 +249,10 @@ small,
 p a,
 small a {
 	font-family: 'Minion Pro';
-	font-size: 26px;
+	font-size: 18px;
 	font-weight: 400;
 	text-transform: none;
 	letter-spacing: 0;
-}
-
-small,
-small a {
-	font-size: 18px;
-	letter-spacing: auto;
 }
 
 small a {
@@ -522,6 +516,11 @@ section .container-fluid {
 	background-image: url('../files/images/COO_COLLAGEN_C_08_160921.jpg');
 }
 
+#section2 .content p,
+#registrierung #section0 p {
+	font-size: 26px;
+}
+
 
 /* HOME */
 #home h2 {
@@ -548,11 +547,6 @@ section .container-fluid {
 	background-color: #FFFF65;
 }
 
-#coop3000 p,
-#coop3000 p a {
-	font-size: 18px;
-}
-
 /* DAS FUELLHORN */
 
 #fuellhorn #section0 .container-fluid {
@@ -561,11 +555,6 @@ section .container-fluid {
 
 #fuellhorn #section0 {
 	background-color: #6DFF96;
-}
-
-#fuellhorn p,
-#fuellhorn p a {
-	font-size: 18px;
 }
 
 /* DIE BILDUNGSWERKE */
@@ -578,10 +567,6 @@ section .container-fluid {
 	background-color: #FFFF65;
 }
 
-#bildungswerke p {
-	font-size: 18px;
-}
-
 /* REGISTRIERUNG */
 
 #registrierung #section0 .container-fluid {
@@ -592,10 +577,6 @@ section .container-fluid {
 	background-color: #FFFF65;
 }
 
-#registrierung p {
-	font-size: 18px;
-}
-
 /* NEWSLETTER */
 
 #newsletter #section0 .container-fluid {
@@ -604,10 +585,6 @@ section .container-fluid {
 
 #newsletter #section0 {
 	background-color: #88A1FF;
-}
-
-#newsletter p {
-	font-size: 18px;
 }
 
 /* 404 */
@@ -630,10 +607,6 @@ section .container-fluid {
 	background-color: #88A1FF;
 }
 
-#login p {
-	font-size: 18px;
-}
-
 /* IMPRESSUM */
 
 #impressum #section0 .container-fluid {
@@ -642,11 +615,6 @@ section .container-fluid {
 
 #impressum #section0 {
 	background-color: #FFFF65;
-}
-
-#impressum p,
-#impressum p a, {
-	font-size: 18px;
 }
 
 #impressum p a:hover {

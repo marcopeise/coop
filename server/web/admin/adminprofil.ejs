@@ -37,7 +37,7 @@
 		</script>
 		<!-- End Google Analytics -->
 	</head>
-	<body id="bildungswerke">
+	<body id="registrierung">
 		
 		<div id="nav-icon">
 			<span></span>
@@ -63,7 +63,7 @@
 									<li><a href="/fuellhorn">Das Füllhorn</a></li>
 									<li><a href="/bildungswerke">Die Bildungswerke</a></li>
 									<li><a href="/registrierung">Registrierung</a></li>
-									<li><a href="/login">Login</a></li>
+									<li><a href="/">Logout</a></li>
 									<li><a href="/impressum">Impressum</a></li>
 									<li><a href="/verbinden">Verbinden</a></li>
 								</ul>
@@ -78,23 +78,59 @@
 			<section class="section" id="section0">
 				<div class="container-fluid">
 					<div class="row">
-						<div>
+						<div class="col-12">
 							<div id="header">
 								<a href="/">
-									<img src="/public/files/images/COO_Bildungswerke_Logo.png" class="header-logo" title="Logo Coop3000" />
-								</a>
+									<img src="/public/files/images/COO_03_Registrierung_Logo.png" class="header-logo" title="Logo Coop3000" />
+								</a>	
 							</div>
 							
 							<div class="container">
 								<div class="row">
-									<div class="col-lg-12">
+									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												Die Bildungswerke
+												ADMIN BEREICH!
 											</h1>
 											<p>
-												Bald gibt’s hier einige ausgewählte Klassiker der Ruhrgebiets-Solidarität zu sehen &amp; zu hören!
-											</p>											
+												<br>
+												<div class="col-lg-6 col-lg-offset-3 text-center">
+													<form action="/updateProfile" method="POST" id="reg-form">
+														<div class="form-group">
+															<label for="name">Nick/Name</label>
+															<input type="text" class="form-control" name="username" id="username" value=<%=username%> data-minlength="1" pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen." required>
+														</div>
+
+														<div class="form-group">
+															<label for="email">E-Mail-Adresse</label>
+															<input type="email" class="form-control" name="email" id="email" value=<%= email %> title="Deine richtige E-Mail Adresse wäre hier nicht schlecht. z.B.: mustermann@web.de" required>
+														</div>
+
+														<div class="form-group">
+															<label for="mobile">Mobilnummer</label>
+															<input type="text" class="form-control" name="mobile" id="mobile" pattern="^[0-9_.]+$" title="Deine echte Mobilfunknummer wäre hier super. z.B.: 00490123456789" value=<%= mobile %>>
+														</div>
+
+														<div class="form-group">
+															<label for="town">Ort</label>
+															<input type="text" class="form-control" name="town" id="town" value=<%= town %>>
+														</div>
+
+														<div class="form-group">
+															<label for="coopid">CoopId</label>
+															<input type="text" class="form-control" name="coopid" id="coopid" disabled="disabled" value=<%= coopid %>>
+														</div>
+														<div class="form-group">
+															<label>
+																<input type="checkbox" name="verknExtended" id="verknExtended" checked=verknExtendedValue value=<%= verknExtendedValue %>> VERKNÜPFUNGEN EXTENDED
+															</label>
+														</div>
+														<input type="hidden" name="id" value=<%= id %>>
+														<input type="hidden" name="idhelper" value=<%= coopid %>>
+														<button class="buttonHover">Ändern</button>
+													</form>
+												</div>
+											</p>
 										</div>
 									</div>							
 								</div>

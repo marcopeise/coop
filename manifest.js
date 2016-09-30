@@ -9,7 +9,7 @@ const criteria = {
 
 
 const manifest = {
-    $meta: 'This file defines the plot device.',
+    $meta: 'This file defines the Coop3000 Server.',
     server: {
         debug: {
             request: ['error']
@@ -26,7 +26,7 @@ const manifest = {
     }],
     registrations: [
         {
-            plugin: 'hapi-auth-basic'
+            plugin: 'hapi-auth-cookie'
         },
         {
             plugin: 'lout'
@@ -173,7 +173,7 @@ const manifest = {
             plugin: './server/web/newsletter'
         },
         {
-            plugin: './server/web/loginUser'
+            plugin: './server/web/profil'
         },
         {
             plugin: './server/web/registrierungsuccess'
@@ -182,7 +182,10 @@ const manifest = {
             plugin: './server/web/404'
         },
         {
-            plugin: './server/web/profil'
+            plugin: './server/web/login'
+        },
+        {
+            plugin: './server/web/admin'
         },
     ]
 };

@@ -17,7 +17,7 @@ internals.applyRoutes = function (server, next) {
         path: '/users',
         config: {
             auth: {
-                strategy: 'simple',
+                strategy: 'session',
                 scope: 'admin'
             },
             validate: {
@@ -69,7 +69,7 @@ internals.applyRoutes = function (server, next) {
         path: '/users/{id}',
         config: {
             auth: {
-                strategy: 'simple',
+                strategy: 'session',
                 scope: 'admin'
             },
             pre: [
@@ -93,13 +93,64 @@ internals.applyRoutes = function (server, next) {
         }
     });
 
+    server.route({
+        method: 'GET',
+        path: '/coopid/{id}',
+        handler: function (request, reply) {
+
+            //console.log("input: ", request.params.id);
+            User.findCOOPID(request.params.id, function (err, user) {
+                if(err){
+                    return reply(err);
+                }
+                //console.log("get /coopid/id: ", user);
+                if(!user){
+                    return reply(Boom.notFound('User not found.'));
+                }
+
+                reply(user);
+            })
+        }
+    });
+
+    server.route({
+        method: 'PUT',
+        path: '/connect/{id}',
+        handler: function (request, reply) {
+
+            console.log("input useroneid: ", request.payload.useroneid);
+            console.log("input useroneusername: ", request.payload.useroneusername);
+            console.log("input usertwoid: ", request.params.id);
+
+            const id = request.params.id;
+
+            User.findByIdAndUpdate(
+                id,
+                {
+                    $addToSet: {
+                        connections: {
+                            user: {
+                                id:     request.payload.useroneid,
+                                name:   request.payload.useroneusername
+                            }
+                        }
+                    }
+                }, function(err) {
+                    if(err){
+                        return reply(err);
+                    }
+                    reply(true);
+                }
+            );
+        }
+    });
 
     server.route({
         method: 'GET',
         path: '/users/my',
         config: {
             auth: {
-                strategy: 'simple',
+                strategy: 'session',
                 scope: ['admin', 'account']
             }
         },
@@ -129,7 +180,7 @@ internals.applyRoutes = function (server, next) {
         path: '/users',
         config: {
             auth: {
-                strategy: 'simple',
+                strategy: 'session',
                 scope: 'admin'
             },
             validate: {
@@ -208,22 +259,12 @@ internals.applyRoutes = function (server, next) {
         method: 'PUT',
         path: '/users/{id}',
         config: {
-            auth: {
-                strategy: 'simple',
-                scope: 'admin'
-            },
             validate: {
                 params: {
                     id: Joi.string().invalid('000000000000000000000000')
-                },
-                payload: {
-                    isActive: Joi.boolean().required(),
-                    username: Joi.string().token().lowercase().required(),
-                    email: Joi.string().email().lowercase().required()
                 }
             },
             pre: [
-                AuthPlugin.preware.ensureAdminGroup('root'),
                 {
                     assign: 'usernameCheck',
                     method: function (request, reply) {
@@ -276,9 +317,13 @@ internals.applyRoutes = function (server, next) {
             const id = request.params.id;
             const update = {
                 $set: {
-                    isActive: request.payload.isActive,
-                    username: request.payload.username,
-                    email: request.payload.email
+                    isActive:   request.payload.isActive,
+                    username:   request.payload.username,
+                    email:      request.payload.email,
+                    mobile:     request.payload.mobile,
+                    town:       request.payload.town,
+                    coopid:     request.payload.coopid,
+                    verknExtended: request.payload.verknExtended
                 }
             };
 
@@ -303,7 +348,7 @@ internals.applyRoutes = function (server, next) {
         path: '/users/my',
         config: {
             auth: {
-                strategy: 'simple',
+                strategy: 'session',
                 scope: ['admin', 'account']
             },
             validate: {
@@ -391,7 +436,7 @@ internals.applyRoutes = function (server, next) {
         path: '/users/{id}/password',
         config: {
             auth: {
-                strategy: 'simple',
+                strategy: 'session',
                 scope: 'admin'
             },
             validate: {
@@ -446,7 +491,7 @@ internals.applyRoutes = function (server, next) {
         path: '/users/my/password',
         config: {
             auth: {
-                strategy: 'simple',
+                strategy: 'session',
                 scope: ['admin', 'account']
             },
             validate: {
@@ -501,7 +546,7 @@ internals.applyRoutes = function (server, next) {
         path: '/users/{id}',
         config: {
             auth: {
-                strategy: 'simple',
+                strategy: 'session',
                 scope: 'admin'
             },
             validate: {

@@ -70,7 +70,19 @@ internals.applyRoutes = function (server, next) {
                         return password;
                     }
 
+                    function makeid()
+                    {
+                        var text = "";
+                        var possible = "0123456789";
+
+                        for( var i=0; i < 5; i++ )
+                            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+                        return text;
+                    }
+
                     request.payload.password = customPassword();
+                    request.payload.coopid = makeid();
 
                     const conditions = {
                         username: request.payload.username
@@ -124,6 +136,7 @@ internals.applyRoutes = function (server, next) {
                     const email = request.payload.email;
                     const mobile = request.payload.mobile;
                     const town = request.payload.town;
+                    const coopid = request.payload.coopid;
 
                     User.create(username, password, email, mobile, town, done);
                 },
@@ -172,7 +185,8 @@ internals.applyRoutes = function (server, next) {
                             address: request.payload.email,
                             password: request.payload.password,
                             mobile: request.payload.mobile,
-                            town: request.payload.town
+                            town: request.payload.town,
+                            coopid: request.payload.id
                         }
                     };
                     const template = 'welcome';
@@ -207,7 +221,8 @@ internals.applyRoutes = function (server, next) {
                         email: user.email,
                         roles: user.roles,
                         mobile: user.mobile,
-                        town: user.town
+                        town: user.town,
+                        coopid: user.coopid
                     },
                     session: results.session,
                     authHeader

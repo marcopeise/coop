@@ -16,7 +16,7 @@ internals.applyRoutes = function (server, next) {
         config: {
             auth: {
                 mode: 'try',
-                strategy: 'simple'
+                strategy: 'session'
             }
         },
         handler: function (request, reply) {

@@ -1,6 +1,7 @@
 'use strict';
 const Async = require('async');
 const Boom = require('boom');
+const Config = require('../config');
 
 
 const internals = {};
@@ -11,13 +12,22 @@ internals.applyStrategy = function (server, next) {
     const Session = server.plugins['hapi-mongo-models'].Session;
     const User = server.plugins['hapi-mongo-models'].User;
 
-    server.auth.strategy('simple', 'basic', {
-        validateFunc: function (request, username, password, callback) {
+    server.auth.strategy('session', 'cookie', {
+        password: Config.get('/cookieSecret'),
+        cookie: 'coop3000',
+        isSecure: false,
+        redirectTo: '/login',
+        validateFunc: function (request, data, callback) {
 
+            console.log("request.payload: ", request.payload);
+            console.log("data.session: ", data.session);
             Async.auto({
                 session: function (done) {
 
-                    Session.findByCredentials(username, password, done);
+                    const id = data.session._id;
+                    const key = data.session.key;
+
+                    Session.findByCredentials(id, key, done);
                 },
                 user: ['session', function (results, done) {
 
@@ -50,11 +60,11 @@ internals.applyStrategy = function (server, next) {
                 }
 
                 if (!results.session) {
-                    return callback(null, false);
-                }
+                return callback(null, false);
+            }
 
-                callback(null, Boolean(results.user), results);
-            });
+            callback(null, Boolean(results.user), results);
+        });
         }
     });
 
@@ -89,11 +99,13 @@ internals.preware = {
 
                 const groupFound = groups.some((group) => {
 
-                    return request.auth.credentials.roles.admin.isMemberOf(group);
-                });
+                        return request.auth.credentials.roles.admin.isMemberOf(group);
+            });
 
                 if (!groupFound) {
-                    return reply(Boom.notFound('Permission denied to this resource.'));
+                    const message = `Missing admin group membership to [${groups.join(' or ')}].`;
+
+                    return reply(Boom.badRequest(message));
                 }
 
                 reply();

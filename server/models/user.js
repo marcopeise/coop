@@ -35,6 +35,16 @@ class User extends MongoModels {
     static create(username, password, email, mobile, town, callback) {
 
         const self = this;
+        function makeid()
+        {
+            var text = "";
+            var possible = "0123456789";
+
+            for( var i=0; i < 5; i++ )
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        }
 
         Async.auto({
             passwordHash: this.generatePasswordHash.bind(this, password),
@@ -47,7 +57,8 @@ class User extends MongoModels {
                     email: email.toLowerCase(),
                     timeCreated: new Date(),
                     mobile: mobile,
-                    town: town
+                    town: town,
+                    coopid: makeid()
                 };
 
                 self.insertOne(document, done);
@@ -110,6 +121,14 @@ class User extends MongoModels {
     static findByUsername(username, callback) {
 
         const query = { username: username.toLowerCase() };
+
+        this.findOne(query, callback);
+    }
+
+    static findCOOPID(coopidString, callback) {
+
+        //console.log("findCOOPID: ", coopidString);
+        const query = { coopid: coopidString };
 
         this.findOne(query, callback);
     }
@@ -186,6 +205,17 @@ User.schema = Joi.object().keys({
     email: Joi.string().email().lowercase().required(),
     mobile: Joi.number(),
     town: Joi.string(),
+    coopid: Joi.string(),
+    connections: Joi.object().keys({
+        id: Joi.string().required(),
+        name: Joi.string().required()
+    }),
+    verknExtended: Joi.boolean().default(false),
+    altersvorsorge: Joi.boolean().default(false),
+    sozialakademie: Joi.boolean().default(false),
+    imagepflege: Joi.boolean().default(false),
+    gemuesefond: Joi.boolean().default(false),
+    paradies: Joi.boolean().default(false),
     roles: Joi.object().keys({
         admin: Joi.object().keys({
             id: Joi.string().required(),

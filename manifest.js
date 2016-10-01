@@ -189,6 +189,9 @@ const manifest = {
         },
         {
             plugin: './server/web/logout'
+        },
+        {
+            plugin: './server/web/live'
         }
     ]
 };

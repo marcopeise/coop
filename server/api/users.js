@@ -27,7 +27,7 @@ internals.applyRoutes = function (server, next) {
                     role: Joi.string(),
                     fields: Joi.string(),
                     sort: Joi.string().default('_id'),
-                    limit: Joi.number().default(20),
+                    limit: Joi.number().default(200),
                     page: Joi.number().default(1)
                 }
             },

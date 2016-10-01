@@ -36,6 +36,18 @@
 			ga('send', 'pageview');
 		</script>
 		<!-- End Google Analytics -->
+		<script>
+			$(function() {
+				var isLoggedIn = ('<%=isLoggedIn%>' === 'true');
+				if( isLoggedIn ) {
+					$('.showLogout').show();
+					$('.showLogin').hide();
+				} else {
+					$('.showLogout').hide();
+					$('.showLogin').show();
+				}
+			});
+		</script>
 	</head>
 	<body id="registrierung">
 		
@@ -63,7 +75,13 @@
 									<li><a href="/fuellhorn">Das Füllhorn</a></li>
 									<li><a href="/bildungswerke">Die Bildungswerke</a></li>
 									<li><a href="/registrierung">Registrierung</a></li>
-									<li><a href="/">Logout</a></li>
+									<span class="showLogin">
+										<li><a href="/login">Login</a></li>
+									</span>
+									<span class="showLogout">
+										<li><a href="/profil">Profil</a></li>
+										<li><a href="/logout">Logout</a></li>
+									</span>
 									<li><a href="/impressum">Impressum</a></li>
 									<li><a href="/verbinden">Verbinden</a></li>
 								</ul>
@@ -93,7 +111,6 @@
 												ADMIN BEREICH!
 											</h1>
 											<p>
-												<br>
 												<div class="col-lg-6 col-lg-offset-3 text-center">
 													<form action="/updateProfile" method="POST" id="reg-form">
 														<div class="form-group">
@@ -120,9 +137,72 @@
 															<label for="coopid">CoopId</label>
 															<input type="text" class="form-control" name="coopid" id="coopid" disabled="disabled" value=<%= coopid %>>
 														</div>
+														<h3>
+															STATIONEN
+														</h3>
 														<div class="form-group">
 															<label>
-																<input type="checkbox" name="verknExtended" id="verknExtended" checked=verknExtendedValue value=<%= verknExtendedValue %>> VERKNÜPFUNGEN EXTENDED
+																<input type="checkbox" name="verknExtended" id="verknExtended" <%= verknExtendedValue %>> COMMUNITIES KNÜPFEN
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="altersvorsorge" id="altersvorsorge" <%= altersvorsorgeValue %>> ALTERSVORSORGE (TEMPORÄR)
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="sozialakademie" id="sozialakademie" <%= sozialakademieValue %>> SOZIALAKADEMIE
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="knappenbar" id="knappenbar" <%= knappenbarValue %>> KNAPPENBAR
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="gemuesefond" id="gemuesefond" <%= gemuesefondValue %>> GEMÜSEFONDS
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="gluecklichtage" id="gluecklichtage" <%= gluecklichtageValue %>> GLÜCKLICHE TAGE
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="paybackpele" id="paybackpele" <%= paybackpeleValue %>> PAYBACK-PELE
+															</label>
+														</div>
+														<h3>
+															TÄNZE
+														</h3>
+														<div class="form-group">
+															<label>
+																<input type="checkbox" name="walzer" id="walzer" <%= walzerValue %>> LANGSAMER WALZER
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="diskofox" id="diskofox" <%= diskofoxValue %>> DISKOFOX
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="chachacha" id="chachacha" <%= chachachaValue %>> CHA CHA CHA
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="wienerwalzer" id="wienerwalzer" <%= wienerwalzerValue %>> WIENER WALZER
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="swing" id="swing" <%= swingValue %>> SWING
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="rumba" id="rumba" <%= rumbaValue %>> RUMBA
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="foxtrott" id="foxtrott" <%= foxtrottValue %>> FOXTROTT
+															</label>
+															<br>
+															<label>
+																<input type="checkbox" name="blues" id="blues" <%= bluesValue %>> BLUES
 															</label>
 														</div>
 														<input type="hidden" name="id" value=<%= id %>>

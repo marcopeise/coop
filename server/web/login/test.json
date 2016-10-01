@@ -1,0 +1,40 @@
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "peise", "password" : "$2a$10$YisMLsBStC8JChZ/oZR9W.2qcobMpv6g7ucAQkAuLtYjZdcdnTvH6", "email" : "peise@web.de", "timeCreated" : ISODate("2016-09-24T02:16:28.842Z"), "mobile" : 491775983272, "town" : "Berlin", "roles" : { "account" : { "id" : "57e5e1fc93f0797569f5798d", "name" : "username/ " } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "luckyluke", "password" : "$2a$10$kN7xVRF7faXzYufVYRX4cunoqJvJMwpzPYOFnL9DUAtBpntjSRAcW", "email" : "post@matthaei-und-konsorten.de", "timeCreated" : ISODate("2016-09-24T11:21:37.708Z"), "mobile" : 1729123642, "town" : "leverkusen", "roles" : { "account" : { "id" : "57e661c193f0797569f57994", "name" : "username/ " } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "servicekomplize", "password" : "$2a$10$gZdwgWIjqqNbkdxlmdz.KuHxByJLQN2v5uU0azZ6bTQovTyrKt1mO", "email" : "c.saar@netcologne.de", "timeCreated" : ISODate("2016-09-25T13:43:13.825Z"), "mobile" : 17696226461, "town" : "Dortmund / Köln", "roles" : { "account" : { "id" : "57e7d4716be3584125e79450", "name" : "username/ " } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "joesche", "password" : "$2a$10$U9cLbcS4erbrwMPPtngNTuhYj8SOH6gRUxLCJLG5PH/EARTA3NXBK", "email" : "j.albrecht@favoriten2016.de", "timeCreated" : ISODate("2016-09-26T11:18:04.047Z"), "mobile" : "+491628079885", "town" : "Dortmund", "roles" : { "account" : { "id" : "57e903ec4b0fc062c625539c", "name" : "joesche " } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "barbara", "password" : "$2a$10$IVdWTGouUat4Ks5dJr6xZ.zhlHS1Rs/oVKMjj5XT3JGaMTXP/tQ.G", "email" : "post@barbaramueller.de", "timeCreated" : ISODate("2016-09-26T13:23:21.817Z"), "mobile" : "", "town" : "Dortmund", "roles" : { "account" : { "id" : "57e921494b0fc062c625539f", "name" : "Barbara " } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "zannowich", "password" : "$2a$10$kyySaOTzEN9Adyg5uMnZ1eYdZMr4rsEdw.SG7YHDlg8XmaxWfPkTS", "email" : "snln@gmx.de", "timeCreated" : ISODate("2016-09-26T22:10:08.083Z"), "mobile" : "+49 0151 235566600", "town" : "Nordstadt", "roles" : { "account" : { "id" : "57e99cc054dc6321b6e4f1a5", "name" : "Zannowich " } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "annalena", "password" : "$2a$10$4gAel8fKOZ6Nvr2huiDwXOdpZDtxSXm739Yi2PmSOtRSfizYt05Cm", "email" : "anna.l.erpenbach@gmail.com", "timeCreated" : ISODate("2016-09-27T10:12:08.505Z"), "mobile" : "015784261288", "town" : "Dortmund", "roles" : { "account" : { "id" : "57ea45f81fecfb073cd8a391", "name" : "AnnaLena " } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "inga", "password" : "$2a$10$WlA3GdvZE9yAr4rYRkU1ueew3rVvkZ98RCxbPLId2Up26B.tF6U8K", "email" : "inga.2000@t-online.de", "timeCreated" : ISODate("2016-09-27T14:45:18.764Z"), "mobile" : "015778983428", "town" : "Dortmund", "roles" : { "account" : { "id" : "57ea85fe1fecfb073cd8a394", "name" : "Inga " } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "heike", "password" : "$2a$10$jB5104CFH7Nlf5OUfyYmcuvcEM2stWYubLMw6fXmItlx.Bn7YcXPe", "email" : "heikewendt@posteo.de", "timeCreated" : ISODate("2016-09-28T17:35:22.033Z"), "mobile" : "", "town" : "", "roles" : { "account" : { "id" : "57ebff5af5a6c46f07c48411", "name" : "heike " } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "marcopeise", "password" : "$2a$10$tu8Vuj9DgExYU2EF6YtwB.nYqPnUZK8ZZ/.0BrYBF4a..5a45/vUa", "email" : "peise@tu-berlin.de", "timeCreated" : ISODate("2016-09-30T01:33:29.885Z"), "coopid" : "86112", "roles" : { "admin" : { "id" : "57edc0e90de0e4223ba20e6e", "name" : "marcopeise" } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "lukas", "password" : "$2a$10$s0YPAWPGtPQgY37k1excyOMYT2GlPFbFCDlq4VardvO..D0CmX7We", "email" : "jlm@matthaei-und-konsorten.de", "timeCreated" : ISODate("2016-09-30T01:35:39.572Z"), "coopid" : "65149", "roles" : { "admin" : { "id" : "57edc16b658423228c33395e", "name" : "lukas" } } }
+{ "_id" : ObjectId(""), "isActive" : true, "username" : "komplize", "password" : "$2a$10$LQgoeFtvgTBaHdn41lkw9OY8FWRL.WhX7GfDIwaJmcoh3GNV9V.He", "email" : "zentrale@coop3000.net", "timeCreated" : ISODate("2016-09-30T01:38:35.015Z"), "coopid" : "57294", "roles" : { "admin" : { "id" : "57edc21a2a762d22ed86cc42", "name" : "komplize" } } }
+
+
+db.users.update({"_id": ObjectId("57e5e1fc93f0797569f5798c")},{$set: { "coopid": "43861"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57e661c193f0797569f57993")},{$set: { "coopid": "72958"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57e7d4716be3584125e7944f")},{$set: { "coopid": "25149"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57e903ec4b0fc062c625539b")},{$set: { "coopid": "29758"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57e921494b0fc062c625539e")},{$set: { "coopid": "35194"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57e99cc054dc6321b6e4f1a4")},{$set: { "coopid": "41839"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57ea45f81fecfb073cd8a390")},{$set: { "coopid": "57217"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57ea85fe1fecfb073cd8a393")},{$set: { "coopid": "64318"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57ebff5af5a6c46f07c48410")},{$set: { "coopid": "79153"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57edc0e90de0e4223ba20e6f")},{$set: { "coopid": "83637"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57edc16b658423228c33395f")},{$set: { "coopid": "93621"}},{upsert:false,multi:true});
+db.users.update({"_id": ObjectId("57edc21b2a762d22ed86cc43")},{$set: { "coopid": "25814"}},{upsert:false,multi:true});
+
+
+"_id": "57e5e1fc93f0797569f5798c"), "coopid": "43861", "username" : "peise"           , "email" : "peise@web.de"                     , "mobile" : 491775983272         , "town" : "Berlin"
+"_id": "57e661c193f0797569f57993"), "coopid": "72958", "username" : "luckyluke"       , "email" : "post@matthaei-und-konsorten.de"   , "mobile" : 1729123642           , "town" : "leverkusen"
+"_id": "57e7d4716be3584125e7944f"), "coopid": "25149", "username" : "servicekomplize" , "email" : "c.saar@netcologne.de"             , "mobile" : 17696226461          , "town" : "Dortmund / Köln"
+"_id": "57e903ec4b0fc062c625539b"), "coopid": "29758", "username" : "joesche"         , "email" : "j.albrecht@favoriten2016.de"      , "mobile" : "+491628079885"      , "town" : "Dortmund"
+"_id": "57e921494b0fc062c625539e"), "coopid": "35194", "username" : "barbara"         , "email" : "post@barbaramueller.de"           , "mobile" : ""                   , "town" : "Dortmund"
+"_id": "57e99cc054dc6321b6e4f1a4"), "coopid": "41839", "username" : "zannowich"       , "email" : "snln@gmx.de"                      , "mobile" : "+49 0151 235566600" , "town" : "Nordstadt"
+"_id": "57ea45f81fecfb073cd8a390"), "coopid": "57217", "username" : "annalena"        , "email" : "anna.l.erpenbach@gmail.com"       , "mobile" : "015784261288"       , "town" : "Dortmund"
+"_id": "57ea85fe1fecfb073cd8a393"), "coopid": "64318", "username" : "inga"            , "email" : "inga.2000@t-online.de"            , "mobile" : "015778983428"       , "town" : "Dortmund"
+"_id": "57ebff5af5a6c46f07c48410"), "coopid": "79153", "username" : "heike"           , "email" : "heikewendt@posteo.de"             , "mobile" : ""                   , "town" : ""
+"_id": "57edc0e90de0e4223ba20e6f"), "coopid": "83637", "username" : "marcopeise"      , "email" : "peise@tu-berlin.de"
+"_id": "57edc16b658423228c33395f"), "coopid": "93621", "username" : "lukas"           , "email" : "jlm@matthaei-und-konsorten.de"
+"_id": "57edc21b2a762d22ed86cc43"), "coopid": "25814", "username" : "komplize"        , "email" : "zentrale@coop3000.net"

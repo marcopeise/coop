@@ -27,7 +27,7 @@ internals.applyRoutes = function (server, next) {
         },
         handler: function (request, reply) {
 
-            console.log("Login Request");
+            //console.log("Login Request");
             //console.log(request.payload);
 
             var options ={
@@ -40,7 +40,7 @@ internals.applyRoutes = function (server, next) {
             };
 
             server.inject(options, function(response){
-                console.log("response: ", response.result);
+                //console.log("response: ", response.result);
                 if(response.result.statusCode){
                     if(response.result.statusCode == 400){
                         return reply.view('../login/index',{
@@ -50,14 +50,14 @@ internals.applyRoutes = function (server, next) {
                         return reply.redirect('/404');
                     }
                 }else{
-                    console.log("User: ", response.result.user.email);
+                    //console.log("User: ", response.result.user.email);
 
                     request.cookieAuth.set(response.result);
                     //request.auth.credentials = response.result;
 
                     //console.log("request.cookieAuth: ", request.cookieAuth);
-                    console.log("request.auth: ", request.auth);
-                    console.log("request.auth.isAuthenticated: ", request.auth.isAuthenticated);
+                    //console.log("request.auth: ", request.auth);
+                    //console.log("request.auth.isAuthenticated: ", request.auth.isAuthenticated);
                     return reply.view('index',{
                         auth:       JSON.stringify(request.auth),
                         session:    JSON.stringify(request.session),
@@ -75,6 +75,56 @@ internals.applyRoutes = function (server, next) {
     });
 
     server.route({
+        method: 'GET',
+        path: '/profil',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            },
+        },
+        handler: function (request, reply) {
+
+            //console.log("XXX", request.auth.credentials);
+
+            var options ={
+                method: 'GET',
+                url: '/api/users/my',
+                payload: {
+                },
+                credentials: request.auth.credentials
+            };
+
+            server.inject(options, function(response){
+                //console.log("response: ", response.result);
+                if(response.result.statusCode){
+                    if(response.result.statusCode == 400){
+                        return reply.view('../login/index',{
+                            message:   response.result.message
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    //console.log("User: ", response.result);
+
+                    return reply.view('index',{
+                        auth:       JSON.stringify(request.auth),
+                        session:    JSON.stringify(request.session),
+                        isLoggedIn: request.auth.isAuthenticated,
+                        username:   response.result.username,
+                        email:      response.result.email,
+                        mobile:     response.result.mobile,
+                        town:       response.result.town,
+                        coopid:     response.result.coopid,
+                        id:         response.result._id
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
         method: 'POST',
         path: '/updateMyProfile',
         config: {
@@ -85,9 +135,9 @@ internals.applyRoutes = function (server, next) {
         },
         handler: function (request, reply) {
 
-            console.log('updateMyProfile POST, ', request.auth.credentials.user);
-            console.log('ID: ', request.payload.id);
-            console.log('idhelper: ', request.payload.idhelper);
+            //console.log('updateMyProfile POST, ', request.auth.credentials.user);
+            //console.log('ID: ', request.payload.id);
+            //console.log('idhelper: ', request.payload.idhelper);
 
             var options ={
                 method: 'PUT',
@@ -134,19 +184,44 @@ internals.applyRoutes = function (server, next) {
     server.route({
         method: 'GET',
         path: '/verbinden',
+        config: {
+            auth: {
+                mode: 'try',
+                strategy: 'session'
+            },
+            plugins: {
+                'hapi-auth-cookie': {
+                    redirectTo: false
+                }
+            }
+        },
         handler: function (request, reply) {
 
-            return reply.view('coopid');
+            return reply.view('coopid',{
+                auth:       JSON.stringify(request.auth),
+                session:    JSON.stringify(request.session),
+                isLoggedIn: request.auth.isAuthenticated
+            });
         }
     });
 
     server.route({
         method: 'POST',
         path: '/verbinden01',
-        handler: function (request, reply) {
+        config: {
+            auth: {
+                mode: 'try',
+                strategy: 'session'
+            },
+            plugins: {
+                'hapi-auth-cookie': {
+                    redirectTo: false
+                }
+            }
+        },handler: function (request, reply) {
 
-            console.log('/verbinden01 POST, ', request.auth.credentials);
-            console.log('search: ', request.payload.coopid);
+            //console.log('/verbinden01 POST, ', request.auth.credentials);
+            //console.log('search: ', request.payload.coopid);
 
             var options ={
                 method: 'GET',
@@ -166,9 +241,12 @@ internals.applyRoutes = function (server, next) {
                         return reply.redirect('/404');
                     }
                 }else{
-                    console.log("User found: ", response.result);
+                    //console.log("User found: ", response.result);
 
                     return reply.view('verbinden',{
+                        auth:       JSON.stringify(request.auth),
+                        session:    JSON.stringify(request.session),
+                        isLoggedIn: request.auth.isAuthenticated,
                         username:   response.result.username,
                         email:      response.result.email,
                         mobile:     response.result.mobile,
@@ -184,12 +262,22 @@ internals.applyRoutes = function (server, next) {
     server.route({
         method: 'POST',
         path: '/verbinden02',
-        handler: function (request, reply) {
+        config: {
+            auth: {
+                mode: 'try',
+                strategy: 'session'
+            },
+            plugins: {
+                'hapi-auth-cookie': {
+                    redirectTo: false
+                }
+            }
+        },handler: function (request, reply) {
 
-            console.log('/verbinden02 POST, ', request.auth.credentials);
-            console.log('useroneid: ', request.payload.useroneid);
-            console.log('useronecoopid: ', request.payload.useronecoopid);
-            console.log('usertwoid: ', request.payload.usertwoid);
+            //console.log('/verbinden02 POST, ', request.auth.credentials);
+            //console.log('useroneid: ', request.payload.useroneid);
+            //console.log('useronecoopid: ', request.payload.useronecoopid);
+            //console.log('usertwoid: ', request.payload.usertwoid);
 
             var options ={
                 method: 'GET',
@@ -209,10 +297,10 @@ internals.applyRoutes = function (server, next) {
                         return reply.redirect('/404');
                     }
                 } else {
-                    console.log("User Two found: ", usertworesponse.result);
+                    //console.log("User Two found: ", usertworesponse.result);
 
-                    console.log('useroneid: ', request.payload.useroneid);
-                    console.log('useroneusername: ', request.payload.useroneusername);
+                    //console.log('useroneid: ', request.payload.useroneid);
+                    //console.log('useroneusername: ', request.payload.useroneusername);
 
                     var connectionoptions = {
                         method: 'PUT',
@@ -234,7 +322,7 @@ internals.applyRoutes = function (server, next) {
                                 return reply.redirect('/404');
                             }
                         } else {
-                            console.log("Connnection done: ", connectionOneResponse.result);
+                            //console.log("Connnection done: ", connectionOneResponse.result);
 
                             // zweite verbindung
                             var connectionTwoOptions = {
@@ -259,10 +347,13 @@ internals.applyRoutes = function (server, next) {
                                 } else {
                                     console.log("Connnection Two done: ", connectionTwoResponse.result);
                                      return reply.view('verbunden',{
-                                     usernameOne:   request.payload.useroneusername,
-                                     userOneId:     request.payload.useronecoopid,
-                                     usernameTwo:   usertworesponse.result.username,
-                                     userTwoId:      usertworesponse.result.coopid
+                                         auth:          JSON.stringify(request.auth),
+                                         session:       JSON.stringify(request.session),
+                                         isLoggedIn:    request.auth.isAuthenticated,
+                                         usernameOne:   request.payload.useroneusername,
+                                         userOneId:     request.payload.useronecoopid,
+                                         usernameTwo:   usertworesponse.result.username,
+                                         userTwoId:      usertworesponse.result.coopid
 
                                      });
                                 }

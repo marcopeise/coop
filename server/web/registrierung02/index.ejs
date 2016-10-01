@@ -43,6 +43,18 @@
 					f.name.value = f.username.value;
 			}
 		</script>
+		<script>
+			$(function() {
+				var isLoggedIn = ('<%=isLoggedIn%>' === 'true');
+				if( isLoggedIn ) {
+					$('.showLogout').show();
+					$('.showLogin').hide();
+				} else {
+					$('.showLogout').hide();
+					$('.showLogin').show();
+				}
+			});
+		</script>
 	</head>
 	<body id="registrierung">
 		
@@ -70,7 +82,13 @@
 									<li><a href="/fuellhorn">Das Füllhorn</a></li>
 									<li><a href="/bildungswerke">Die Bildungswerke</a></li>
 									<li><a href="/registrierung">Registrierung</a></li>
-									<li><a href="/login">Login</a></li>
+									<span class="showLogin">
+										<li><a href="/login">Login</a></li>
+									</span>
+									<span class="showLogout">
+										<li><a href="/profil">Profil</a></li>
+										<li><a href="/logout">Logout</a></li>
+									</span>
 									<li><a href="/impressum">Impressum</a></li>
 									<li><a href="/verbinden">Verbinden</a></li>
 								</ul>
@@ -106,7 +124,7 @@
 										</div>
 									</div>	
 									<div class="col-lg-6 col-lg-offset-3 text-center">
-										<form action="/api/signup" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+										<form action="/register" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 											<div class="form-group">
 												<label for="username">Nick/Name</label>
 										    	<input type="text" class="form-control" name="username" id="username" placeholder="Auf welchen Namen soll Dein Anteil eingetragen werden?" data-minlength="1" pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen." required>

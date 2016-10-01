@@ -49,7 +49,7 @@
 			});
 		</script>
 	</head>
-	<body id="fuellhorn">
+	<body id="registrierung">
 		
 		<div id="nav-icon">
 			<span></span>
@@ -96,11 +96,11 @@
 			<section class="section" id="section0">
 				<div class="container-fluid">
 					<div class="row">
-						<div>
+						<div class="col-12">
 							<div id="header">
 								<a href="/">
-									<img src="/public/files/images/COO_Fuellhorn_Logo.png" class="header-logo" title="Logo Coop3000" />
-								</a>
+									<img src="/public/files/images/COO_03_Registrierung_Logo.png" class="header-logo" title="Logo Coop3000" />
+								</a>	
 							</div>
 							
 							<div class="container">
@@ -108,33 +108,47 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												DAS FÜLLHORN
+												GLÜCKWUNSCH!
 											</h1>
 											<p>
-												Zum Abschluss des Festivals FAVORITEN feiert COOP 3000 seinen Auftakt als FÜLLHORN und lädt zum Tanz: Im Ballsaal des alten Sozialstaats führt die kollektive Lohntütenveräußerung zur Damen-Herren-Wahl, Festreden auf vergangene Reichtümer der Gesellschaft wechseln mit Tanzeinlagen der neuen Solidarität, während es Bitcoins aufs Parkett regnet und alle Gäste zu Shareholdern eines utopischen Versprechens werden. Betreten Sie den Ballsaal für eine Nacht, in der sich das Loblied auf die alte Solidarität des Ruhrgebiets mit vielfältigen neuen Praktiken vermengt. Unser geschultes Personal hilft Ihnen zum angemessenen Style, während die Live-Musik von Stefan "Pele" Götzer & Combo die Tanzenden umgarnt. Wer seine Schritte nicht mehr genau erinnert, erhält bei den Experten der Tanzschule Gödde einen Crash-Kurs. Die Stimmen ehemaliger Arbeiter*innen und Gewerkschafter*innen von Hoesch, Opel und diversen Ruhrgebiets-Zechen berichten von den vergangenen Grundlagen, die Solidarität erst ermöglichten. Derweil bringen das Team der Afro-World und tamilische Make Up-Artists gemeinsam mit den deutsch-türkischen Goldtag-Spezialistinnen ihre eigenen Beispiele neosolidarischer Praktiken ins Treiben des Ballabends mit ein.
-											</p>
-											
-											<p>											
-												Auch das Barpersonal trägt mit raffinierten Drinks und unerschöpflichen Bowle-Reserven zum Schwung des Abends bei: Sei es um die Spannung bei der Verleihung der Festival-Preise entspannter auszuhalten oder um den krönenden Abschluss der Feier, bei dem alle Gäste zu Shareholdern eines utopischen Versprechens werden, gebührend zu zelebrieren.
-											</p>
-											
-											<p><strong>																						
-												Ort: Aula der Berufskollegs / SHOWSPIELHAUS<br />
-												Termin: 2. Oktober, 19:30 Uhr<br />
-												Open End, inklusive Preisverleihung<br />
+												Du hast einen Anteil am neuen Concern auf Dich eintragen lassen!
+												Du wirst nun alles bekommen, was der Concern hat. Kannst alles erfahren, was der Concern weiß.
+
+												<br>
+												<br>
+
+												Am 2. Oktober um 19:30 Uhr in der Aula der Berufskollegs/SHOWSPIELHAUS geht es los.
+												<br>
+												Open End, inklusive Preisverleihung
+												<br>
 												Eintritt frei
-												</strong>
 											</p>
-											
-											<p>																							
-												Inszenierung: Lukas Matthaei / Ausstattung: Dorothea Ronneburg / Dramaturgie: Amanda Bailey / Produktionsassistenz: Lina Jung, Julia Hülsken / Ausstattungsassistenz: Liselotte Herms / 
-												Video: Ayse Kalmaz / u.v.a. Mitwirkende aus Dortmund und dem Ruhrgebiet
-											</p>
-													
-											<p>
-												Ein Projekt von <a href="http://www.urbanekuensteruhr.de" target="_blank">Urbane Künste Ruhr</a> mit <a href="http://matthaei-und-konsorten.de" target="_blank">matthaei &amp; konsorten</a> und <a href="http://favoriten2016.de" target="_blank">FAVORITEN 2016</a>, in Kooperation mit dem NRW Landesbüro Freie Darstellende Künste e.V. und der FH Dortmund – FB Angewandte Sozialwissenschaften
-											</p>
-											
+											<div class="col-lg-6 col-lg-offset-3 text-center">
+												<div class="form-group">
+													<label for="name">Nick/Name</label>
+													<input type="text" class="form-control" name="username" id="username" disabled="disabled" value=<%=username%>>
+												</div>
+
+												<div class="form-group">
+													<label for="email">E-Mail-Adresse</label>
+													<input type="email" class="form-control" name="email" id="email" disabled="disabled" value=<%= email %>>
+												</div>
+
+												<div class="form-group">
+													<label for="mobile">Mobilnummer</label>
+													<input type="text" class="form-control" name="mobile" id="mobile" disabled="disabled" value=<%= mobile %>>
+												</div>
+
+												<div class="form-group">
+													<label for="town">Ort</label>
+													<input type="text" class="form-control" name="town" id="town" disabled="disabled" value=<%= town %>>
+												</div>
+
+												<div class="form-group">
+													<label for="coopid">CoopId</label>
+													<input type="text" class="form-control" name="coopid" id="coopid" disabled="disabled" value=<%= coopid %>>
+												</div>
+											</div>
 										</div>
 									</div>							
 								</div>

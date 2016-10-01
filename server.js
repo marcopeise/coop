@@ -10,6 +10,6 @@ Composer((err, server) => {
 
     server.start(() => {
 
-        console.log('Started the plot device on port ' + server.info.port);
+        console.log('Started the coop3000 server on port ' + server.info.port);
     });
 });

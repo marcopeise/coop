@@ -157,7 +157,7 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             const id = request.auth.credentials.user._id.toString();
-            const fields = User.fieldsAdapter('username email roles');
+            const fields = User.fieldsAdapter('username email roles isActive mobile town coopid connections verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues token expires timeCreated');
 
             User.findById(id, fields, (err, user) => {
 
@@ -323,7 +323,21 @@ internals.applyRoutes = function (server, next) {
                     mobile:     request.payload.mobile,
                     town:       request.payload.town,
                     coopid:     request.payload.coopid,
-                    verknExtended: request.payload.verknExtended
+                    verknExtended: request.payload.verknExtended,
+                    altersvorsorge: request.payload.altersvorsorge,
+                    sozialakademie: request.payload.sozialakademie,
+                    knappenbar: request.payload.knappenbar,
+                    gemuesefond: request.payload.gemuesefond,
+                    gluecklichtage: request.payload.gluecklichtage,
+                    paybackpele: request.payload.paybackpele,
+                    walzer: request.payload.walzer,
+                    diskofox: request.payload.diskofox,
+                    chachacha: request.payload.chachacha,
+                    wienerwalzer: request.payload.wienerwalzer,
+                    swing: request.payload.swing,
+                    rumba: request.payload.rumba,
+                    foxtrott: request.payload.foxtrott,
+                    blues: request.payload.blues
                 }
             };
 

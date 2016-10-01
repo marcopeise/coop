@@ -213,9 +213,10 @@ User.schema = Joi.object().keys({
     verknExtended: Joi.boolean().default(false),
     altersvorsorge: Joi.boolean().default(false),
     sozialakademie: Joi.boolean().default(false),
-    imagepflege: Joi.boolean().default(false),
+    knappenbar: Joi.boolean().default(false),
     gemuesefond: Joi.boolean().default(false),
-    paradies: Joi.boolean().default(false),
+    gluecklichtage: Joi.boolean().default(false),
+    paybackpele: Joi.boolean().default(false),
     roles: Joi.object().keys({
         admin: Joi.object().keys({
             id: Joi.string().required(),
@@ -226,6 +227,14 @@ User.schema = Joi.object().keys({
             name: Joi.string().required()
         })
     }),
+    walzer: Joi.boolean().default(false),
+    diskofox: Joi.boolean().default(false),
+    chachacha: Joi.boolean().default(false),
+    wienerwalzer: Joi.boolean().default(false),
+    swing: Joi.boolean().default(false),
+    rumba: Joi.boolean().default(false),
+    foxtrott: Joi.boolean().default(false),
+    blues: Joi.boolean().default(false),
     resetPassword: Joi.object().keys({
         token: Joi.string().required(),
         expires: Joi.date().required()

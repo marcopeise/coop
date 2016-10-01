@@ -187,6 +187,9 @@ const manifest = {
         {
             plugin: './server/web/admin'
         },
+        {
+            plugin: './server/web/logout'
+        }
     ]
 };
 

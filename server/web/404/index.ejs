@@ -35,6 +35,18 @@
 			ga('create', 'UA-84474181-1', 'auto');
 			ga('send', 'pageview');
 		</script>
+		<script>
+			$(function() {
+				var isLoggedIn = ('<%=isLoggedIn%>' === 'true');
+				if( isLoggedIn ) {
+					$('.showLogout').show();
+					$('.showLogin').hide();
+				} else {
+					$('.showLogout').hide();
+					$('.showLogin').show();
+				}
+			});
+		</script>
 	</head>
 	<body id="error">
 		<div id="nav-icon">
@@ -60,7 +72,13 @@
 									<li><a href="/fuellhorn">Das Füllhorn</a></li>
 									<li><a href="/bildungswerke">Die Bildungswerke</a></li>
 									<li><a href="/registrierung">Registrierung</a></li>
-									<li><a href="/login">Login</a></li>
+									<span class="showLogin">
+										<li><a href="/login">Login</a></li>
+									</span>
+									<span class="showLogout">
+										<li><a href="/profil">Profil</a></li>
+										<li><a href="/logout">Logout</a></li>
+									</span>
 									<li><a href="/impressum">Impressum</a></li>
 									<li><a href="/verbinden">Verbinden</a></li>
 								</ul>

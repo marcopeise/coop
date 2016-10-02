@@ -1,6 +1,6 @@
 ### Willkommen bei COOP3000
 
-Danke das Du Dich registriert hast. Dein Account im digitalen Teil des Konzerns wurde nun erstellt.
+Danke, dass Du Dich registriert hast. Dein Account im digitalen Teil des Konzerns wurde nun erstellt.
 Hier sind Deine Logindaten für coop3000.net:
 
 | Details     |              |

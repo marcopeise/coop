@@ -179,7 +179,7 @@ internals.applyRoutes = function (server, next) {
                 welcome: ['linkUser', 'linkAccount', function (results, done) {
 
                     const emailOptions = {
-                        subject: 'Dein ' + Config.get('/projectName') + ' account',
+                        subject: 'Dein Account bei ' + Config.get('/projectName'),
                         to: {
                             name: request.payload.name,
                             address: request.payload.email,

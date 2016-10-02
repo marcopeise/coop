@@ -133,6 +133,14 @@ class User extends MongoModels {
         this.findOne(query, callback);
     }
 
+    static findEMAIL(email, callback) {
+
+        //console.log("findEMAIL: ", email);
+        const query = { email: email };
+
+        this.findOne(query, callback);
+    }
+
     constructor(attrs) {
 
         super(attrs);

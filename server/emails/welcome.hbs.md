@@ -11,4 +11,4 @@ Hier sind Deine Logindaten für coop3000.net:
 | Mobilnummer:| {{mobile}}   |
 | Ort:        | {{town}}     |
 
-Wir freuen uns, gemeinsam mit Dir die Gründung von COOP3000 voran zu treiben.
+Wir freuen uns auf die gemeinsame Gründung von COOP3000 mit Dir!

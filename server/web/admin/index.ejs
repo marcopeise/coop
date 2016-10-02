@@ -110,15 +110,47 @@
                                     <h1>
                                         ADMIN Bereich!
                                     </h1>
+                                    <div class="message">
+                                        <%= updatemessage %>
+                                    </div>
                                     <p>
                                     <div class="col-lg-6 col-lg-offset-3 text-center">
                                         Gib die Nummer der Person ein, die Du suchst.
+                                        <br>
                                         <form action="/admin" method="POST" id="reg-form" enctype="application/json">
                                             <div class="form-group">
                                                 <label for="email">COOPID</label>
                                                 <input type="text" class="form-control" name="coopid" id="coopid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es nicht." required>
                                             </div>
-
+                                            <%= message %>
+                                            <button>SUCHEN</button>
+                                        </form>
+                                    </div>
+                                    </p>
+                                    <p>
+                                    <div class="col-lg-6 col-lg-offset-3 text-center">
+                                        Gib die E-Mail Adresse der Person ein, die Du suchst.
+                                        <br>
+                                        <form action="/admin" method="POST" id="reg-form" enctype="application/json">
+                                            <div class="form-group">
+                                                <label for="email">EMAIL</label>
+                                                <input type="text" class="form-control" name="email" id="email" placeholder="" required>
+                                            </div>
+                                            <%= message %>
+                                            <button>SUCHEN</button>
+                                        </form>
+                                    </div>
+                                    </p>
+                                    <p>
+                                    <div class="col-lg-6 col-lg-offset-3 text-center">
+                                        Gib den Nick/Name der Person ein, die Du suchst.
+                                        <br>
+                                        <form action="/admin" method="POST" id="reg-form" enctype="application/json">
+                                            <div class="form-group">
+                                                <label for="username">Nick/Name</label>
+                                                <input type="text" class="form-control" name="username" id="username" placeholder="" required pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen.">
+                                            </div>
+                                            <%= message %>
                                             <button>SUCHEN</button>
                                         </form>
                                     </div>

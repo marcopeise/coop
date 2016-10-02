@@ -26,7 +26,9 @@ internals.applyRoutes = function (server, next) {
             return reply.view('index',{
                 auth:       JSON.stringify(request.auth),
                 session:    JSON.stringify(request.session),
-                isLoggedIn: request.auth.isAuthenticated
+                isLoggedIn: request.auth.isAuthenticated,
+                message:    '',
+                updatemessage: ''
             });
 
         },
@@ -45,72 +47,135 @@ internals.applyRoutes = function (server, next) {
 
             //console.log('Admin POST, ', request.auth.credentials.user);
             //console.log('search: ', request.payload.coopid);
+            function showUpdate(request, response) {
+                //console.log("User found: ", response.result);
+                var verknExtended = '', altersvorsorge = '', sozialakademie = '', knappenbar = '', gemuesefond = '', gluecklichtage = '', paybackpele = '';
+                var walzer = '', diskofox = '', chachacha = '', wienerwalzer = '', swing = '', rumba = '', foxtrott = '', blues = '';
+                if (response.result.verknExtended || response.result.verknExtended == true) verknExtended = 'checked';
+                if (response.result.altersvorsorge || response.result.altersvorsorge == true) altersvorsorge = 'checked';
+                if (response.result.sozialakademie || response.result.sozialakademie == true) sozialakademie = 'checked';
+                if (response.result.knappenbar || response.result.knappenbar == true) knappenbar = 'checked';
+                if (response.result.gemuesefond || response.result.gemuesefond == true) gemuesefond = 'checked';
+                if (response.result.gluecklichtage || response.result.gluecklichtage == true) gluecklichtage = 'checked';
+                if (response.result.paybackpele || response.result.paybackpele == true) paybackpele = 'checked';
+                if (response.result.walzer || response.result.walzer == true) walzer = 'checked';
+                if (response.result.diskofox || response.result.diskofox == true) diskofox = 'checked';
+                if (response.result.chachacha || response.result.chachacha == true) chachacha = 'checked';
+                if (response.result.wienerwalzer || response.result.wienerwalzer == true) wienerwalzer = 'checked';
+                if (response.result.swing || response.result.swing == true) swing = 'checked';
+                if (response.result.rumba || response.result.rumba == true) rumba = 'checked';
+                if (response.result.foxtrott || response.result.foxtrott == true) foxtrott = 'checked';
+                if (response.result.blues || response.result.blues == true) blues = 'checked';
+                console.log("verknExtended: ", verknExtended);
+                return reply.view('adminprofil', {
+                    auth: JSON.stringify(request.auth),
+                    session: JSON.stringify(request.session),
+                    isLoggedIn: request.auth.isAuthenticated,
+                    username: response.result.username,
+                    email: response.result.email,
+                    mobile: response.result.mobile,
+                    town: response.result.town,
+                    coopid: response.result.coopid,
+                    id: response.result._id,
+                    verknExtendedValue: verknExtended,
+                    altersvorsorgeValue: altersvorsorge,
+                    sozialakademieValue: sozialakademie,
+                    knappenbarValue: knappenbar,
+                    gemuesefondValue: gemuesefond,
+                    gluecklichtageValue: gluecklichtage,
+                    paybackpeleValue: paybackpele,
+                    walzerValue: walzer,
+                    diskofoxValue: diskofox,
+                    chachachaValue: chachacha,
+                    wienerwalzerValue: wienerwalzer,
+                    swingValue: swing,
+                    rumbaValue: rumba,
+                    foxtrottValue: foxtrott,
+                    bluesValue: blues
+                });
+            }
 
-            var options ={
-                method: 'GET',
-                url: '/api/coopid/' + request.payload.coopid,
-                payload: {
-                }
-            };
-
-            server.inject(options, function(response){
-                //console.log("response GET /coopid/id: ", response.result);
-                if(response.result.statusCode){
-                    if(response.result.statusCode == 400){
-                        return reply.view('../login/index',{
-                            message:   response.result.message
-                        });
-                    }else{
-                        return reply.redirect('/404');
+            if(request.payload.coopid){
+                var options ={
+                    method: 'GET',
+                    url: '/api/coopid/' + request.payload.coopid,
+                    payload: {
                     }
-                }else{
-                    //console.log("User found: ", response.result);
-                    var verknExtended = '', altersvorsorge = '', sozialakademie = '', knappenbar = '', gemuesefond = '', gluecklichtage = '', paybackpele = '';
-                    var walzer = '', diskofox = '', chachacha = '', wienerwalzer = '', swing = '', rumba = '', foxtrott = '', blues = '';
-                    if(response.result.verknExtended || response.result.verknExtended==true) verknExtended = 'checked';
-                    if(response.result.altersvorsorge || response.result.altersvorsorge==true) altersvorsorge = 'checked';
-                    if(response.result.sozialakademie || response.result.sozialakademie==true) sozialakademie = 'checked';
-                    if(response.result.knappenbar || response.result.knappenbar==true) knappenbar = 'checked';
-                    if(response.result.gemuesefond || response.result.gemuesefond==true) gemuesefond = 'checked';
-                    if(response.result.gluecklichtage || response.result.gluecklichtage==true) gluecklichtage = 'checked';
-                    if(response.result.paybackpele || response.result.paybackpele==true) paybackpele = 'checked';
-                    if(response.result.walzer || response.result.walzer==true) walzer = 'checked';
-                    if(response.result.diskofox || response.result.diskofox==true) diskofox = 'checked';
-                    if(response.result.chachacha || response.result.chachacha==true) chachacha = 'checked';
-                    if(response.result.wienerwalzer || response.result.wienerwalzer==true) wienerwalzer = 'checked';
-                    if(response.result.swing || response.result.swing==true) swing = 'checked';
-                    if(response.result.rumba || response.result.rumba==true) rumba = 'checked';
-                    if(response.result.foxtrott || response.result.foxtrott==true) foxtrott = 'checked';
-                    if(response.result.blues || response.result.blues==true) blues = 'checked';
-                    console.log("verknExtended: ", verknExtended);
-                    return reply.view('adminprofil',{
-                        auth:       JSON.stringify(request.auth),
-                        session:    JSON.stringify(request.session),
-                        isLoggedIn: request.auth.isAuthenticated,
-                        username:   response.result.username,
-                        email:      response.result.email,
-                        mobile:     response.result.mobile,
-                        town:       response.result.town,
-                        coopid:     response.result.coopid,
-                        id:         response.result._id,
-                        verknExtendedValue: verknExtended,
-                        altersvorsorgeValue: altersvorsorge,
-                        sozialakademieValue: sozialakademie,
-                        knappenbarValue: knappenbar,
-                        gemuesefondValue: gemuesefond,
-                        gluecklichtageValue: gluecklichtage,
-                        paybackpeleValue: paybackpele,
-                        walzerValue: walzer,
-                        diskofoxValue: diskofox,
-                        chachachaValue: chachacha,
-                        wienerwalzerValue: wienerwalzer,
-                        swingValue: swing,
-                        rumbaValue: rumba,
-                        foxtrottValue: foxtrott,
-                        bluesValue: blues
-                    });
-                }
-            });
+                };
+
+                server.inject(options, function(response){
+                    //console.log("response GET /coopid/id: ", response.result);
+                    if(response.result.statusCode){
+                        if(response.result.statusCode){
+                            return reply.view('index',{
+                                updatemessage:   response.result.message,
+                                message: '',
+                                auth:       JSON.stringify(request.auth),
+                                session:    JSON.stringify(request.session),
+                                isLoggedIn: request.auth.isAuthenticated
+                            });
+                        }else{
+                            return reply.redirect('/404');
+                        }
+                    }else{
+                        return showUpdate(request, response);
+                    }
+                });
+            }else if(request.payload.email){
+                var options ={
+                    method: 'GET',
+                    url: '/api/email/' + request.payload.email,
+                    payload: {
+                    }
+                };
+
+                server.inject(options, function(response){
+                    //console.log("response GET /email/email: ", response.result);
+                    //console.log("response.result.message: ", response.result.message);
+                    if(response.result.statusCode){
+                        if(response.result.statusCode){
+                            return reply.view('index',{
+                                updatemessage:   response.result.message,
+                                message: '',
+                                auth:       JSON.stringify(request.auth),
+                                session:    JSON.stringify(request.session),
+                                isLoggedIn: request.auth.isAuthenticated
+                            });
+                        }else{
+                            return reply.redirect('/404');
+                        }
+                    }else{
+                        return showUpdate(request, response);
+                    }
+                });
+            }else{
+                var options ={
+                    method: 'GET',
+                    url: '/api/username/' + request.payload.username,
+                    payload: {
+                    }
+                };
+
+                server.inject(options, function(response){
+                    //console.log("response GET /username/username: ", response.result);
+                    //console.log("response.result.message: ", response.result.message);
+                    if(response.result.statusCode){
+                        if(response.result.statusCode){
+                            return reply.view('index',{
+                                updatemessage:   response.result.message,
+                                message: '',
+                                auth:       JSON.stringify(request.auth),
+                                session:    JSON.stringify(request.session),
+                                isLoggedIn: request.auth.isAuthenticated
+                            });
+                        }else{
+                            return reply.redirect('/404');
+                        }
+                    }else{
+                        return showUpdate(request, response);
+                    }
+                });
+            }
         }
     });
 
@@ -179,9 +244,13 @@ internals.applyRoutes = function (server, next) {
             server.inject(options, function(response){
                 //console.log("response GET /coopid/id: ", response.result);
                 if(response.result.statusCode){
-                    if(response.result.statusCode == 400){
-                        return reply.view('../login/index',{
-                            message:   response.result.message
+                    if(response.result.statusCode){
+                        return reply.view('index',{
+                            updatemessage:   response.result.message,
+                            message: '',
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated
                         });
                     }else{
                         return reply.redirect('/404');
@@ -212,7 +281,9 @@ internals.applyRoutes = function (server, next) {
                         swing: response.result.swing,
                         rumba: response.result.rumba,
                         foxtrott: response.result.foxtrott,
-                        blues: response.result.blues
+                        blues: response.result.blues,
+                        updatemessage: 'Der Benutzer ' + response.result.username + ' (' + response.result.coopid +') mit der E-Mail: '+ response.result.email + ' wurde erfolgreich aktualisiert.',
+                        message: ''
                     });
                 }
             });

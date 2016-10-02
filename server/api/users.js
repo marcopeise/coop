@@ -114,6 +114,46 @@ internals.applyRoutes = function (server, next) {
     });
 
     server.route({
+        method: 'GET',
+        path: '/email/{email}',
+        handler: function (request, reply) {
+
+            //console.log("input: ", request.params.email);
+            User.findEMAIL(request.params.email, function (err, user) {
+                if(err){
+                    return reply(err);
+                }
+                //console.log("get /coopid/: ", user);
+                if(!user){
+                    return reply(Boom.notFound('User not found.'));
+                }
+
+                reply(user);
+            })
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/username/{username}',
+        handler: function (request, reply) {
+
+            //console.log("input: ", request.params.email);
+            User.findByUsername(request.params.username, function (err, user) {
+                if(err){
+                    return reply(err);
+                }
+                //console.log("get /coopid/: ", user);
+                if(!user){
+                    return reply(Boom.notFound('User not found.'));
+                }
+
+                reply(user);
+            })
+        }
+    });
+
+    server.route({
         method: 'PUT',
         path: '/connect/{id}',
         handler: function (request, reply) {

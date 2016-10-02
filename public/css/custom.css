@@ -243,7 +243,6 @@ input.form-control {
 	border-radius: 0;
 }
 
-
 p,
 small,
 p a,
@@ -257,6 +256,10 @@ small a {
 
 small a {
 	text-decoration: underline;
+}
+
+a.profila:link {
+	font-size: 26px;
 }
 
 button {
@@ -521,6 +524,10 @@ section .container-fluid {
 	font-size: 26px;
 }
 
+div.message {
+	font-size: 28px;
+	color: red;
+}
 
 /* HOME */
 #home h2 {
@@ -545,6 +552,16 @@ section .container-fluid {
 
 #coop3000 #section0 {
 	background-color: #FFFF65;
+}
+
+/* Live */
+
+#live #section0 .container-fluid {
+	background-image: none;
+}
+
+#live #section0 {
+	background-color: #f0ffff;
 }
 
 /* DAS FUELLHORN */

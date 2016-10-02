@@ -66,7 +66,7 @@
 		}
 	</style>
 
-	<body id="coop3000">
+	<body id="live">
 		
 		<div id="nav-icon">
 			<span></span>
@@ -140,11 +140,25 @@
 		<script>
 			var cy = cytoscape({
 				container: document.getElementById('cy'),
+
+				layout: {
+					name: 'random',
+
+					fit: true, // whether to fit to viewport
+					padding: 30, // fit padding
+					boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
+					animate: true, // whether to transition the node positions
+					animationDuration: 2000, // duration of animation in ms if enabled
+					animationEasing: undefined, // easing of animation if enabled
+					ready: undefined, // callback on layoutready
+					stop: undefined // callback on layoutstop
+				},
+
 				style: [
 					{
 						"selector": "core",
 						"style": {
-							"selection-box-color": "#AAD8FF",
+							"selection-box-color": "#8a2be2",
 							"selection-box-border-color": "#8BB0D0",
 							"selection-box-opacity": "0.5"
 						}
@@ -158,8 +172,8 @@
 							"font-size": "12px",
 							"text-valign": "center",
 							"text-halign": "center",
-							"background-color": "#555",
-							"text-outline-color": "#555",
+							"background-color": "#8a2be2",
+							"text-outline-color": "#8a2be2",
 							"text-outline-width": "2px",
 							"color": "#fff",
 							"overlay-padding": "6px",
@@ -170,8 +184,8 @@
 						"selector": "node[?attr]",
 						"style": {
 							"shape": "rectangle",
-							"background-color": "#aaa",
-							"text-outline-color": "#aaa",
+							"background-color": "#8a2be2",
+							"text-outline-color": "#8a2be2",
 							"width": "16px",
 							"height": "16px",
 							"font-size": "6px",
@@ -189,10 +203,10 @@
 						"selector": "node:selected",
 						"style": {
 							"border-width": "6px",
-							"border-color": "#AAD8FF",
+							"border-color": "#8a2be2",
 							"border-opacity": "0.5",
-							"background-color": "#77828C",
-							"text-outline-color": "#77828C"
+							"background-color": "#8a2be2",
+							"text-outline-color": "#8a2be2"
 						}
 					},
 					{
@@ -201,8 +215,8 @@
 							"curve-style": "haystack",
 							"haystack-radius": "0.5",
 							"opacity": "0.4",
-							"line-color": "#bbb",
-							"width": "mapData(weight, 0, 1, 1, 8)",
+							"line-color": "#8a2be2",
+							"width": "mapData(weight, 0, 10, 10, 10)",
 							"overlay-padding": "3px"
 						}
 					},
@@ -230,8 +244,8 @@
 							"border-width": "6px",
 							"border-color": "#AAD8FF",
 							"border-opacity": "0.5",
-							"background-color": "#394855",
-							"text-outline-color": "#394855",
+							"background-color": "#8a2be2",
+							"text-outline-color": "#8a2be2",
 							"shadow-blur": "12px",
 							"shadow-color": "#000",
 							"shadow-opacity": "0.8",

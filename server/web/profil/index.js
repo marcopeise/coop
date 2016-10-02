@@ -67,7 +67,22 @@ internals.applyRoutes = function (server, next) {
                         mobile:     response.result.user.mobile,
                         town:       response.result.user.town,
                         coopid:     response.result.user.coopid,
-                        id:         response.result.user._id
+                        id:         response.result.user._id,
+                        verknExtended: response.result.user.verknExtended,
+                        altersvorsorge: response.result.user.altersvorsorge,
+                        sozialakademie: response.result.user.sozialakademie,
+                        knappenbar: response.result.user.knappenbar,
+                        gemuesefond: response.result.user.gemuesefond,
+                        gluecklichtage: response.result.user.gluecklichtage,
+                        paybackpele: response.result.user.paybackpele,
+                        walzer: response.result.user.walzer,
+                        diskofox: response.result.user.diskofox,
+                        chachacha: response.result.user.chachacha,
+                        wienerwalzer: response.result.user.wienerwalzer,
+                        swing: response.result.user.swing,
+                        rumba: response.result.user.rumba,
+                        foxtrott: response.result.user.foxtrott,
+                        blues: response.result.user.blues
                     });
                 }
             });
@@ -107,7 +122,6 @@ internals.applyRoutes = function (server, next) {
                     }
                 }else{
                     //console.log("User: ", response.result);
-
                     return reply.view('index',{
                         auth:       JSON.stringify(request.auth),
                         session:    JSON.stringify(request.session),
@@ -117,7 +131,22 @@ internals.applyRoutes = function (server, next) {
                         mobile:     response.result.mobile,
                         town:       response.result.town,
                         coopid:     response.result.coopid,
-                        id:         response.result._id
+                        id:         response.result._id,
+                        verknExtended: response.result.verknExtended,
+                        altersvorsorge: response.result.altersvorsorge,
+                        sozialakademie: response.result.sozialakademie,
+                        knappenbar: response.result.knappenbar,
+                        gemuesefond: response.result.gemuesefond,
+                        gluecklichtage: response.result.gluecklichtage,
+                        paybackpele: response.result.paybackpele,
+                        walzer: response.result.walzer,
+                        diskofox: response.result.diskofox,
+                        chachacha: response.result.chachacha,
+                        wienerwalzer: response.result.wienerwalzer,
+                        swing: response.result.swing,
+                        rumba: response.result.rumba,
+                        foxtrott: response.result.foxtrott,
+                        blues: response.result.blues
                     });
                 }
             });

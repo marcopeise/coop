@@ -30,7 +30,8 @@ internals.applyRoutes = function (server, next) {
             return reply.view('index', {
                 auth:       JSON.stringify(request.auth),
                 session:    JSON.stringify(request.session),
-                isLoggedIn: request.auth.isAuthenticated
+                isLoggedIn: request.auth.isAuthenticated,
+                message:    ''
             });
         }
     });
@@ -67,11 +68,14 @@ internals.applyRoutes = function (server, next) {
             };
 
             server.inject(options, function(registerResponse){
-                //console.log("registerResponse: ", registerResponse.result);
+                console.log("registerResponse: ", registerResponse.result);
                 if(registerResponse.result.statusCode){
-                    if(registerResponse.result.statusCode == 400){
-                        return reply.view('../login/index',{
-                            message:   registerResponse.result.message
+                    if(registerResponse.result.statusCode){
+                        return reply.view('index',{
+                            message:   registerResponse.result.message,
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated
                         });
                     }else{
                         return reply.redirect('/404');

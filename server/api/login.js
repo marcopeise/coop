@@ -110,7 +110,22 @@ internals.applyRoutes = function (server, next) {
                     roles: request.pre.user.roles,
                     mobile: request.pre.user.mobile,
                     town: request.pre.user.town,
-                    coopid: request.pre.user.coopid
+                    coopid: request.pre.user.coopid,
+                    verknExtended: request.pre.user.verknExtended,
+                    altersvorsorge: request.pre.user.altersvorsorge,
+                    sozialakademie: request.pre.user.sozialakademie,
+                    knappenbar: request.pre.user.knappenbar,
+                    gemuesefond: request.pre.user.gemuesefond,
+                    gluecklichtage: request.pre.user.gluecklichtage,
+                    paybackpele: request.pre.user.paybackpele,
+                    walzer: request.pre.user.walzer,
+                    diskofox: request.pre.user.diskofox,
+                    chachacha: request.pre.user.chachacha,
+                    wienerwalzer: request.pre.user.wienerwalzer,
+                    swing: request.pre.user.swing,
+                    rumba: request.pre.user.rumba,
+                    foxtrott: request.pre.user.foxtrott,
+                    blues: request.pre.user.blues
                 },
                 session: request.pre.session,
                 authHeader

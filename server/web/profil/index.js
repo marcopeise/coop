@@ -203,7 +203,22 @@ internals.applyRoutes = function (server, next) {
                         mobile:     response.result.mobile,
                         town:       response.result.town,
                         coopid:     response.result.coopid,
-                        id:         response.result._id
+                        id:         response.result._id,
+                        verknExtended: response.result.verknExtended,
+                        altersvorsorge: response.result.altersvorsorge,
+                        sozialakademie: response.result.sozialakademie,
+                        knappenbar: response.result.knappenbar,
+                        gemuesefond: response.result.gemuesefond,
+                        gluecklichtage: response.result.gluecklichtage,
+                        paybackpele: response.result.paybackpele,
+                        walzer: response.result.walzer,
+                        diskofox: response.result.diskofox,
+                        chachacha: response.result.chachacha,
+                        wienerwalzer: response.result.wienerwalzer,
+                        swing: response.result.swing,
+                        rumba: response.result.rumba,
+                        foxtrott: response.result.foxtrott,
+                        blues: response.result.blues
                     });
                 }
             });

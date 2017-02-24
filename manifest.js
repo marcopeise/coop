@@ -161,6 +161,9 @@ const manifest = {
             plugin: './server/web/bildungswerke'
         },
         {
+            plugin: './server/web/bildungswerkefuture'
+        },
+        {
             plugin: './server/web/registrierung'
         },
         {
@@ -192,7 +195,17 @@ const manifest = {
         },
         {
             plugin: './server/web/live'
+        },
+        {
+            plugin: './server/web/aktuelles'
+        },
+        {
+            plugin: './server/web/concernopening'
+        },
+        {
+            plugin: './server/web/suppertheorieparties'
         }
+        
     ]
 };
 

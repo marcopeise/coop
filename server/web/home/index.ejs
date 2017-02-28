@@ -9,16 +9,14 @@
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="/public/css/jquery.fullPage.css" />
 		<link rel="stylesheet" href="/public/css/custom.css">
 	
 		<script type="text/javascript" src="/public/js/jquery-3.1.0.min.js"></script>
+		<script src="/public/js/jquery.scrollify.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 	
 		<script type="text/javascript" src="/public/js/scrolloverflow.js"></script>
-	
-		<script type="text/javascript" src="/public/js/jquery.fullPage.min.js"></script>
 
 	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,6 +44,11 @@
 					$('.showLogout').hide();
 					$('.showLogin').show();
 				}
+				
+				$.scrollify({
+					section : ".section-scroll",
+				});
+				
 			});
 		</script>
 	</head>
@@ -70,20 +73,32 @@
 						<div class="content">
 							<nav>
 								<ul>
+									<li><a href="/coop3000">Coop 3000<span class="subline">Eine Neosolidarische Concerngr&uuml;ndung</span></a></li>
 									
-									<li><a href="/coop3000">Coop 3000</a></li>
-									<li><a href="/fuellhorn">Das Füllhorn</a></li>
+									<li class="divider"><span>&nbsp;</span></li>
+									
+									<li><a href="/aktuelles">Aktuelles</a></li>
 									<li><a href="/bildungswerke">Die Bildungswerke</a></li>
-									<li><a href="/registrierung">Registrierung</a></li>
+									
+									<li class="divider"><span>&nbsp;</span></li>
+									
+									<li><a href="/fuellhorn">Das Füllhorn<span class="subline">Stufe 1 / Oktober 016</span></a></li>
+									<li><a href="/suppertheorieparties">Die Suppertheorieparties<span class="subline">Stufe 2 / April-Juni 017</span></a></li>
+									<li><a href="/concernopening">Der Concern wird Er&ouml;ffnet<span class="subline">Stufe 3 / Juli 017</span></a></li>
+									
+									<li class="divider"><span>&nbsp;</span></li>
+									
+									
 									<span class="showLogin">
+										<li><a href="/registrierung">Registrierung</a></li>
 										<li><a href="/login">Login</a></li>
 									</span>
 									<span class="showLogout">
 										<li><a href="/profil">Profil</a></li>
 										<li><a href="/logout">Logout</a></li>
 									</span>
-									<li><a href="/impressum">Impressum</a></li>
-									<li><a href="/verbinden">Verbinden</a></li>
+									<li class="smallitem"><a href="/newsletter">Newsletter</a></li>
+									<li class="smallitem"><a href="/impressum">Impressum</a></li>
 								</ul>
 							</nav>
 						</div>						
@@ -93,16 +108,68 @@
 		</nav>
 		
 		<div id="fullpage">
-			<section class="section active" id="section0">
+			<section class="section-scroll" id="section0">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12">
 							<div id="header">
-									<img src="/public/files/images/UKR-logo.jpg" class="header-logo" title="Logo Urbane Künste Ruhr" />
+								<img src="/public/files/images/UKR-logo.jpg" class="header-logo" title="Logo Urbane Künste Ruhr" />
 							</div>
+							<a href="#overview" class="scroll">Scroll for more<br /><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 						</div>
 					</div>
 					
+				</div>
+			</section>
+			
+			<section class="section-scroll" id="section1">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div id="header">
+								<img src="/public/files/images/UKR-logo.jpg" class="header-logo" title="Logo Urbane Künste Ruhr" />
+							</div>
+							<a href="#overview" class="scroll">Scroll for more<br /><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+						</div>
+					</div>
+					
+				</div>
+			</section>
+			
+			<section class="section-scroll" id="section2">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col col-lg-4">
+							<div class="content">
+								<a href="/fuellhorn">
+									<img src="/public/files/images/typo_bisher.png" /><br />
+									<img src="/public/files/images/Fuellhorn.jpg" />
+									<h2>Das Füllhorn</h2>
+									<p>Stufe 1 / Oktober 016</p>
+								</a>
+							</div>
+						</div>	
+						<div class="col col-lg-4">
+							<div class="content">
+								<a href="/suppertheorieparties">
+									<img src="/public/files/images/typo_aktuell.png" /><br />
+									<img src="/public/files/images/COO_COLLAGEN_STUFE2_02_170127.jpg" />
+									<h2>Die Suppertheorieparties</h2>
+									<p>Stufe 2 / April-Juni 017</p>
+								</a>
+							</div>
+						</div>	
+						<div class="col col-lg-4">
+							<div class="content">
+								<a href="/concernopening">
+									<img src="/public/files/images/typo_bald.png" /><br />
+									<img src="/public/files/images/schere_coopen.png" />
+									<h2>Der Concern wird Er&ouml;ffnet</h2>
+									<p>Stufe 3 / Juli 017</p>
+								</a>
+							</div>
+						</div>							
+					</div>
 				</div>
 			</section>
 

@@ -215,6 +215,7 @@ const manifest = {
         {
             plugin: './server/web/vote'
         }
+        
     ]
 };
 

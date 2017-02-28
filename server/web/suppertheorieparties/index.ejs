@@ -11,8 +11,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="/public/css/jquery.fullPage.css" />
 		<link rel="stylesheet" href="/public/css/custom.css">
-
-		<script src="/public/js/cytoscape.js"></script>
+	
 		<script type="text/javascript" src="/public/js/jquery-3.1.0.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
@@ -49,24 +48,8 @@
 				}
 			});
 		</script>
-		<script>
-			var coopElementString = '<%=coopElementsString%>';
-			var newcoopElementString = coopElementString.replace(/&#34;/g, '"');
-			var coopElementJSON = JSON.parse(newcoopElementString);
-		</script>
 	</head>
-
-	<style>
-		#cy {
-			width: 100%;
-			height: 80%;
-			position: absolute;
-			top: 200px;
-			left: 0px;
-		}
-	</style>
-
-	<body id="live">
+	<body id="suppertheorieparties">
 		
 		<div id="nav-icon">
 			<span></span>
@@ -81,7 +64,7 @@
 					<div class="col-12">
 						<div id="header">
 							<a href="/">
-								<img src="/public/files/images/COO_MENU_Logo.jpg" class="header-logo" title="Logo Coop3000" />
+								<img src="/public/files/images/COO_STP_Logo.jpg" class="header-logo" title="Logo Coop3000" />
 							</a>								
 						</div>
 						<div class="content">
@@ -127,7 +110,7 @@
 						<div>
 							<div id="header">
 								<a href="/">
-									<img src="/public/files/images/COO_Ueber_Coop_Logo.png" class="header-logo" title="Logo Coop3000" />
+									<img src="/public/files/images/COO_Bildungswerke_Logo.png" class="header-logo" title="Logo Coop3000" />
 								</a>
 							</div>
 							
@@ -136,8 +119,37 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												COOP 3000 LIVE ...<br />
+												Die Suppertheorieparties
+												<span class="subline">
+													Stufe 2 / April-Juni 017
+												</span>
 											</h1>
+											
+											<img src="/public/files/images/COO_COLLAGEN_STUFE2_02_170127.jpg" />
+											
+											<p>
+												Nach dem FÜLLHORN, der Ausschüttung von Anteilen am Concern im Oktober 016, beginnt jetzt die 2. Stufe: Die SUPPERTHEORIEPARTIES!
+ 											</p>
+ 											
+ 											<p>
+												SUPPERTHEORIEPARTIES sind praktische Gesprächsformate, bei denen die Ideen & das Wissen aller Anwesenden neu gemixt werden. Vielleicht kommen gepimpte Hausrezepte bei raus, vielleicht auch Quark. Oder Tiefkühlrationen für andere Zeiten. Mit Sicherheit aber werden alle Gäste wie beim cleveren Direktvertrieb von Tupperware reich beschenkt von der Gastgeberin & gut informiert von den Berater*innen glücklicher nach Hause gehen. Garantiert. (Vorabinfos zur “Party mit Kultcharakter”: https://www.tupperware.at/party/gast // https://www.tupperware.de/party/gast)
+											</p>
+												
+											<p>	
+												COOP 3000 bereitet zur Zeit 3 bis 4 solcher Parties vor, die wir mit speziellen Partnerorten & im Austausch mit diversen Communities im Ruhrgebiet von April bis Juni anbieten werden. Entsprechend einem Thema der Neosolidarität laden wir dazu lokale & auswärtige Expert*innen ein, mit uns & allen Gästen ihr Wissen & ihre Erfahrungen in offener Runde zu teilen & gemeinsam neue Kombinationen auszuprobieren.
+											</p>
+												
+											<p> 
+												Damit erweitern die SUPPERTHEORIEPARTIES die Grundlagen von COOP3000, vertiefen das Fundament des Concerns & bereiten so auf die 3. Stufe vor, die im Sommer 017 alle Geschäftsbereiche der Öffentlichkeit übereignen wird.
+											</p>
+												
+											<p>
+												Diskurs-Sharing & radikaler Lokalaktionismus, Saugnäpfe en masse & Guerilla-Radio: Alle Anteilseigner*innen des Concerns & alle Interessierten sind herzlich eingeladen! Schürzen & Plastikbehälter können mitgebracht werden, sind aber nicht Voraussetzung der Teilnahme.
+											</p>
+												
+											<p>
+												Infos gibts über unseren Newsletter. Oder durch eine SMS an die Nummer 0177 1782375 mit dem Kennwort “SUPPERTHEORIEPARTY”
+											</p>
 										</div>
 									</div>							
 								</div>
@@ -147,134 +159,7 @@
 				</div>
 			</section>
 		</div>
-		<div id="cy"></div>
-		<script>
-			var cy = cytoscape({
-				container: document.getElementById('cy'),
-
-				layout: {
-					name: 'random',
-
-					fit: true, // whether to fit to viewport
-					padding: 30, // fit padding
-					boundingBox: undefined, // constrain layout bounds; { x1, y1, x2, y2 } or { x1, y1, w, h }
-					animate: true, // whether to transition the node positions
-					animationDuration: 2000, // duration of animation in ms if enabled
-					animationEasing: undefined, // easing of animation if enabled
-					ready: undefined, // callback on layoutready
-					stop: undefined // callback on layoutstop
-				},
-
-				style: [
-					{
-						"selector": "core",
-						"style": {
-							"selection-box-color": "#8a2be2",
-							"selection-box-border-color": "#8BB0D0",
-							"selection-box-opacity": "0.5"
-						}
-					},
-					{
-						"selector": "node",
-						"style": {
-							"width": "mapData(score, 0, 0.006769776522008331, 20, 60)",
-							"height": "mapData(score, 0, 0.006769776522008331, 20, 60)",
-							"content": "data(name)",
-							"font-size": "12px",
-							"text-valign": "center",
-							"text-halign": "center",
-							"background-color": "#8a2be2",
-							"text-outline-color": "#8a2be2",
-							"text-outline-width": "2px",
-							"color": "#fff",
-							"overlay-padding": "6px",
-							"z-index": "10"
-						}
-					},
-					{
-						"selector": "node[?attr]",
-						"style": {
-							"shape": "rectangle",
-							"background-color": "#8a2be2",
-							"text-outline-color": "#8a2be2",
-							"width": "16px",
-							"height": "16px",
-							"font-size": "6px",
-							"z-index": "1"
-						}
-					},
-					{
-						"selector": "node[?query]",
-						"style": {
-							"background-clip": "none",
-							"background-fit": "contain"
-						}
-					},
-					{
-						"selector": "node:selected",
-						"style": {
-							"font-size": "26px",
-							"border-width": "6px",
-							"border-color": "#8a2be2",
-							"border-opacity": "0.5",
-							"background-color": "#8a2be2",
-							"text-outline-color": "#8a2be2"
-						}
-					},
-					{
-						"selector": "edge",
-						"style": {
-							"curve-style": "haystack",
-							"haystack-radius": "0.5",
-							"opacity": "0.4",
-							"line-color": "#8a2be2",
-							"width": "mapData(weight, 0, 10, 10, 10)",
-							"overlay-padding": "3px"
-						}
-					},
-					{
-						"selector": "node.unhighlighted",
-						"style": {
-							"opacity": "0.2"
-						}
-					},
-					{
-						"selector": "edge.unhighlighted",
-						"style": {
-							"opacity": "0.05"
-						}
-					},
-					{
-						"selector": ".highlighted",
-						"style": {
-							"z-index": "999999"
-						}
-					},
-					{
-						"selector": "node.highlighted",
-						"style": {
-							"border-width": "6px",
-							"border-color": "#AAD8FF",
-							"border-opacity": "0.5",
-							"background-color": "#8a2be2",
-							"text-outline-color": "#8a2be2",
-							"shadow-blur": "12px",
-							"shadow-color": "#000",
-							"shadow-opacity": "0.8",
-							"shadow-offset-x": "0px",
-							"shadow-offset-y": "4px"
-						}
-					},
-					{
-						"selector": "edge.filtered",
-						"style": {
-							"opacity": "0"
-						}
-					}
-				],
-				elements: coopElementJSON.elements
-			});
-		</script>
+	    
 	    <script src="/public/js/jquery.easing.min.js"></script>
 	    <script src="/public/js/jquery.fullPage.min.js"></script>
 	    <script src="/public/js/custom.js"></script>

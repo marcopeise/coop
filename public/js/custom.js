@@ -9,7 +9,6 @@ $(document).ready(function(){
 		scrollOverflow: true
 	});
 	
-	
 	$('#goToReg').click(function(e){
 		e.preventDefault();
 		$.fn.fullpage.moveTo(3);

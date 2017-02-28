@@ -296,6 +296,9 @@ textarea, input, input[type] {
     font-size: 19px;
 }
 
+.container .content p a {
+	text-decoration: underline !important;
+}
 
 
 /* LAYOUT */
@@ -310,6 +313,8 @@ textarea, input, input[type] {
 	text-align: center;
 	color: #f2f2f2;
 	padding: 0;
+	top:0px;
+	position: fixed;
 }
 
 #footer {
@@ -322,15 +327,88 @@ textarea, input, input[type] {
 	text-align:center;
 	color: #f2f2f2;
 	padding: 20px 0 0 0;
-}
-
-#header{
-	top:0px;
-}
-
-#footer{
 	bottom:0px;
 }
+
+.subnav {
+	margin: 20px 0;
+}
+
+.subnav li {
+	display: inline-block;
+}
+
+.subnav a,
+.subnav span {
+	font-family: 'Giorgio Sans Web';
+	font-size: 14px;
+	letter-spacing: 2px;
+	font-weight: bold;
+	padding: 0 20px;
+	text-transform: uppercase;
+}
+
+.subnav span {
+	text-decoration: underline;
+}
+
+.speaker .name {
+	display: block;
+	font-weight: bold;
+	font-family: 'Giorgio Sans Web';
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	
+}
+
+.divider {
+	text-align: center;	
+	padding: 0px;
+	height: 0px;
+	vertical-align: top;
+	
+}
+
+.divider span {
+	height: 2px;
+   	width: 62px;
+   	background-color: #000;
+   	display: inline-block;
+   	text-align: center;
+   	margin: 0 0 20px 0;
+}
+
+.scroll {
+	position: fixed;
+	top: 100%;
+	left: 50%;
+	margin-left: -70px;
+	margin-top: -70px;
+	color: #fff !important;
+	font-weight: 300;
+	text-align: center;
+	
+}
+
+@-webkit-keyframes arrow-jump {
+	0% {
+	  	opacity: 0;
+	}
+	100% { 
+  		opacity: 1;
+    	transform-origin: -2px 20px !important;
+	}
+}
+.scroll .glyphicon {
+	color: #fff !important;
+	display: inline-block !important;
+	-webkit-animation: arrow-jump 2s infinite; /* Safari 4+ */
+	-moz-animation:    arrow-jump 2s infinite; /* Fx 5+ */
+	-o-animation:      arrow-jump 2s infinite; /* Opera 12+ */
+	animation:         arrow-jump 2s infinite; /* IE 10+, Fx 29+ */
+}
+
+
 
 
 /* HEADER */
@@ -345,7 +423,7 @@ textarea, input, input[type] {
 	z-index: 10000;
 	width: 35px;
   	height: 35px;
-  	position: absolute;
+  	position: fixed;
   	top: 40px;
 	left: 40px;
 	-webkit-transform: rotate(0deg);
@@ -420,7 +498,7 @@ textarea, input, input[type] {
 	display: none;
 	width: 100%;
 	height: 100%;
-	background-color: #FF0035;
+	background-color: #3a54cc;
 	position: fixed;
     top: 0;
     left: 0;
@@ -435,7 +513,7 @@ section .content {
 
 
 #main-nav .content {
-	margin-top: 200px;
+	margin-top: 150px;
 }
 
 
@@ -446,8 +524,43 @@ section .content {
 #main-nav li {
 	font-size: 28px;
 	padding: 7px;
-	font-weight: 700;
+	font-weight: 400;
 }
+
+#main-nav a, #main-nav a:hover {
+	color: #ffffff;
+}
+
+#main-nav li.divider {
+	text-align: center;	
+	padding: 0px;
+	height: 0px;
+	vertical-align: top;
+	margin: 10px 0;
+}
+
+#main-nav li.divider span {
+	height: 2px;
+   	width: 62px;
+   	background-color: #f6a800;
+   	display: inline-block;
+   	text-align: center;	
+}
+
+#main-nav .subline {
+	display: block;
+	color: #fff;
+	font-size: 0.5em;
+	font-weight: 400;
+	letter-spacing: 3px;
+}
+
+#main-nav .smallitem {
+	height: 20px;
+	font-size: 1em;
+}
+
+
 
 /* FOOTER */
 
@@ -479,10 +592,11 @@ section .container-fluid {
 
 #section0 .container-fluid {
 	background-image: url('../files/images/COO_COLLAGEN_C_05_B_160907.jpg');
+    background-size: auto 90% ;
 }
 
 #section1 {
-    background-color: #6DFF96;
+    background-color: #07A7FF;
 }
 
 #home #section1 button {
@@ -498,7 +612,7 @@ section .container-fluid {
 }
 
 #section1 .container-fluid {
-	background-image: url('../files/images/COO_COLLAGEN_C_06_160920.jpg');
+	background-image: url('../files/images/COO_COLLAGEN_STUFE2_02_170127.jpg');
 }
 
 #section1 .force-to-bottom {
@@ -512,11 +626,11 @@ section .container-fluid {
 }
 
 #section2 {
-    background: #FFFF65;
+    background: none;
 }
 
 #section2 .container-fluid {
-	background-image: url('../files/images/COO_COLLAGEN_C_08_160921.jpg');
+	background-image: none;
 }
 
 #section2 .content p,
@@ -534,17 +648,57 @@ div.message {
 	color: #ffffff;
 }
 
-.force-to-bottom {
-  position: absolute;
-  bottom: 100px;
-  width: 100%;
+#home #section2 .container-fluid .row {
+	height: 100%;
 }
 
-.row.force-to-bottom {
-	margin: 0px;
+#home #section2 .col.col-lg-4 {
+	height: 100%;
+	padding-top: 10%;
 }
+
+#home #section2 .col {
+	background-color: #6DFE95;
+}
+
+#home #section2 .col  ~ .col {
+	background-color: #07A7FF;
+}
+
+#home #section2 .col ~ .col ~ .col {
+	background-color: #FFFF65;
+}
+
+#home #section2 img {
+	max-width: 100%;
+	max-height: 50px;
+	display: inline-block;
+}
+
+#section2 .col img ~ img {
+	max-height: 250px !important;
+}
+
+#section2 h2 {
+	color: #000000;
+	letter-spacing: 3px;
+}
+
+#home #section2 .col.col-lg-4 p {
+	font-size: 1.2em;
+	font-weight: 600;
+	letter-spacing: 3px;
+	font-family: 'Giorgio Sans Web';
+}
+
 
 /* COOP 3000 */
+
+#coop3000 h1 .subline {
+	font-size: 0.5em;
+	letter-spacing: 2px;
+	line-height: 20px !important;
+}
 
 #coop3000 #section0 .container-fluid {
 	background-image: none;
@@ -565,13 +719,81 @@ div.message {
 }
 
 /* DAS FUELLHORN */
+#fuellhorn h1 .subline {
+	font-size: 0.5em;
+	letter-spacing: 2px;
+	line-height: 20px !important;
+	display: block;
+}
+
+#fuellhorn img {
+	max-width: 100%;
+	margin-bottom: 40px;
+}
+
 
 #fuellhorn #section0 .container-fluid {
 	background-image: none;
 }
 
-#fuellhorn #section0 {
+#fuellhorn #section0,
+#aktuelles #section0 {
 	background-color: #6DFF96;
+}
+
+/* suppertheorieparties */
+#suppertheorieparties h1 .subline {
+	font-size: 0.5em;
+	letter-spacing: 2px;
+	line-height: 20px !important;
+	display: block;
+}
+
+#suppertheorieparties img {
+	max-width: 100%;
+	margin-bottom: 40px;
+}
+
+#suppertheorieparties #section0 .container-fluid {
+	background-image: none;
+}
+
+#suppertheorieparties #section0 {
+	background-color: #07A7FF;
+}
+
+/* concernopening */
+#concernopening h1 .subline {
+	font-size: 0.5em;
+	letter-spacing: 2px;
+	line-height: 20px !important;
+	display: block;
+}
+
+#concernopening img {
+	max-width: 100%;
+	margin-bottom: 40px;
+}
+
+#concernopening #section0 .container-fluid {
+	background-image: none;
+}
+
+#concernopening #section0 {
+	background-color: #FFFF65;
+}
+
+
+
+
+/* Aktuelles */
+
+#aktuelles #section0 .container-fluid {
+	background-image: none;
+}
+
+#aktuelles #section0 {
+	background-color: #FFFF65;
 }
 
 /* DIE BILDUNGSWERKE */
@@ -581,8 +803,9 @@ div.message {
 }
 
 #bildungswerke #section0 {
-	background-color: #FFFF65;
+	background-color: #6ef2d5;
 }
+
 
 /* REGISTRIERUNG */
 
@@ -597,11 +820,11 @@ div.message {
 /* NEWSLETTER */
 
 #newsletter #section0 .container-fluid {
-	background-image: url('../files/images/COO_COLLAGEN_C_10_160922.jpg');
+	background-image: none;
 }
 
 #newsletter #section0 {
-	background-color: #88A1FF;
+	background-color: #FFFF65;
 }
 
 /* 404 */
@@ -621,7 +844,7 @@ div.message {
 }
 
 #login #section0 {
-	background-color: #88A1FF;
+	background-color: #FFFF65;
 }
 
 /* IMPRESSUM */
@@ -777,7 +1000,7 @@ div.message {
 	  width: 100%;
 	}
 	
-		#home #section0 .container-fluid,
+	#home #section0 .container-fluid,
 	#home #section1 .container-fluid {
 	    background-size: 100% auto;
 	    background-position: 50% 100px;
@@ -788,5 +1011,4 @@ div.message {
 	    background-position: 40% 100px;
 	}
 }
-
 

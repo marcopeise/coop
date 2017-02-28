@@ -58,13 +58,31 @@
 						<div class="content">
 							<nav>
 								<ul>
-									<li><a href="/coop3000">Coop 3000</a></li>
-									<li><a href="/fuellhorn">Das Füllhorn</a></li>
+									<li><a href="/coop3000">Coop 3000<span class="subline">Eine Neosolidarische Concerngr&uuml;ndung</span></a></li>
+							
+									<li class="divider"><span>&nbsp;</span></li>
+									
+									<li><a href="/aktuelles">Aktuelles</a></li>
 									<li><a href="/bildungswerke">Die Bildungswerke</a></li>
-									<li><a href="/registrierung">Registrierung</a></li>
-									<li><a href="/login">Login</a></li>
-									<li><a href="/impressum">Impressum</a></li>
-									<li><a href="/verbinden">Verbinden</a></li>
+									
+									<li class="divider"><span>&nbsp;</span></li>
+									
+									<li><a href="/fuellhorn">Das Füllhorn<span class="subline">Stufe 1 / Oktober 016</span></a></li>
+									<li><a href="/suppertheorieparties">Die Suppertheorieparties<span class="subline">Stufe 2 / April-Juni 017</span></a></li>
+									<li><a href="/concernopening">Der Concern wird Er&ouml;ffnet<span class="subline">Stufe 3 / Juli 017</span></a></li>
+									
+									<li class="divider"><span>&nbsp;</span></li>
+																		
+									<span class="showLogin">
+										<li><a href="/registrierung">Registrierung</a></li>
+										<li><a href="/login">Login</a></li>
+									</span>
+									<span class="showLogout">
+										<li><a href="/profil">Profil</a></li>
+										<li><a href="/logout">Logout</a></li>
+									</span>
+									<li class="smallitem"><a href="/newsletter">Newsletter</a></li>
+									<li class="smallitem"><a href="/impressum">Impressum</a></li>
 								</ul>
 							</nav>
 						</div>						
@@ -91,6 +109,11 @@
 											<h1>
 												LOGIN
 											</h1>
+											
+											<p>
+												Melde Dich mit Deiner COOPID an, um auf Dein Profil zuzugreifen, Vorschläge zu machen &amp; an Abstimmungen teilzunehmen!
+											</p>
+											
 											<br>
 											<%= message %>
 										</div>
@@ -98,7 +121,7 @@
 									<div class="col-lg-6 col-lg-offset-3 text-center">
 										<form action="/profil" method="POST" id="reg-form" enctype="application/json">
 										  	<div class="form-group">
-										  		<label for="email">Username</label>
+										  		<label for="username">E-Mail-Adresse</label>
 										    	<input type="text" class="form-control" name="username" id="username" placeholder="" required>
 										  	</div>
 										  	
@@ -107,8 +130,15 @@
 										    	<input type="password" class="form-control" name="password" id="password" placeholder="" required>
 										  	</div>
 
-											<button>Anmelden</button>
-										</form>
+											<button>Login</button>
+										</form>		
+									</div>
+									<div class="col-lg-6 col-lg-offset-3 text-center">
+										<div class="content">							
+											<p>
+												Noch keine COOPID? Besorg Dir <a href="/registrierung">hier</a> Deinen Anteil!
+											</p>
+										</div>	
 									</div>							
 								</div>
 							</div>

@@ -40,7 +40,8 @@
     "password-generator": "^2.0.2",
     "slug": "0.9.x",
     "vision": "4.x.x",
-    "visionary": "6.x.x"
+    "visionary": "6.x.x",
+    "moment": "2.17.1"
   },
   "devDependencies": {
     "code": "3.x.x",

@@ -58,7 +58,8 @@ const manifest = {
                         AuthAttempt: './server/models/auth-attempt',
                         Session: './server/models/session',
                         Status: './server/models/status',
-                        User: './server/models/user'
+                        User: './server/models/user',
+                        Vote: './server/models/vote'
                     },
                     autoIndex: Config.get('/hapiMongoModels/autoIndex')
                 }
@@ -143,6 +144,12 @@ const manifest = {
             }
         },
         {
+            plugin: './server/api/votes',
+            options: {
+                routes: { prefix: '/api' }
+            }
+        },
+        {
             plugin: './server/web/home'
         },
         {
@@ -159,6 +166,9 @@ const manifest = {
         },
         {
             plugin: './server/web/bildungswerke'
+        },
+        {
+            plugin: './server/web/bildungswerkefuture'
         },
         {
             plugin: './server/web/registrierung'
@@ -192,6 +202,18 @@ const manifest = {
         },
         {
             plugin: './server/web/live'
+        },
+        {
+            plugin: './server/web/aktuelles'
+        },
+        {
+            plugin: './server/web/concernopening'
+        },
+        {
+            plugin: './server/web/suppertheorieparties'
+        },
+        {
+            plugin: './server/web/vote'
         }
     ]
 };

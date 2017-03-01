@@ -127,16 +127,19 @@
 												Anzahl:
 													<%= voteList.length %>
 												<br>
-												<a href="/createvote">Erstelle eine neue</a>
+												<a href="/createvote">Erstelle eine neue Abstimmung</a>
 											</p>
 											<% if(voteList.length>0){%>
 												<% for(var i=0; i<voteList.length; i++) {%>
 													<div class="col-lg-6 col-lg-offset-3 text-center">
 														<div class="form-group">
-															<label for="title">Titel: </label>
-																<a href="/getvote/<%=voteList[i]._id%>"><%= voteList[i].title %></a>
+															<label for="title">Titel: <a href="/getvote/<%=voteList[i]._id%>"><%= voteList[i].title %></a></label>
 															<br>
-															<label for="endDate">Schließt in: <%= moment().to(voteList[i].endDate) %></label>
+															<% if(moment().diff(voteList[i].endDate, 'days')>=0){%>
+																<label for="endDate">Beendet seit: <%= moment().to(voteList[i].endDate, true) %></label>
+															<% }else { %>
+																<label for="endDate">Schließt in: <%= moment().to(voteList[i].endDate, true) %></label>
+															<% } %>
 															<br>
 															<label for="nrVoters"><%= voteList[i].nrVoters %> Teilnehmer</label>
 															<br>
@@ -150,7 +153,7 @@
 											<% }else{%>
 												Es gibt noch keine Abstimmungen
 												<br>
-												<a href="/createvote">Hier kannst Du eine erstellen</a>
+												<a href="/createvote">Hier kannst Du eine Abstimmung erstellen</a>
 											<% } %>
 										</div>
 									</div>							

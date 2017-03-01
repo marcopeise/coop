@@ -146,6 +146,48 @@ internals.applyRoutes = function (server, next) {
         }
     });
 
+    server.route({
+        method: 'POST',
+        path: '/commentvoting/{id}',
+        config: {
+            validate: {
+                params: {
+                    id:         Joi.string().required()
+                }
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("POST /commentvoting ", request.payload);
+
+            const id = request.params.id;
+            var update;
+            update = {
+                $push: {
+                    comments: {
+                        comment:    request.payload.comment,
+                        id:         request.payload.commentOwnerId,
+                        name:       request.payload.commentOwnerUsername,
+                        timeCreated:new Date()
+                    }
+                }
+            };
+
+            Vote.findByIdAndUpdate(id, update, (err, user) => {
+
+                if (err) {
+                    return reply(err);
+                }
+
+                if (!user) {
+                return reply(Boom.notFound('Document not found.'));
+                }
+
+                reply(user);
+            });
+        }
+    });
+
     next();
 };
 

@@ -144,7 +144,7 @@ internals.applyRoutes = function (server, next) {
                     }
                 }else{
                     //console.log("getVotesResponse: ", getVotesResponse.result);
-                    console.log("data: ", getVotesResponse.result.data);
+                    //console.log("data: ", getVotesResponse.result.data);
                     //console.log("get first Vote title: ", getVotesResponse.result.data[0].title);
                     //console.log("get first Vote _id: ", getVotesResponse.result.data[0]._id);
                     var voteList = getVotesResponse.result.data;
@@ -152,7 +152,7 @@ internals.applyRoutes = function (server, next) {
                     //calculate nr of participants
                     for (var i = 0; i < voteList.length; i++) {
                         var nrVoters = 0;
-                        console.log("votepos: ", voteList[i].votespos);
+                        //console.log("votepos: ", voteList[i].votespos);
                         if (voteList[i].votespos != undefined) {
                             console.log("votepos");
                             nrVoters = nrVoters + voteList[i].votespos.length;
@@ -291,7 +291,7 @@ internals.applyRoutes = function (server, next) {
 
             //console.log("BEFORE server.inject: ", options);
             server.inject(options, function(postVoteResponse){
-                console.log("postVoteResponse: ", postVoteResponse.result);
+                //console.log("postVoteResponse: ", postVoteResponse.result);
                 if(postVoteResponse.result.statusCode){
                     if(postVoteResponse.result.statusCode){
                         return reply.view('index',{
@@ -354,7 +354,7 @@ internals.applyRoutes = function (server, next) {
 
             //console.log("BEFORE server.inject: ", options);
             server.inject(options, function(postVoteResponse){
-                console.log("postVoteResponse: ", postVoteResponse.result);
+                //console.log("postVoteResponse: ", postVoteResponse.result);
                 if(postVoteResponse.result.statusCode){
                     if(postVoteResponse.result.statusCode){
                         return reply.view('index',{
@@ -384,6 +384,69 @@ internals.applyRoutes = function (server, next) {
                         nrVoters:   nrVoters,
                         isLoggedIn: request.auth.isAuthenticated,
                         vote:       postVoteResponse.result,
+                        moment:     Moment
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/commentvote/{id}',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("POST comment Vote");
+            console.log("vote id: ", request.params.id);
+
+            var options ={
+                method: 'POST',
+                url: '/api/commentvoting/' + request.params.id,
+                payload: {
+                    commentOwnerId:         request.auth.credentials.user._id,
+                    commentOwnerUsername:   request.auth.credentials.user.username,
+                    comment:                request.payload.comment
+                }
+            };
+
+            //console.log("BEFORE server.inject: ", options);
+            server.inject(options, function(postCommentVoteResponse){
+                //console.log("postCommentVoteResponse: ", postCommentVoteResponse.result);
+                if(postCommentVoteResponse.result.statusCode){
+                    if(postCommentVoteResponse.result.statusCode){
+                        return reply.view('index',{
+                            message:   postCommentVoteResponse.result.message,
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    console.log("postCommentVoteResponse: ", postCommentVoteResponse.result);
+
+                    // check if current user has already voted for this vote
+                    var notvoted = true;
+
+                    // amount of voters already
+                    var __ret = getNrOfVoters(postCommentVoteResponse, request, notvoted);
+                    var nrVoters = __ret.nrVoters;
+                    notvoted = __ret.notvoted;
+
+                    return reply.view('showvote',{
+                        auth:       JSON.stringify(request.auth),
+                        session:    JSON.stringify(request.session),
+                        notvoted:   notvoted,
+                        nrVoters:   nrVoters,
+                        isLoggedIn: request.auth.isAuthenticated,
+                        vote:       postCommentVoteResponse.result,
                         moment:     Moment
                     });
                 }

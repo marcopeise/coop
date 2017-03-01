@@ -57,6 +57,12 @@ Vote.schema = Joi.object().keys({
         id: Joi.string().required(),
         name: Joi.string().required()
     }),
+    comments: Joi.object().keys({
+        comment:    Joi.string().required(),
+        id:         Joi.string().required(),
+        name:       Joi.string().required(),
+        timeCreated:Joi.date()
+    }),
     timeCreated: Joi.date(),
     timeChanged: Joi.date()
 });

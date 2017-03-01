@@ -124,6 +124,7 @@
 											<p>
 												tbd
 												...
+												<a href="/listvotes">Zurück zu allen Abstimmungen</a>
 											</p>
 											<div class="col-lg-6 col-lg-offset-3 text-center">
 												<div class="form-group">
@@ -168,6 +169,27 @@
 												<% } %>
 
 												<hr>
+
+												<% if(vote.votespos!=undefined){%>
+													<div class="form-group">
+														<label for="title"><%= vote.votespos.length %> Teilnehmer dafür:</label>
+													</div>
+													<% for(var i=0; i<vote.votespos.length; i++) {%>
+														<%=vote.votespos[i].name%>,&nbsp;
+													<% } %>
+												<% } %>
+
+												<% if(vote.votesneg!=undefined){%>
+													<div class="form-group">
+														<label for="title"><%= vote.votesneg.length %> Teilnehmer dagegen:</label>
+													</div>
+													<% for(var i=0; i<vote.votesneg.length; i++) {%>
+														<%=vote.votesneg[i].name%>,&nbsp;
+													<% } %>
+												<% } %>
+
+												<hr>
+
 												<% if(moment().diff(vote.endDate, 'days')<0){%>
 													<% if(notvoted){%>
 														<div class="form-group">
@@ -180,6 +202,43 @@
 															</form>
 													<% } %>
 												<% } %>
+												<p>
+													<% if(vote.comments!=undefined && vote.comments.length>0){%>
+														<% for(var i=0; i<vote.comments.length; i++) {%>
+															<div class="col-lg-6 col-lg-offset-3 text-center">
+																<div class="form-group">
+																	<label for="comment">Kommentar: <%= vote.comments[i].comment %></label>
+																	<br>
+																	<label for="timeCreated">Erstellt: <%= moment().to(vote.comments[i].timeCreated) %></label>
+																	<br>
+																	<label for="creator">Erstellt von:</label>
+																		<%= vote.comments[i].name %>
+																	<br>
+																</div>
+																<hr>
+															</div>
+														<% } %>
+														<form action="/commentvote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+															<div class="form-group">
+																<label for="comment">Dein Kommentar</label>
+																<textarea class="form-control" name="comment" placeholder="Hier Dein Kommentar..." id="comment" rows="10" cols="70" maxlength="3000"></textarea>
+																<div class="help-block with-errors"></div>
+															</div>
+
+															<button class="buttonHover" onclick="FillName(this.form)">Kommentieren</button>
+														</form>
+													<% }else{%>
+														<form action="/commentvote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+															<div class="form-group">
+																<label for="content">Dein Kommentar</label>
+																<textarea class="form-control" name="content" placeholder="Hier Dein Kommentar..." id="content" rows="10" cols="70" maxlength="3000"></textarea>
+																<div class="help-block with-errors"></div>
+															</div>
+
+															<button class="buttonHover" onclick="FillName(this.form)">Kommentieren</button>
+														</form>
+													<% } %>
+												</p>
 											</div>
 										</div>
 									</div>							

@@ -130,7 +130,7 @@ internals.applyRoutes = function (server, next) {
 
             //console.log("BEFORE server.inject: ", options);
             server.inject(options, function(getVotesResponse){
-                console.log("getVotesResponse: ", getVotesResponse.result);
+                //console.log("getVotesResponse: ", getVotesResponse.result);
                 if(getVotesResponse.result.statusCode){
                     if(getVotesResponse.result.statusCode){
                         return reply.view('index',{
@@ -143,10 +143,27 @@ internals.applyRoutes = function (server, next) {
                         return reply.redirect('/404');
                     }
                 }else{
-                    console.log("getVotesResponse: ", getVotesResponse.result);
+                    //console.log("getVotesResponse: ", getVotesResponse.result);
                     console.log("data: ", getVotesResponse.result.data);
                     //console.log("get first Vote title: ", getVotesResponse.result.data[0].title);
                     //console.log("get first Vote _id: ", getVotesResponse.result.data[0]._id);
+                    var voteList = getVotesResponse.result.data;
+
+                    //calculate nr of participants
+                    for (var i = 0; i < voteList.length; i++) {
+                        var nrVoters = 0;
+                        console.log("votepos: ", voteList[i].votespos);
+                        if (voteList[i].votespos != undefined) {
+                            console.log("votepos");
+                            nrVoters = nrVoters + voteList[i].votespos.length;
+                        }
+                        if (voteList[i].votesneg != undefined) {
+                            console.log("votesneg");
+                            nrVoters = nrVoters + voteList[i].votesneg.length;
+                        }
+                        voteList[i].nrVoters = nrVoters;
+                        console.log("nrVoters: ", voteList[i].nrVoters);
+                    }
 
                     return reply.view('listvotes',{
                         auth:       JSON.stringify(request.auth),
@@ -163,7 +180,7 @@ internals.applyRoutes = function (server, next) {
     function getNrOfVoters(getVoteResponse, request, notvoted) {
         var nrVoters = 0;
         if (getVoteResponse.result.votespos != undefined) {
-            console.log("getVoteResponse.result.votespos.length: ", getVoteResponse.result.votespos.length);
+            //console.log("getVoteResponse.result.votespos.length: ", getVoteResponse.result.votespos.length);
             nrVoters = nrVoters + getVoteResponse.result.votespos.length;
 
             for (var i = 0; i < getVoteResponse.result.votespos.length; i++) {
@@ -178,7 +195,7 @@ internals.applyRoutes = function (server, next) {
 
         }
         if (getVoteResponse.result.votesneg != undefined) {
-            console.log("getVoteResponse.result.votesneg.length: ", getVoteResponse.result.votesneg.length);
+            //console.log("getVoteResponse.result.votesneg.length: ", getVoteResponse.result.votesneg.length);
             nrVoters = nrVoters + getVoteResponse.result.votesneg.length;
 
             for (var i = 0; i < getVoteResponse.result.votesneg.length; i++) {

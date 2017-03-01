@@ -50,14 +50,14 @@
 		</script>
 	</head>
 	<body id="Abstimmung_anzeigen">
-		
+
 		<div id="nav-icon">
 			<span></span>
 			<span></span>
 			<span></span>
 			<span></span>
 		</div>
-		
+
 		<nav id="main-nav">
 			<div class="container-fluid">
 				<div class="row">
@@ -65,44 +65,55 @@
 						<div id="header">
 							<a href="/">
 								<img src="/public/files/images/COO_MENU_Logo.jpg" class="header-logo" title="Logo Coop3000" />
-							</a>								
+							</a>
 						</div>
 						<div class="content">
 							<nav>
 								<ul>
-									
-									<li><a href="/coop3000">Coop 3000</a></li>
-									<li><a href="/fuellhorn">Das Füllhorn</a></li>
+									<li><a href="/coop3000">Coop 3000<span class="subline">Eine Neosolidarische Concerngr&uuml;ndung</span></a></li>
+
+									<li class="divider"><span>&nbsp;</span></li>
+
+									<li><a href="/aktuelles">Aktuelles</a></li>
 									<li><a href="/bildungswerke">Die Bildungswerke</a></li>
-									<li><a href="/registrierung">Registrierung</a></li>
+
+									<li class="divider"><span>&nbsp;</span></li>
+
+									<li><a href="/fuellhorn">Das Füllhorn<span class="subline">Stufe 1 / Oktober 016</span></a></li>
+									<li><a href="/suppertheorieparties">Die Suppertheorieparties<span class="subline">Stufe 2 / April-Juni 017</span></a></li>
+									<li><a href="/concernopening">Der Concern wird Er&ouml;ffnet<span class="subline">Stufe 3 / Juli 017</span></a></li>
+
+									<li class="divider"><span>&nbsp;</span></li>
+
 									<span class="showLogin">
-										<li><a href="/login">Login</a></li>
-									</span>
+												<li><a href="/registrierung">Registrierung</a></li>
+												<li><a href="/login">Login</a></li>
+											</span>
 									<span class="showLogout">
-										<li><a href="/profil">Profil</a></li>
-										<li><a href="/logout">Logout</a></li>
-									</span>
-									<li><a href="/impressum">Impressum</a></li>
-									<li><a href="/verbinden">Verbinden</a></li>
+												<li><a href="/profil">Profil</a></li>
+												<li><a href="/logout">Logout</a></li>
+											</span>
+									<li class="smallitem"><a href="/newsletter">Newsletter</a></li>
+									<li class="smallitem"><a href="/impressum">Impressum</a></li>
 								</ul>
 							</nav>
-						</div>						
+						</div>
 					</div>
-				</div>					
+				</div>
 			</div>
 		</nav>
-		
+
 		<div id="fullpage">
 			<section class="section" id="section0">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-12">
+						<div>
 							<div id="header">
 								<a href="/">
-									<img src="/public/files/images/COO_03_Registrierung_Logo.png" class="header-logo" title="Logo Coop3000" />
-								</a>	
+									<img src="/public/files/images/COO_Bildungswerke_Logo.png" class="header-logo" title="Logo Coop3000" />
+								</a>
 							</div>
-							
+
 							<div class="container">
 								<div class="row">
 									<div class="col-lg-8 col-lg-offset-2">
@@ -157,16 +168,17 @@
 												<% } %>
 
 												<hr>
-
-												<% if(notvoted){%>
-													<div class="form-group">
-														<label for="voting">Abstimmen</label>
-														<form action="/voteplus/<%=vote._id%>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
-															<button class="buttonHover" onclick="FillName(this.form)">Stimme dafür</button>
-														</form>
-														<form action="/voteminus/<%=vote._id%>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
-															<button class="buttonHover" onclick="FillName(this.form)">Stimme dagegen</button>
-														</form>
+												<% if(moment().diff(vote.endDate, 'days')<0){%>
+													<% if(notvoted){%>
+														<div class="form-group">
+															<label for="voting">Abstimmen</label>
+															<form action="/voteplus/<%=vote._id%>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+																<button class="buttonHover" onclick="FillName(this.form)">Stimme dafür</button>
+															</form>
+															<form action="/voteminus/<%=vote._id%>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+																<button class="buttonHover" onclick="FillName(this.form)">Stimme dagegen</button>
+															</form>
+													<% } %>
 												<% } %>
 											</div>
 										</div>

@@ -24,7 +24,7 @@ internals.applyRoutes = function (server, next) {
             const limit = request.query.limit;
             const page = request.query.page;
 
-            const fields = Vote.fieldsAdapter('isActive title endDate votes');
+            const fields = Vote.fieldsAdapter('isActive title endDate votes votespos votesneg');
 
             Vote.pagedFind(query, fields, sort, limit, page, (err, results) => {
 

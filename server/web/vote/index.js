@@ -1,6 +1,7 @@
 'use strict';
 const internals = {};
 const Moment = require('moment');
+Moment.locale('de');
 
 internals.applyRoutes = function (server, next) {
 
@@ -49,11 +50,11 @@ internals.applyRoutes = function (server, next) {
         },
         handler: function (request, reply) {
 
-            console.log("CreateVote Request");
+            /*console.log("CreateVote Request");
             console.log(request.payload);
             console.log("Auth Request");
             console.log(request.auth.credentials.user._id);
-            console.log(request.auth.credentials.user.username);
+            console.log(request.auth.credentials.user.username);*/
 
             var options ={
                 method: 'POST',
@@ -69,7 +70,7 @@ internals.applyRoutes = function (server, next) {
 
             //console.log("BEFORE server.inject: ", options);
             server.inject(options, function(createVoteResponse){
-                console.log("createVoteResponse: ", createVoteResponse.result);
+                //console.log("createVoteResponse: ", createVoteResponse.result);
                 if(createVoteResponse.result.statusCode){
                     if(createVoteResponse.result.statusCode){
                         return reply.view('index',{
@@ -96,6 +97,277 @@ internals.applyRoutes = function (server, next) {
                         ownerUsername:  createVoteResponse.result.ownerUsername,
                         timeCreated:    Moment(createVoteResponse.result.timeCreated).format('DD.MM.YYYY'),
                         _id:            createVoteResponse.result._id
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/listvotes',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("GET Votes");
+            console.log("user._id: ", request.auth.credentials.user._id);
+            console.log("user.username: ", request.auth.credentials.user.username);
+
+            var options ={
+                method: 'GET',
+                url: '/api/votes',
+                payload: {
+                    sort    : '_id',
+                    limit   : 200,
+                    page    : 1
+                }
+            };
+
+            //console.log("BEFORE server.inject: ", options);
+            server.inject(options, function(getVotesResponse){
+                console.log("getVotesResponse: ", getVotesResponse.result);
+                if(getVotesResponse.result.statusCode){
+                    if(getVotesResponse.result.statusCode){
+                        return reply.view('index',{
+                            message:   getVotesResponse.result.message,
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    console.log("getVotesResponse: ", getVotesResponse.result);
+                    console.log("data: ", getVotesResponse.result.data);
+                    //console.log("get first Vote title: ", getVotesResponse.result.data[0].title);
+                    //console.log("get first Vote _id: ", getVotesResponse.result.data[0]._id);
+
+                    return reply.view('listvotes',{
+                        auth:       JSON.stringify(request.auth),
+                        session:    JSON.stringify(request.session),
+                        isLoggedIn: request.auth.isAuthenticated,
+                        voteList:   getVotesResponse.result.data,
+                        moment:     Moment
+                    });
+                }
+            });
+        }
+    });
+
+    function getNrOfVoters(getVoteResponse, request, notvoted) {
+        var nrVoters = 0;
+        if (getVoteResponse.result.votespos != undefined) {
+            console.log("getVoteResponse.result.votespos.length: ", getVoteResponse.result.votespos.length);
+            nrVoters = nrVoters + getVoteResponse.result.votespos.length;
+
+            for (var i = 0; i < getVoteResponse.result.votespos.length; i++) {
+                //console.log("comparison: ", getVoteResponse.result.votespos[i].id);
+                //console.log(request.auth.credentials.user._id);
+
+                if (getVoteResponse.result.votespos[i].id == request.auth.credentials.user._id) {
+                    notvoted = false;
+                    //console.log("FOUND");
+                }
+            }
+
+        }
+        if (getVoteResponse.result.votesneg != undefined) {
+            console.log("getVoteResponse.result.votesneg.length: ", getVoteResponse.result.votesneg.length);
+            nrVoters = nrVoters + getVoteResponse.result.votesneg.length;
+
+            for (var i = 0; i < getVoteResponse.result.votesneg.length; i++) {
+                if (getVoteResponse.result.votesneg[i].id == request.auth.credentials.user._id) {
+                    notvoted = false;
+                }
+            }
+        }
+        return {nrVoters: nrVoters, notvoted: notvoted};
+    }
+
+    server.route({
+        method: 'GET',
+        path: '/getvote/{id}',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("GET Vote");
+            console.log("vote id: ", request.params.id);
+
+            var options ={
+                method: 'GET',
+                url: '/api/votes/' + request.params.id
+            };
+
+            //console.log("BEFORE server.inject: ", options);
+            server.inject(options, function(getVoteResponse){
+                //console.log("getVoteResponse: ", getVoteResponse.result);
+                if(getVoteResponse.result.statusCode){
+                    if(getVoteResponse.result.statusCode){
+                        return reply.view('index',{
+                            message:   getVoteResponse.result.message,
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    console.log("getVoteResponse: ", getVoteResponse.result);
+
+                    // check if current user has already voted for this vote
+                    var notvoted = true;
+
+                    // amount of voters already
+                    var __ret = getNrOfVoters(getVoteResponse, request, notvoted);
+                    var nrVoters = __ret.nrVoters;
+                    notvoted = __ret.notvoted;
+
+                    return reply.view('showvote',{
+                        auth:       JSON.stringify(request.auth),
+                        session:    JSON.stringify(request.session),
+                        notvoted:   notvoted,
+                        nrVoters:   nrVoters,
+                        isLoggedIn: request.auth.isAuthenticated,
+                        vote:       getVoteResponse.result,
+                        moment:     Moment
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/voteplus/{id}',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("POST Vote plus");
+            console.log("vote id: ", request.params.id);
+
+            var options ={
+                method: 'POST',
+                url: '/api/voting/' + request.params.id,
+                payload: {
+                    ownerId:        request.auth.credentials.user._id,
+                    ownerUsername:  request.auth.credentials.user.username,
+                    decision:       'plus'
+                }
+            };
+
+            //console.log("BEFORE server.inject: ", options);
+            server.inject(options, function(postVoteResponse){
+                console.log("postVoteResponse: ", postVoteResponse.result);
+                if(postVoteResponse.result.statusCode){
+                    if(postVoteResponse.result.statusCode){
+                        return reply.view('index',{
+                            message:   postVoteResponse.result.message,
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    console.log("postVoteResponse: ", postVoteResponse.result);
+
+                    // check if current user has already voted for this vote
+                    var notvoted = true;
+
+                    // amount of voters already
+                    var __ret = getNrOfVoters(postVoteResponse, request, notvoted);
+                    var nrVoters = __ret.nrVoters;
+                    notvoted = __ret.notvoted;
+
+                    return reply.view('showvote',{
+                        auth:       JSON.stringify(request.auth),
+                        session:    JSON.stringify(request.session),
+                        notvoted:   notvoted,
+                        nrVoters:   nrVoters,
+                        isLoggedIn: request.auth.isAuthenticated,
+                        vote:       postVoteResponse.result,
+                        moment:     Moment
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/voteminus/{id}',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("POST Vote minus");
+            console.log("vote id: ", request.params.id);
+
+            var options ={
+                method: 'POST',
+                url: '/api/voting/' + request.params.id,
+                payload: {
+                    ownerId:        request.auth.credentials.user._id,
+                    ownerUsername:  request.auth.credentials.user.username,
+                    decision:       'minus'
+                }
+            };
+
+            //console.log("BEFORE server.inject: ", options);
+            server.inject(options, function(postVoteResponse){
+                console.log("postVoteResponse: ", postVoteResponse.result);
+                if(postVoteResponse.result.statusCode){
+                    if(postVoteResponse.result.statusCode){
+                        return reply.view('index',{
+                            message:   postVoteResponse.result.message,
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    console.log("postVoteResponse: ", postVoteResponse.result);
+
+                    // check if current user has already voted for this vote
+                    var notvoted = true;
+
+                    // amount of voters already
+                    var __ret = getNrOfVoters(postVoteResponse, request, notvoted);
+                    var nrVoters = __ret.nrVoters;
+                    notvoted = __ret.notvoted;
+
+                    return reply.view('showvote',{
+                        auth:       JSON.stringify(request.auth),
+                        session:    JSON.stringify(request.session),
+                        notvoted:   notvoted,
+                        nrVoters:   nrVoters,
+                        isLoggedIn: request.auth.isAuthenticated,
+                        vote:       postVoteResponse.result,
+                        moment:     Moment
                     });
                 }
             });

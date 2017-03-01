@@ -49,7 +49,7 @@
 			});
 		</script>
 	</head>
-	<body id="registrierung">
+	<body id="Abstimmung_anzeigen">
 		
 		<div id="nav-icon">
 			<span></span>
@@ -108,29 +108,67 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												VERBINDEN!
+												tbd
 											</h1>
 											<p>
-												<br>
-												Dein gesuchter Partner ist:
+												tbd
+												...
+											</p>
 											<div class="col-lg-6 col-lg-offset-3 text-center">
 												<div class="form-group">
-														<label for="name">Nick/Name</label>
-														<input type="text" class="form-control" name="username" id="username" value=<%=username%> disabled="disabled">
+													<label for="title">Titel</label>
+													<input type="text" class="form-control" name="title" id="title" disabled="disabled" value='<%= vote.title %>'>
 												</div>
-												Gib hier deine COOP 3000 ID ein, um Dich mit <%=username%> zu verbinden.
-													<form action="/verbinden02" method="POST" id="reg-form" enctype="application/json">
-														<div class="form-group">
-															<label for="email">Meine COOP 3000 ID</label>
-															<input type="text" class="form-control" name="usertwoid" id="usertwoid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es leider nicht." required>
-														</div>
-														<input type="hidden" name="useroneid" value=<%= id %>>
-														<input type="hidden" name="useronecoopid" value=<%= coopid %>>
-														<input type="hidden" name="useroneusername" value=<%= username %>>
-														<button>VERBINDEN</button>
-													</form>
+
+												<div class="form-group">
+													<label for="content">Inhalt</label>
+													<textarea class="form-control" name="content" id="content" disabled="disabled" rows="10" cols="70" maxlength="3000"><%= vote.content %></textarea>
 												</div>
-											</p>
+
+												<div class="form-group">
+													<label for="endDate">Enddatum</label>
+													<input type="text" class="form-control" name="endDate" id="endDate" disabled="disabled" value='<%= moment(vote.endDate).format('DD.MM.YYYY') %>'>
+												</div>
+
+												<div class="form-group">
+													<label for="ownerUsername">Autor</label>
+													<input type="text" class="form-control" name="ownerUsername" id="ownerUsername" disabled="disabled" value='<%= vote.ownerUsername %>'>
+												</div>
+
+												<div class="form-group">
+													<label for="timeCreated">Erstellt am</label>
+													<input type="text" class="form-control" name="timeCreated" id="timeCreated" disabled="disabled" value='<%= moment(vote.timeCreated).format('DD.MM.YYYY') %>'>
+												</div>
+
+												<div class="form-group">
+													<label for="title"><%= nrVoters %> Teilnehmer</label>
+												</div>
+
+												<% if(vote.votespos!=undefined){%>
+													<% for(var i=0; i<vote.votespos.length; i++) {%>
+														<%=vote.votespos[i].name%>,&nbsp;
+													<% } %>
+												<% } %>
+
+												<% if(vote.votesneg!=undefined){%>
+													<% for(var i=0; i<vote.votesneg.length; i++) {%>
+														<%=vote.votesneg[i].name%>,&nbsp;
+													<% } %>
+												<% } %>
+
+												<hr>
+
+												<% if(notvoted){%>
+													<div class="form-group">
+														<label for="voting">Abstimmen</label>
+														<form action="/voteplus/<%=vote._id%>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+															<button class="buttonHover" onclick="FillName(this.form)">Stimme dafür</button>
+														</form>
+														<form action="/voteminus/<%=vote._id%>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+															<button class="buttonHover" onclick="FillName(this.form)">Stimme dagegen</button>
+														</form>
+												<% } %>
+											</div>
 										</div>
 									</div>							
 								</div>

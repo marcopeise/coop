@@ -49,6 +49,14 @@ Vote.schema = Joi.object().keys({
     endDate: Joi.date(),
     ownerId: Joi.string(),
     ownerUsername: Joi.string(),
+    votespos: Joi.object().keys({
+        id: Joi.string().required(),
+        name: Joi.string().required()
+    }),
+    votesneg: Joi.object().keys({
+        id: Joi.string().required(),
+        name: Joi.string().required()
+    }),
     timeCreated: Joi.date(),
     timeChanged: Joi.date()
 });

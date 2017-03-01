@@ -14,30 +14,17 @@ internals.applyRoutes = function (server, next) {
     server.route({
         method: 'GET',
         path: '/votes',
-        config: {
-            auth: {
-                strategy: 'session',
-                scope: ['user', 'admin', 'account']
-            },
-            validate: {
-                query: {
-                    isActive: Joi.string(),
-                    sort: Joi.string().default('_id'),
-                    limit: Joi.number().default(200),
-                    page: Joi.number().default(1)
-                }
-            }
-        },
         handler: function (request, reply) {
 
             const query = {};
-            if (request.query.isActive) {
+            /*if (request.query.isActive) {
                 query.isActive = request.query.isActive === 'true';
-            }
-            const fields = request.query.fields;
+            }*/
             const sort = request.query.sort;
             const limit = request.query.limit;
             const page = request.query.page;
+
+            const fields = Vote.fieldsAdapter('isActive title endDate votes');
 
             Vote.pagedFind(query, fields, sort, limit, page, (err, results) => {
 
@@ -54,12 +41,6 @@ internals.applyRoutes = function (server, next) {
     server.route({
         method: 'GET',
         path: '/votes/{id}',
-        config: {
-            auth: {
-                strategy: 'session',
-                scope: ['user', 'admin', 'account']
-            }
-        },
         handler: function (request, reply) {
 
             Vote.findById(request.params.id, (err, vote) => {
@@ -109,6 +90,59 @@ internals.applyRoutes = function (server, next) {
 
                 reply(vote);
         });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/voting/{id}',
+        config: {
+            validate: {
+                params: {
+                    id:         Joi.string().required()
+                }
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("POST /voting ", request.payload);
+
+            const id = request.params.id;
+            var update;
+            if(request.payload.decision=='plus'){
+                console.log("Vote in Favor: ", request.payload.decision);
+                update = {
+                    $addToSet: {
+                        votespos: {
+                            id:     request.payload.ownerId,
+                            name:   request.payload.ownerUsername
+                        }
+                    }
+                };
+            }else{
+                console.log("Vote Oppose: ", request.payload.decision);
+                update = {
+                    $addToSet: {
+                        votesneg: {
+                            id:     request.payload.ownerId,
+                            name:   request.payload.ownerUsername
+                        }
+                    }
+                };
+            }
+
+            Vote.findByIdAndUpdate(id, update, (err, user) => {
+
+                if (err) {
+                    return reply(err);
+                }
+
+                if (!user) {
+                    return reply(Boom.notFound('Document not found.'));
+                }
+
+                reply(user);
+            });
         }
     });
 

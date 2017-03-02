@@ -14,4 +14,8 @@ $(document).ready(function(){
 		$.fn.fullpage.moveTo(3);
 	});
 	
+	$('.scroll1, .scroll2').click(function(e){
+		$.scrollify.next();
+	});
+	
 });

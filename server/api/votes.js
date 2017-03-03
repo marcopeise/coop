@@ -10,6 +10,7 @@ const internals = {};
 internals.applyRoutes = function (server, next) {
 
     const Vote = server.plugins['hapi-mongo-models'].Vote;
+    const User = server.plugins['hapi-mongo-models'].User;
 
     server.route({
         method: 'GET',
@@ -180,10 +181,45 @@ internals.applyRoutes = function (server, next) {
                 }
 
                 if (!user) {
-                return reply(Boom.notFound('Document not found.'));
+                    return reply(Boom.notFound('Document not found.'));
                 }
 
                 reply(user);
+            });
+        }
+    });
+
+    server.route({
+        method: 'DELETE',
+        path: '/deletevote/{id}',
+        config: {
+            validate: {
+                params: {
+                    id:             Joi.string().required()
+                },
+                payload: {
+                    voteOwnerId:    Joi.string().required(),
+                    currentUserId:  Joi.string().required()
+                }
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("POST /deletevote ", request.payload);
+
+            //TODO: check if voteOwnerId = currentID or = Admin
+
+            Vote.findByIdAndDelete(request.params.id, (err, user) => {
+
+                if (err) {
+                    return reply(err);
+                }
+
+                if (!user) {
+                    return reply(Boom.notFound('Document not found.'));
+                }
+
+                reply({ message: 'Success.' });
             });
         }
     });

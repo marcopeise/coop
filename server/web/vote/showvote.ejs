@@ -207,7 +207,8 @@
 														<% for(var i=0; i<vote.comments.length; i++) {%>
 															<div class="col-lg-6 col-lg-offset-3 text-center">
 																<div class="form-group">
-																	<label for="comment">Kommentar: <%= vote.comments[i].comment %></label>
+																	<label for="comment">Kommentar:</label>
+																		<%= vote.comments[i].comment %>
 																	<br>
 																	<label for="timeCreated">Erstellt: <%= moment().to(vote.comments[i].timeCreated) %></label>
 																	<br>
@@ -231,11 +232,19 @@
 														<form action="/commentvote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 															<div class="form-group">
 																<label for="content">Dein Kommentar</label>
-																<textarea class="form-control" name="content" placeholder="Hier Dein Kommentar..." id="content" rows="10" cols="70" maxlength="3000"></textarea>
+																<textarea class="form-control" name="comment" placeholder="Hier Dein Kommentar..." id="comment" rows="10" cols="70" maxlength="3000"></textarea>
 																<div class="help-block with-errors"></div>
 															</div>
 
 															<button class="buttonHover" onclick="FillName(this.form)">Kommentieren</button>
+														</form>
+													<% } %>
+												</p>
+												<p>
+													<% if(isOwner || isAdmin){%>
+														<form action="/deletevote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+															<input type="hidden" name="voteOwnerId" value=<%= vote._id %>>
+															<button class="buttonHover" onclick="FillName(this.form)">Abstimmung löschen</button>
 														</form>
 													<% } %>
 												</p>

@@ -5,6 +5,8 @@ Moment.locale('de');
 
 internals.applyRoutes = function (server, next) {
 
+    const User = server.plugins['hapi-mongo-models'].User;
+
     server.views({
         engines: { ejs: require('ejs') },
         relativeTo: __dirname,
@@ -243,22 +245,54 @@ internals.applyRoutes = function (server, next) {
                 }else{
                     console.log("getVoteResponse: ", getVoteResponse.result);
 
-                    // check if current user has already voted for this vote
-                    var notvoted = true;
+                    // check if user is admin
+                    const id = request.auth.credentials.user._id.toString();
+                    const fields = User.fieldsAdapter('roles');
 
-                    // amount of voters already
-                    var __ret = getNrOfVoters(getVoteResponse, request, notvoted);
-                    var nrVoters = __ret.nrVoters;
-                    notvoted = __ret.notvoted;
+                    User.findById(id, fields, (err, user) => {
 
-                    return reply.view('showvote',{
-                        auth:       JSON.stringify(request.auth),
-                        session:    JSON.stringify(request.session),
-                        notvoted:   notvoted,
-                        nrVoters:   nrVoters,
-                        isLoggedIn: request.auth.isAuthenticated,
-                        vote:       getVoteResponse.result,
-                        moment:     Moment
+                        if (err) {
+                            return reply(err);
+                        }
+
+                        if (!user) {
+                            return reply(Boom.notFound('Document not found. That is strange.'));
+                        }
+
+                        //console.log("user: ", user);
+                        var currentUser = user;
+                        console.log("currentUser: ", currentUser);
+                        // check if user is admin
+                        var isAdmin = false;
+                        if(currentUser.roles.admin != undefined){
+                            isAdmin = true;
+                        }
+
+                        // check if user is ownerOfVote
+                        var isOwner = false;
+                        if(request.auth.credentials.user._id == getVoteResponse.result.ownerId ){
+                            isOwner = true;
+                        }
+
+                        // check if current user has already voted for this vote
+                        var notvoted = true;
+
+                        // amount of voters already
+                        var __ret = getNrOfVoters(getVoteResponse, request, notvoted);
+                        var nrVoters = __ret.nrVoters;
+                        notvoted = __ret.notvoted;
+
+                        return reply.view('showvote',{
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            notvoted:   notvoted,
+                            nrVoters:   nrVoters,
+                            isLoggedIn: request.auth.isAuthenticated,
+                            isAdmin:    isAdmin,
+                            isOwner:    isOwner,
+                            vote:       getVoteResponse.result,
+                            moment:     Moment
+                        });
                     });
                 }
             });
@@ -306,23 +340,8 @@ internals.applyRoutes = function (server, next) {
                 }else{
                     console.log("postVoteResponse: ", postVoteResponse.result);
 
-                    // check if current user has already voted for this vote
-                    var notvoted = true;
+                    return reply.redirect('/getvote/' + request.params.id);
 
-                    // amount of voters already
-                    var __ret = getNrOfVoters(postVoteResponse, request, notvoted);
-                    var nrVoters = __ret.nrVoters;
-                    notvoted = __ret.notvoted;
-
-                    return reply.view('showvote',{
-                        auth:       JSON.stringify(request.auth),
-                        session:    JSON.stringify(request.session),
-                        notvoted:   notvoted,
-                        nrVoters:   nrVoters,
-                        isLoggedIn: request.auth.isAuthenticated,
-                        vote:       postVoteResponse.result,
-                        moment:     Moment
-                    });
                 }
             });
         }
@@ -369,23 +388,8 @@ internals.applyRoutes = function (server, next) {
                 }else{
                     console.log("postVoteResponse: ", postVoteResponse.result);
 
-                    // check if current user has already voted for this vote
-                    var notvoted = true;
+                    return reply.redirect('/getvote/' + request.params.id);
 
-                    // amount of voters already
-                    var __ret = getNrOfVoters(postVoteResponse, request, notvoted);
-                    var nrVoters = __ret.nrVoters;
-                    notvoted = __ret.notvoted;
-
-                    return reply.view('showvote',{
-                        auth:       JSON.stringify(request.auth),
-                        session:    JSON.stringify(request.session),
-                        notvoted:   notvoted,
-                        nrVoters:   nrVoters,
-                        isLoggedIn: request.auth.isAuthenticated,
-                        vote:       postVoteResponse.result,
-                        moment:     Moment
-                    });
                 }
             });
         }
@@ -404,6 +408,7 @@ internals.applyRoutes = function (server, next) {
 
             console.log("POST comment Vote");
             console.log("vote id: ", request.params.id);
+            console.log("comment: ", request.payload.comment);
 
             var options ={
                 method: 'POST',
@@ -432,23 +437,54 @@ internals.applyRoutes = function (server, next) {
                 }else{
                     console.log("postCommentVoteResponse: ", postCommentVoteResponse.result);
 
-                    // check if current user has already voted for this vote
-                    var notvoted = true;
+                    return reply.redirect('/getvote/' + request.params.id);
 
-                    // amount of voters already
-                    var __ret = getNrOfVoters(postCommentVoteResponse, request, notvoted);
-                    var nrVoters = __ret.nrVoters;
-                    notvoted = __ret.notvoted;
+                }
+            });
+        }
+    });
 
-                    return reply.view('showvote',{
-                        auth:       JSON.stringify(request.auth),
-                        session:    JSON.stringify(request.session),
-                        notvoted:   notvoted,
-                        nrVoters:   nrVoters,
-                        isLoggedIn: request.auth.isAuthenticated,
-                        vote:       postCommentVoteResponse.result,
-                        moment:     Moment
-                    });
+    server.route({
+        method: 'POST',
+        path: '/deletevote/{id}',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("POST Delete Vote");
+            console.log("vote id: ", request.params.id);
+
+            var options ={
+                method: 'DELETE',
+                url: '/api/deletevote/' + request.params.id,
+                payload: {
+                    voteOwnerId:     request.payload.voteOwnerId,
+                    currentUserId:   request.auth.credentials.user._id
+                }
+            };
+
+            //console.log("BEFORE server.inject: ", options);
+            server.inject(options, function(postDeleteVoteResponse){
+                //console.log("postDeleteVoteResponse: ", postDeleteVoteResponse.result);
+                if(postDeleteVoteResponse.result.statusCode){
+                    if(postDeleteVoteResponse.result.statusCode){
+                        return reply.view('index',{
+                            message:   postDeleteVoteResponse.result.message,
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    console.log("postDeleteVoteResponse: ", postDeleteVoteResponse.result);
+
+                    return reply.redirect('/listvotes');
                 }
             });
         }

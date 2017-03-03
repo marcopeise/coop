@@ -614,7 +614,7 @@ section .container-fluid {
 }
 
 #section1 .container-fluid {
-	background-image: url('../files/images/COO_COLLAGEN_STUFE2_02_170127.jpg');
+	background-image: url('../files/images/COO_COLLAGEN_STP_170203_01.jpg');
 }
 
 #section1 .force-to-bottom {
@@ -635,8 +635,7 @@ section .container-fluid {
 	background-image: none;
 }
 
-#section2 .content p,
-#registrierung #section0 p {
+#section2 .content p {
 	font-size: 26px;
 }
 
@@ -812,7 +811,7 @@ div.message {
 /* REGISTRIERUNG */
 
 #registrierung #section0 .container-fluid {
-	background-image: url('../files/images/COO_REGISTRIERUNG_PART01.jpg');
+	background-image: none;
 	
     background-position: 30% 0px;
 }
@@ -846,7 +845,9 @@ div.message {
 /* LOGIN */
 
 #login #section0 .container-fluid {
-	background-image: none;
+	background-image: url('../files/images/COO_REGISTRIERUNG_PART01.jpg');
+	
+    background-position: 30% 0px;
 }
 
 #login #section0 {

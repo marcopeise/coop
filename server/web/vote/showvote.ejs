@@ -125,6 +125,17 @@
 												...
 												<a href="/listvotes">Zurück zu allen Abstimmungen</a>
 											</p>
+											<p>
+												<% if(isOwner || isAdmin){%>
+													<form action="/editvotemode/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+														<input type="hidden" name="voteOwnerId" value="<%= vote.ownerId %>">
+														<input type="hidden" name="voteTitle" value="<%= vote.title %>">
+														<input type="hidden" name="voteContent" value="<%= vote.content %>"">
+														<input type="hidden" name="voteEndDate" value="<%= vote.endDate %>"">
+														<button class="buttonHover" onclick="FillName(this.form)">Abstimmung bearbeiten</button>
+													</form>
+											<% } %>
+											</p>
 											<div class="col-lg-6 col-lg-offset-3 text-center">
 												<div class="form-group">
 													<label for="title">Titel</label>
@@ -242,7 +253,7 @@
 												<p>
 													<% if(isOwner || isAdmin){%>
 														<form action="/deletevote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
-															<input type="hidden" name="voteOwnerId" value=<%= vote._id %>>
+															<input type="hidden" name="voteOwnerId" value=<%= vote.ownerId %>>
 															<button class="buttonHover" onclick="FillName(this.form)">Abstimmung löschen</button>
 														</form>
 													<% } %>

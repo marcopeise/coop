@@ -206,21 +206,95 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             console.log("POST /deletevote ", request.payload);
+            const fields = User.fieldsAdapter('roles');
 
-            //TODO: check if voteOwnerId = currentID or = Admin
-
-            Vote.findByIdAndDelete(request.params.id, (err, user) => {
+            User.findById(request.payload.currentUserId, fields, (err, user) => {
 
                 if (err) {
                     return reply(err);
                 }
 
                 if (!user) {
-                    return reply(Boom.notFound('Document not found.'));
+                    return reply(Boom.notFound('Document not found. That is strange.'));
                 }
 
-                reply({ message: 'Success.' });
+                //console.log("user: ", user);
+                var currentUser = user;
+                console.log("currentUser: ", currentUser);
+
+                // check if user is admin
+                var userCanDelete = false;
+                if(currentUser.roles.admin != undefined){
+                    userCanDelete = true;
+                }
+
+                // check if user is ownerOfVote
+                if(request.payload.currentUserId == request.payload.voteOwnerId ){
+                    userCanDelete = true;
+                }
+
+                if(userCanDelete){
+                    Vote.findByIdAndDelete(request.params.id, (err, vote) => {
+
+                        if (err) {
+                            return reply(err);
+                        }
+
+                        if (!vote) {
+                            return reply(Boom.notFound('Document not found.'));
+                        }
+
+                        reply({ message: 'Success.' });
+                    })
+                }else{
+                    return reply(Boom.conflict('User is not authorized to delete this vote.'));
+                }
             });
+        }
+    });
+
+    server.route({
+        method: 'PUT',
+        path: '/editvote/{id}',
+        config: {
+            validate: {
+                params: {
+                    id:             Joi.string().required()
+                },
+                payload: {
+                    voteOwnerId:    Joi.string().required(),
+                    currentUserId:  Joi.string().required(),
+                    voteTitle:      Joi.string(),
+                    voteContent:    Joi.string(),
+                    voteEndDate:    Joi.date()
+                }
+            }
+        },
+        handler: function (request, reply) {
+            //console.log("PUT /editvote payload: ", request.payload);
+
+            const id = request.params.id;
+            const update = {
+                $set: {
+                    title:          request.payload.voteTitle,
+                    content:        request.payload.voteContent,
+                    endDate:        request.payload.voteEndDate,
+                    timeChanged:    new Date()
+                }
+            };
+
+            Vote.findByIdAndUpdate(id, update, (err, vote) => {
+
+                if (err) {
+                    return reply(err);
+                }
+
+                if (!vote) {
+                return reply(Boom.notFound('Document not found.'));
+            }
+
+            reply(vote);
+        });
         }
     });
 

@@ -156,15 +156,15 @@ internals.applyRoutes = function (server, next) {
                         var nrVoters = 0;
                         //console.log("votepos: ", voteList[i].votespos);
                         if (voteList[i].votespos != undefined) {
-                            console.log("votepos");
+                            //console.log("votepos");
                             nrVoters = nrVoters + voteList[i].votespos.length;
                         }
                         if (voteList[i].votesneg != undefined) {
-                            console.log("votesneg");
+                            //console.log("votesneg");
                             nrVoters = nrVoters + voteList[i].votesneg.length;
                         }
                         voteList[i].nrVoters = nrVoters;
-                        console.log("nrVoters: ", voteList[i].nrVoters);
+                        //console.log("nrVoters: ", voteList[i].nrVoters);
                     }
 
                     return reply.view('listvotes',{
@@ -485,6 +485,91 @@ internals.applyRoutes = function (server, next) {
                     console.log("postDeleteVoteResponse: ", postDeleteVoteResponse.result);
 
                     return reply.redirect('/listvotes');
+                }
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/editvotemode/{id}',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("GET Edit Vote");
+            console.log("vote id: ", request.params.id);
+            console.log("payload: ", request.payload);
+
+            var endDate = new Date(request.payload.voteEndDate).toISOString();
+
+            return reply.view('editvote', {
+                auth:               JSON.stringify(request.auth),
+                session:            JSON.stringify(request.session),
+                isLoggedIn:         request.auth.isAuthenticated,
+                message:            '',
+                voteId:             request.params.id,
+                voteOwnerId:        request.payload.voteOwnerId,
+                currentUserId:      request.auth.credentials.user._id,
+                voteTitle:          request.payload.voteTitle,
+                voteContent:        request.payload.voteContent,
+                voteEndDate:        Moment(endDate).format('YYYY-MM-DD')
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/editVote/{id}',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("POST Edit Vote");
+            console.log("vote id: ", request.params.id);
+            //console.log("payload: ", request.payload);
+
+            //var from = request.payload.voteEndDate.split("-");
+            //var voteEndDate = new Date(from[2], from[1] - 1, from[0]);
+
+            var options ={
+                method: 'PUT',
+                url: '/api/editvote/' + request.params.id,
+                payload: {
+                    voteOwnerId:        request.payload.voteOwnerId,
+                    currentUserId:      request.auth.credentials.user._id,
+                    voteTitle:          request.payload.voteTitle,
+                    voteContent:        request.payload.voteContent,
+                    voteEndDate:        request.payload.voteEndDate
+                }
+            };
+
+            //console.log("BEFORE server.inject: ", options);
+            server.inject(options, function(putEditVoteResponse){
+                //console.log("putEditVoteResponse: ", putEditVoteResponse.result);
+                if(putEditVoteResponse.result.statusCode){
+                    if(putEditVoteResponse.result.statusCode){
+                        return reply.view('index',{
+                            message:   putEditVoteResponse.result.message,
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    console.log("putEditVoteResponse: ", putEditVoteResponse.result);
+
+                    return reply.redirect('/getvote/' + request.params.id);
                 }
             });
         }

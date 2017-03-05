@@ -218,6 +218,30 @@ User.schema = Joi.object().keys({
         id: Joi.string().required(),
         name: Joi.string().required()
     }),
+    follows: Joi.object().keys({
+        id: Joi.string().required(),
+        name: Joi.string().required(),
+        periodStart: Joi.date().required(),
+        periodEnd: Joi.date().required()
+    }),
+    followsHistory: Joi.object().keys({
+        id: Joi.string().required(),
+        name: Joi.string().required(),
+        periodStart: Joi.date().required(),
+        periodEnd: Joi.date().required()
+    }),
+    followedBy: Joi.object().keys({
+        id: Joi.string().required(),
+        name: Joi.string().required(),
+        periodStart: Joi.date().required(),
+        periodEnd: Joi.date().required()
+    }),
+    followedByHistory: Joi.object().keys({
+        id: Joi.string().required(),
+        name: Joi.string().required(),
+        periodStart: Joi.date().required(),
+        periodEnd: Joi.date().required()
+    }),
     verknExtended: Joi.boolean().default(false),
     altersvorsorge: Joi.boolean().default(false),
     sozialakademie: Joi.boolean().default(false),

@@ -197,7 +197,7 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             const id = request.auth.credentials.user._id.toString();
-            const fields = User.fieldsAdapter('username email roles isActive mobile town coopid connections verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues token expires timeCreated');
+            const fields = User.fieldsAdapter('username email roles isActive mobile town coopid connections follows followsHistory followedBy followedByHistory verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues token expires timeCreated');
 
             User.findById(id, fields, (err, user) => {
 
@@ -629,6 +629,76 @@ internals.applyRoutes = function (server, next) {
         }
     });
 
+    server.route({
+        method: 'PUT',
+        path: '/follow',
+        handler: function (request, reply) {
+
+            console.log('wants to follow: ', request.payload.followsUser);
+            console.log('user requesting: ', request.payload.isUser);
+
+            const isUserfields =        User.fieldsAdapter('username');
+            const followUserfields =    User.fieldsAdapter('username');
+
+            User.findById(request.payload.isUser, isUserfields, (err, isUser) => {
+
+                if (err) {
+                    return reply(err);
+                }
+
+                if (!isUser) {
+                    return reply(Boom.notFound('Document not found. That is strange.'));
+                }
+                console.log("isUser FOUND: ", isUser);
+
+                User.findById(request.payload.followsUser, followUserfields, (err, followUser) => {
+
+                    if (err) {
+                        return reply(err);
+                    }
+
+                    if (!isUser){
+                        return reply(Boom.notFound('Document not found. That is strange.'));
+                    }
+                    console.log("followUser FOUND: ", followUser);
+
+                    User.findByIdAndUpdate(
+                        request.payload.followsUser,
+                        {
+                            $addToSet: {
+                                followedBy: {
+                                    id: isUser._id,
+                                    name: isUser.username
+                                }
+                            }
+                        }, function (err) {
+                            if (err) {
+                                console.log("ERROR update followsUser: ", err);
+                                return reply(err);
+                            }
+                            User.findByIdAndUpdate(
+                                request.payload.isUser,
+                                {
+                                    $addToSet: {
+                                        follows: {
+                                            id: followUser._id,
+                                            name: followUser.username
+                                        }
+                                    }
+                                }, function (err) {
+                                    if (err) {
+                                        console.log("ERROR update isUser: ", err);
+                                        return reply(err);
+                                    }
+                                    reply(true);
+                                }
+                            );
+                        }
+                    );
+                });
+            });
+        }
+    });
 
     next();
 };

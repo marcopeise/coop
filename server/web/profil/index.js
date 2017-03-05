@@ -409,6 +409,189 @@ internals.applyRoutes = function (server, next) {
         }
     });
 
+    server.route({
+        method: 'GET',
+        path: '/follow',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            },
+        },
+        handler: function (request, reply) {
+
+            console.log("payload", request.query);
+            var message = '';
+
+            var options ={
+                method: 'GET',
+                url: '/api/users/my',
+                payload: {
+                },
+                credentials: request.auth.credentials
+            };
+
+            server.inject(options, function(response){
+                //console.log("response: ", response.result);
+                if(response.result.statusCode){
+                    if(response.result.statusCode == 400){
+                        return reply.view('../login/index',{
+                            message:   response.result.message
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    console.log("User: ", response.result);
+
+                    if(request.query != undefined && request.query.message !== undefined){
+                        message =  request.query.message;
+                    }
+
+                    return reply.view('follow',{
+                        message:    message,
+                        auth:       JSON.stringify(request.auth),
+                        session:    JSON.stringify(request.session),
+                        isLoggedIn: request.auth.isAuthenticated,
+                        username:   response.result.username,
+                        follows:    response.result.follows,
+                        followedBy: response.result.followedBy
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/follow',
+        config: {
+            auth: {
+                mode: 'try',
+                strategy: 'session'
+            },
+            plugins: {
+                'hapi-auth-cookie': {
+                    redirectTo: false
+                }
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log('Profil POST follow, ', request.auth.credentials.user);
+            console.log('search: ', request.payload);
+            function confirmFollowing(request, response) {
+                console.log("User found: ", response.result);
+                return reply.view('confirmfollow', {
+                    auth:           JSON.stringify(request.auth),
+                    session:        JSON.stringify(request.session),
+                    isLoggedIn:     request.auth.isAuthenticated,
+                    followsUser:    response.result
+                });
+            }
+
+            if(request.payload.coopid){
+                var options ={
+                    method: 'GET',
+                    url: '/api/coopid/' + request.payload.coopid,
+                    payload: {
+                    }
+                };
+
+                server.inject(options, function(response){
+                    console.log("response GET /coopid/id: ", response.result);
+                    if(response.result.statusCode){
+                        if(response.result.statusCode){
+                            return reply.redirect('/follow?message='+ response.result.message);
+                        }else{
+                            return reply.redirect('/404');
+                        }
+                    }else{
+                        return confirmFollowing(request, response);
+                    }
+                });
+            }else if(request.payload.email){
+                var options ={
+                    method: 'GET',
+                    url: '/api/email/' + request.payload.email,
+                    payload: {
+                    }
+                };
+
+                server.inject(options, function(response){
+                    console.log("response GET /email/email: ", response.result);
+                    //console.log("response.result.message: ", response.result.message);
+                    if(response.result.statusCode){
+                        if(response.result.statusCode){
+                            request.session.message = response.result.message;
+                            return reply.redirect('/follow');
+                        }else{
+                            return reply.redirect('/404');
+                        }
+                    }else{
+                        return confirmFollowing(request, response);
+                    }
+                });
+            }else{
+                var options ={
+                    method: 'GET',
+                    url: '/api/username/' + request.payload.username,
+                    payload: {
+                    }
+                };
+
+                server.inject(options, function(response){
+                    console.log("response GET /username/username: ", response.result);
+                    //console.log("response.result.message: ", response.result.message);
+                    if(response.result.statusCode){
+                        if(response.result.statusCode){
+                            request.session.message = response.result.message;
+                            return reply.redirect('/follow');
+                        }else{
+                            return reply.redirect('/404');
+                        }
+                    }else{
+                        return confirmFollowing(request, response);
+                    }
+                });
+            }
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/confirmfollow',
+        config: {
+            auth: {
+                mode: 'try',
+                strategy: 'session'
+            },
+            plugins: {
+                'hapi-auth-cookie': {
+                    redirectTo: false
+                }
+            }
+        },handler: function (request, reply) {
+
+            console.log('wants to follow: ', request.payload.followsUser);
+            console.log('user requesting: ', request.auth.credentials.user._id);
+
+            var options ={
+                method: 'PUT',
+                url: '/api/follow',
+                payload: {
+                    followsUser:    request.payload.followsUser,
+                    isUser:         request.auth.credentials.user._id
+                }
+            };
+
+            server.inject(options, function(usertworesponse) {
+                console.log("usertworesponse GET /coopid/id: ", usertworesponse.result);
+                return reply.redirect('/follow?message=Erfolgreich angehangen');
+            });
+        }
+    });
+
     next();
 };
 

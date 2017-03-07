@@ -263,10 +263,6 @@ small a {
 	text-decoration: underline;
 }
 
-a.profila:link {
-	font-size: 26px;
-}
-
 button {
 	background-color: #000000;
 	border: none;
@@ -560,6 +556,7 @@ section .content {
 #main-nav .smallitem {
 	height: 20px;
 	font-size: 1em;
+	font-weight: 400;
 }
 
 
@@ -690,6 +687,21 @@ div.message {
 	font-weight: 600;
 	letter-spacing: 3px;
 	font-family: 'Giorgio Sans Web';
+}
+
+#home #header {
+	position: static;
+	height: 105px;
+	display: block;
+	width: 100%;
+	z-index: 9000;
+	text-align: center;
+	padding: 0;
+	top:0px;
+}
+
+#home #header img {
+	max-height: none;
 }
 
 

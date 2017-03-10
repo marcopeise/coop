@@ -509,9 +509,8 @@ section .content {
 	text-align: center;
 }
 
-
-#main-nav .content {
-	margin-top: 150px;
+#home #main-nav .content {
+	margin-top: 50px;
 }
 
 
@@ -583,6 +582,7 @@ section .container-fluid {
 	height: 100%;
     background-repeat: no-repeat;
 	background-position: 50% 0px;
+	margin-bottom: 50px;
 }
 
 #section0 {
@@ -700,9 +700,27 @@ div.message {
 	top:0px;
 }
 
+#home .header-part {
+	position: relative;
+	height: auto !important;
+	display: block;
+	z-index: 9999;
+}
+
+#home #section2 .row:nth-of-type(2) {
+	margin-top: -105px;
+	display: block;
+	z-index: 5000 !important;
+}
+
 #home #header img {
 	max-height: none;
 }
+
+.typoImage {
+	margin-bottom: 60px;
+}
+
 
 
 /* COOP 3000 */

@@ -13,6 +13,7 @@ const criteria = {
 const config = {
     $meta: 'This file configures the plot device.',
     projectName: 'COOP3000',
+    baseHref: 'https://www.coop3000.net',
     port: {
         web: {
             $filter: 'env',

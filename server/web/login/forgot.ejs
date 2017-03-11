@@ -81,42 +81,27 @@
 									<div class="col-lg-10 col-lg-offset-1">
 										<div class="content">
 											<h1>
-												LOGIN
+												Passwort vergessen?
 											</h1>
 											
 											<p>
-												Melde Dich mit Deiner COOPID an, um auf Dein Profil zuzugreifen,<br /> Vorschläge zu machen &amp; an Abstimmungen teilzunehmen!
+												Mit welcher E-Mail Adresse hast Du Dich beim COOP 3000 registriert? <br /> Trage Sie hier ein und Du bekommst eine E-Mail um ein neues Passwort auszuwählen.
 											</p>
 											
 											<br>
-											<%= message %>
+											<h1><%= message %></h1><br>
 										</div>
 									</div>
 									<div class="col-lg-6 col-lg-offset-3 text-center">
-										<form action="/profil" method="POST" id="reg-form" enctype="application/json">
+										<form action="/forgot" method="POST" id="reg-form" enctype="application/json">
 										  	<div class="form-group">
-										  		<label for="username">E-Mail-Adresse</label>
-										    	<input type="text" class="form-control" name="username" id="username" placeholder="" required>
-										  	</div>
-										  	
-										  	<div class="form-group">
-										  		<label for="password">Kennwort</label>
-										    	<input type="password" class="form-control" name="password" id="password" placeholder="" required>
-										  	</div>
+										  		<label for="email">E-Mail-Adresse</label>
+												  <input type="email" class="form-control" name="email" id="email" placeholder="" data-error="Deine richtige E-Mail Adresse wäre hier nicht schlecht. z.B.: mustermann@web.de" required>
+											  </div>
 
-											<button>Login</button>
+											<button>E-MAIL ZUSENDEN</button>
 										</form>		
 									</div>
-									<div class="col-lg-6 col-lg-offset-3 text-center">
-										<div class="content">							
-											<p>
-												Noch keine COOPID? Besorg Dir <a href="/registrierung">hier</a> Deinen Anteil!
-											</p>
-											<p>
-												<a href="/forgot">Passwort vergessen?</a>
-											</p>
-										</div>	
-									</div>							
 								</div>
 							</div>
 						</div>

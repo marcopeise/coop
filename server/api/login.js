@@ -192,12 +192,14 @@ internals.applyRoutes = function (server, next) {
                 email: ['user', function (results, done) {
 
                     const emailOptions = {
-                        subject: 'Reset your ' + Config.get('/projectName') + ' password',
+                        subject: 'Zurücksetzen Deines COOP 3000 Passworts',
                         to: request.payload.email
                     };
                     const template = 'forgot-password';
                     const context = {
-                        key: results.keyHash.key
+                        key: results.keyHash.key,
+                        baseHref: Config.get('/baseHref'),
+                        email: request.payload.email
                     };
 
                     mailer.sendEmail(emailOptions, template, context, done);

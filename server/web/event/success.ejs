@@ -49,15 +49,15 @@
 			});
 		</script>
 	</head>
-	<body id="registrierung">
-		
+	<body id="Abstimmung_angelegt">
+
 		<div id="nav-icon">
 			<span></span>
 			<span></span>
 			<span></span>
 			<span></span>
 		</div>
-		
+
 		<nav id="main-nav">
 			<div class="container-fluid">
 				<div class="row">
@@ -65,51 +65,72 @@
 						<div id="header">
 							<a href="/">
 								<img src="/public/files/images/COO_MENU_Logo.jpg" class="header-logo" title="Logo Coop3000" />
-							</a>								
+							</a>
 						</div>
 						<div class="content">
 							<nav>
 								<% include ../elements/navigation %>
 							</nav>
-						</div>						
+						</div>
 					</div>
-				</div>					
+				</div>
 			</div>
 		</nav>
-		
+
 		<div id="fullpage">
 			<section class="section" id="section0">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-12">
+						<div>
 							<div id="header">
 								<a href="/">
-									<img src="/public/files/images/COO_03_Registrierung_Logo.png" class="header-logo" title="Logo Coop3000" />
-								</a>	
+									<img src="/public/files/images/COO_Bildungswerke_Logo.png" class="header-logo" title="Logo Coop3000" />
+								</a>
 							</div>
-							
+
 							<div class="container">
 								<div class="row">
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												VERBUNDEN!
+												GLÜCKWUNSCH!
 											</h1>
-
-											<ul class="subnav">
-												<li><a href="/profil">Profil</a></li>
-												<li><a href="/coops">COOPS</a></li>
-												<li><span>Anhängen</span></li>
-												<li><a href="/logout">Logout</a></li>
-											</ul>
-											
 											<p>
-												<br>
-												<div class="col-lg-6 col-lg-offset-3 text-center">
-												<%=usernameOne%> (<%=userOneId%>) und <%=usernameTwo%> (<%=userTwoId%>) sind nun erfolgreich verbunden.
-
+												Du hast eine neue Abstimmung im COOP3000 eintragen lassen!
+												...
+											</p>
+											<p>
+												<a href="/listvotes">Zurück zu allen Abstimmungen</a>
+											</p>
+											<div class="col-lg-6 col-lg-offset-3 text-center">
+												<div class="form-group">
+													<label for="title">Titel</label>
+													<input type="text" class="form-control" name="title" id="title" disabled="disabled" value='<%= title %>'>
 												</div>
+
+												<div class="form-group">
+													<label for="content">Inhalt</label>
+													<textarea class="form-control" name="content" id="content" disabled="disabled" rows="10" cols="70" maxlength="3000"><%= content %></textarea>
+												</div>
+
+												<div class="form-group">
+													<label for="endDate">Enddatum</label>
+													<input type="text" class="form-control" name="endDate" id="endDate" disabled="disabled" value='<%= endDate %>'>
+												</div>
+
+												<div class="form-group">
+													<label for="ownerUsername">Ersteller</label>
+													<input type="text" class="form-control" name="ownerUsername" id="ownerUsername" disabled="disabled" value='<%= ownerUsername %>'>
+												</div>
+
+												<div class="form-group">
+													<label for="timeCreated">Erstellt am</label>
+													<input type="text" class="form-control" name="timeCreated" id="timeCreated" disabled="disabled" value='<%= timeCreated %>'>
+												</div>
+
+											</div>
 										</div>
+									</div>							
 								</div>
 							</div>
 						</div>

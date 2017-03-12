@@ -393,6 +393,7 @@ internals.applyRoutes = function (server, next) {
 
                 reply(user);
             });
+
         }
     });
 

@@ -49,15 +49,15 @@
 			});
 		</script>
 	</head>
-	<body id="registrierung">
-		
+	<body id="Abstimmungen_anzeigen">
+
 		<div id="nav-icon">
 			<span></span>
 			<span></span>
 			<span></span>
 			<span></span>
 		</div>
-		
+
 		<nav id="main-nav">
 			<div class="container-fluid">
 				<div class="row">
@@ -65,51 +65,72 @@
 						<div id="header">
 							<a href="/">
 								<img src="/public/files/images/COO_MENU_Logo.jpg" class="header-logo" title="Logo Coop3000" />
-							</a>								
+							</a>
 						</div>
 						<div class="content">
 							<nav>
 								<% include ../elements/navigation %>
 							</nav>
-						</div>						
+						</div>
 					</div>
-				</div>					
+				</div>
 			</div>
 		</nav>
-		
+
 		<div id="fullpage">
 			<section class="section" id="section0">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-12">
+						<div>
 							<div id="header">
 								<a href="/">
-									<img src="/public/files/images/COO_03_Registrierung_Logo.png" class="header-logo" title="Logo Coop3000" />
-								</a>	
+									<img src="/public/files/images/COO_Bildungswerke_Logo.png" class="header-logo" title="Logo Coop3000" />
+								</a>
 							</div>
-							
+
 							<div class="container">
 								<div class="row">
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												VERBUNDEN!
+												TBD
 											</h1>
-
-											<ul class="subnav">
-												<li><a href="/profil">Profil</a></li>
-												<li><a href="/coops">COOPS</a></li>
-												<li><span>Anhängen</span></li>
-												<li><a href="/logout">Logout</a></li>
-											</ul>
-											
 											<p>
+												Hier alle aktuellen Abstimmungen des COOP3000
 												<br>
-												<div class="col-lg-6 col-lg-offset-3 text-center">
-												<%=usernameOne%> (<%=userOneId%>) und <%=usernameTwo%> (<%=userTwoId%>) sind nun erfolgreich verbunden.
+												Anzahl:
+													<%= voteList.length %>
+												<br>
+												<a href="/createvote">Erstelle eine neue Abstimmung</a>
+											</p>
+											<% if(voteList.length>0){%>
+												<% for(var i=0; i<voteList.length; i++) {%>
+													<div class="col-lg-6 col-lg-offset-3 text-center">
+														<div class="form-group">
+															<label for="title">Titel: <a href="/getvote/<%=voteList[i]._id%>"><%= voteList[i].title %></a></label>
+															<br>
+															<% if(moment().diff(voteList[i].endDate, 'days')>=0){%>
+																<label for="endDate">Beendet seit: <%= moment().to(voteList[i].endDate, true) %></label>
+															<% }else { %>
+																<label for="endDate">Schließt in: <%= moment().to(voteList[i].endDate, true) %></label>
+															<% } %>
+															<br>
+															<label for="nrVoters"><%= voteList[i].nrVoters %> Teilnehmer</label>
+															<br>
+															<label for="endDate">Aktiv: </label>
+															<%= voteList[i].isActive %>
+														</div>
+														<hr>
+													</div>
 
-												</div>
+												<% } %>
+											<% }else{%>
+												Es gibt noch keine Abstimmungen
+												<br>
+												<a href="/createvote">Hier kannst Du eine Abstimmung erstellen</a>
+											<% } %>
 										</div>
+									</div>							
 								</div>
 							</div>
 						</div>

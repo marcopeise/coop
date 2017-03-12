@@ -122,76 +122,104 @@
 															<label for="coopid">CoopId</label>
 															<input type="text" class="form-control" name="coopid" id="coopid" disabled="disabled" value=<%= coopid %>>
 														</div>
-														<h3>
-															STATIONEN
-														</h3>
-														<div class="form-group">
-															<label>
-																<input type="checkbox" name="verknExtended" id="verknExtended" <%= verknExtendedValue %>> COMMUNITIES KNÜPFEN
-															</label>
+														<hr>
+														<h1>
+															STUFE 1 / DAS FÜLLHORN
+														</h1>
+														<h2>
+															EINEN BALL MACHEN
+														</h2>
+														<br>
+														COMMUNITIES KNÜPFEN
+														<input type="checkbox" name="verknExtended" id="verknExtended" <%= verknExtended %> ><br>
+														ALTERSVORSORGE (TEMPORÄR)
+														<input type="checkbox" name="altersvorsorge" id="altersvorsorge" <%= altersvorsorge %> ><br>
+														SOZIALAKADEMIE
+														<input type="checkbox" name="sozialakademie" id="sozialakademie" <%= sozialakademie %> ><br>
+														KNAPPENBAR
+														<input type="checkbox" name="knappenbar" id="knappenbar" <%= knappenbar %> ><br>
+														GEMÜSEFONDS
+														<input type="checkbox" name="gemuesefond" id="gemuesefond" <%= gemuesefond %> ><br>
+														GLÜCKLICHE TAGE
+														<input type="checkbox" name="gluecklichtage" id="gluecklichtage" <%= gluecklichtage %> ><br>
+														PAYBACK-PELE
+														<input type="checkbox" name="paybackpele" id="paybackpele" <%= paybackpele %> ><br>
+														<h2>
+															TÄNZE 3000
+														</h2>
+														<br>
+														LANGSAMER WALZER
+														<input type="checkbox" name="walzer" id="walzer" <%= walzer %> ><br>
+														DISKOFOX
+														<input type="checkbox" name="diskofox" id="diskofox" <%= diskofox %> ><br>
+														CHA CHA CHA
+														<input type="checkbox" name="chachacha" id="chachacha" <%= chachacha %> ><br>
+														WIENER WALZER
+														<input type="checkbox" name="wienerwalzer" id="wienerwalzer" <%= wienerwalzer %> ><br>
+														SWING
+														<input type="checkbox" name="swing" id="swing" <%= swing %> ><br>
+														RUMBA
+														<input type="checkbox" name="rumba" id="rumba" <%= rumba %> ><br>
+														FOXTROTT
+														<input type="checkbox" name="foxtrott" id="foxtrott" <%= foxtrott %> ><br>
+														BLUES
+														<input type="checkbox" name="blues" id="blues" <%= blues %> ><br>
+														<hr>
+														<h1>
+															STUFE 2 / DIE SUPPERTHEORIEPARTIES
+														</h1>
+														<% if(events!= undefined && events.length>0){%>
+															<input type="hidden" name="eventnumber" value=<%= events.length %>>
+															<h2>
+																DAS GELÄNDE SONDIEREN
+															</h2>
 															<br>
-															<label>
-																<input type="checkbox" name="altersvorsorge" id="altersvorsorge" <%= altersvorsorgeValue %>> ALTERSVORSORGE (TEMPORÄR)
-															</label>
+															<% for(var i=0; i<events.length; i++) {%>
+																<% if(i===4){break;}%>
+																<% var checked = '';%>
+																<%= events[i].name %>
+																<% if(events[i].participants!= undefined && events[i].participants.length>0){
+																	//console.log("participants: ", events[i].participants);
+																	for(var j = 0; j < events[i].participants.length; j++) {
+																		//console.log("matching? ", events[i].participants[j].id.toString() + " : " + id);
+																		if(events[i].participants[j].id == id) {
+																			//console.log("gefunden!");
+																			checked = 'checked';
+																		}
+																	}
+																} %>
+																<input type="checkbox" name="event<%= i %>" id="event<%= i %>" <%= checked %>>
+																<input type="hidden" name="eventID<%= i %>" value=<%= events[i]._id %>>
+																<br>
+															<% } %>
+															<h2>
+																DER CONCERN HANDELT
+															</h2>
 															<br>
-															<label>
-																<input type="checkbox" name="sozialakademie" id="sozialakademie" <%= sozialakademieValue %>> SOZIALAKADEMIE
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="knappenbar" id="knappenbar" <%= knappenbarValue %>> KNAPPENBAR
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="gemuesefond" id="gemuesefond" <%= gemuesefondValue %>> GEMÜSEFONDS
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="gluecklichtage" id="gluecklichtage" <%= gluecklichtageValue %>> GLÜCKLICHE TAGE
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="paybackpele" id="paybackpele" <%= paybackpeleValue %>> PAYBACK-PELE
-															</label>
-														</div>
-														<h3>
-															TÄNZE
-														</h3>
-														<div class="form-group">
-															<label>
-																<input type="checkbox" name="walzer" id="walzer" <%= walzerValue %>> LANGSAMER WALZER
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="diskofox" id="diskofox" <%= diskofoxValue %>> DISKOFOX
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="chachacha" id="chachacha" <%= chachachaValue %>> CHA CHA CHA
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="wienerwalzer" id="wienerwalzer" <%= wienerwalzerValue %>> WIENER WALZER
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="swing" id="swing" <%= swingValue %>> SWING
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="rumba" id="rumba" <%= rumbaValue %>> RUMBA
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="foxtrott" id="foxtrott" <%= foxtrottValue %>> FOXTROTT
-															</label>
-															<br>
-															<label>
-																<input type="checkbox" name="blues" id="blues" <%= bluesValue %>> BLUES
-															</label>
-														</div>
+															<% if(events!= undefined && events.length>4){%>
+																<% for(var i=4; i<events.length; i++) {%>
+																	<% var checked2 = '';%>
+																	<%= events[i].name %>
+																	<% if(events[i].participants!= undefined && events[i].participants.length>0){
+																		for(var j = 0; j < events[i].participants.length; j++) {
+																			if(events[i].participants[j].id == id) {
+																				checked2 = 'checked';
+																			}
+																		}
+																	} %>
+																	<input type="checkbox" name="event<%= i %>" id="event<%= i %>" <%= checked2 %>>
+																	<input type="hidden" name="eventID<%= i %>" value=<%= events[i]._id %>>
+																	<br>
+																<% } %>
+															<% }else{ %>
+																Es gibt noch keine Concern Handlungen.
+															<% } %>
+														<% }else{%>
+															Es gibt noch keine Events
+														<% } %>
 														<input type="hidden" name="id" value=<%= id %>>
 														<input type="hidden" name="idhelper" value=<%= coopid %>>
+														<br>
 														<button class="buttonHover">Ändern</button>
 													</form>
 												</div>

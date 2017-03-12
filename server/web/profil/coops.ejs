@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	    <title>Coop 3000</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="/public/css/jquery.fullPage.css" />
+		<link rel="stylesheet" href="/public/css/custom.css">
+	
+		<script type="text/javascript" src="/public/js/jquery-3.1.0.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+	
+		<script type="text/javascript" src="/public/js/scrolloverflow.js"></script>
+	
+		<script type="text/javascript" src="/public/js/jquery.fullPage.min.js"></script>
+
+	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+						(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-84474181-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		<!-- End Google Analytics -->
+		<script>
+			$(function() {
+				var isLoggedIn = ('<%=isLoggedIn%>' === 'true');
+				if( isLoggedIn ) {
+					$('.showLogout').show();
+					$('.showLogin').hide();
+				} else {
+					$('.showLogout').hide();
+					$('.showLogin').show();
+				}
+			});
+			$(function() {
+				var verknExtended = (verknExtended = ('<%=verknExtended%>' === 'true')) ? $('.showverknExtended').show() : $('.showverknExtended').hide();
+				var altersvorsorge = (altersvorsorge = ('<%=altersvorsorge%>' === 'true')) ? $('.showaltersvorsorge').show() : $('.showaltersvorsorge').hide();
+				var sozialakademie = (sozialakademie = ('<%=sozialakademie%>' === 'true')) ? $('.showsozialakademie').show() : $('.showsozialakademie').hide();
+				var knappenbar = (knappenbar = ('<%=knappenbar%>' === 'true')) ? $('.showknappenbar').show() : $('.showknappenbar').hide();
+				var gemuesefond = (gemuesefond = ('<%=gemuesefond%>' === 'true')) ? $('.showgemuesefond').show() : $('.showgemuesefond').hide();
+				var gluecklichtage = (gluecklichtage = ('<%=gluecklichtage%>' === 'true')) ? $('.showgluecklichtage').show() : $('.showgluecklichtage').hide();
+				var paybackpele = (paybackpele = ('<%=paybackpele%>' === 'true')) ? $('.showpaybackpele').show() : $('.showpaybackpele').hide();
+				var walzer = (walzer = ('<%=walzer%>' === 'true')) ? $('.showwalzer').show() : $('.showwalzer').hide();
+				var diskofox = (diskofox = ('<%=diskofox%>' === 'true')) ? $('.showdiskofox').show() : $('.showdiskofox').hide();
+				var chachacha = (chachacha = ('<%=chachacha%>' === 'true')) ? $('.showchachacha').show() : $('.showchachacha').hide();
+				var wienerwalzer = (wienerwalzer = ('<%=wienerwalzer%>' === 'true')) ? $('.showwienerwalzer').show() : $('.showwienerwalzer').hide();
+				var swing = (swing = ('<%=swing%>' === 'true')) ? $('.showswing').show() : $('.showswing').hide();
+				var rumba = (rumba = ('<%=rumba%>' === 'true')) ? $('.showrumba').show() : $('.showrumba').hide();
+				var foxtrott = (foxtrott = ('<%=foxtrott%>' === 'true')) ? $('.showfoxtrott').show() : $('.showfoxtrott').hide();
+				var blues = (blues = ('<%=blues%>' === 'true')) ? $('.showblues').show() : $('.showblues').hide();
+			});
+		</script>
+	</head>
+	<body id="registrierung">
+		
+		<div id="nav-icon">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		
+		<nav id="main-nav">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div id="header">
+							<a href="/">
+								<img src="/public/files/images/COO_MENU_Logo.jpg" class="header-logo" title="Logo Coop3000" />
+							</a>								
+						</div>
+						<div class="content">
+							<nav>
+								<% include ../elements/navigation %>
+							</nav>
+						</div>						
+					</div>
+				</div>					
+			</div>
+		</nav>
+		
+		<div id="fullpage">
+			<section class="section" id="section0">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div id="header">
+								<a href="/">
+									<img src="/public/files/images/COO_03_Registrierung_Logo.png" class="header-logo" title="Logo Coop3000" />
+								</a>	
+							</div>
+							
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-8 col-lg-offset-2">
+										<div class="content">
+											<h1>
+												Profil
+											</h1>
+											
+											<ul class="subnav">
+												<li><a href="/profil">Profil</a></li>
+												<li><span>COOPS</span></li>
+												<li><a href="/follow">Anhängen</a></li>
+												<li><a href="/logout">Logout</a></li>
+											</ul>
+
+											<h1>
+												ZUSAMMEN EINEN CONCERN BAUEN
+											</h1>
+											<br>
+											Du hast bisher mit diesen COOPS deinen Anteil im Concern erweitert:
+											<hr>
+											<h1>
+												STUFE 1 / DAS FÜLLHORN
+											</h1>
+											<h2>
+												EINEN BALL MACHEN
+											</h2>
+											<br>
+											COMMUNITIES KNÜPFEN
+											<input type="checkbox" name="verknExtended" id="verknExtended" <%= verknExtended %> disabled><br>
+											ALTERSVORSORGE (TEMPORÄR)
+											<input type="checkbox" name="altersvorsorge" id="altersvorsorge" <%= altersvorsorge %> disabled><br>
+											SOZIALAKADEMIE
+											<input type="checkbox" name="sozialakademie" id="sozialakademie" <%= sozialakademie %> disabled><br>
+											KNAPPENBAR
+											<input type="checkbox" name="knappenbar" id="knappenbar" <%= knappenbar %> disabled><br>
+											GEMÜSEFONDS
+											<input type="checkbox" name="gemuesefond" id="gemuesefond" <%= gemuesefond %> disabled><br>
+											GLÜCKLICHE TAGE
+											<input type="checkbox" name="gluecklichtage" id="gluecklichtage" <%= gluecklichtage %> disabled><br>
+											PAYBACK-PELE
+											<input type="checkbox" name="paybackpele" id="paybackpele" <%= paybackpele %> disabled><br>
+											<h2>
+												TÄNZE 3000
+											</h2>
+											<br>
+											LANGSAMER WALZER
+											<input type="checkbox" name="walzer" id="walzer" <%= walzer %> disabled><br>
+											DISKOFOX
+											<input type="checkbox" name="diskofox" id="diskofox" <%= diskofox %> disabled><br>
+											CHA CHA CHA
+											<input type="checkbox" name="chachacha" id="chachacha" <%= chachacha %> disabled><br>
+											WIENER WALZER
+											<input type="checkbox" name="wienerwalzer" id="wienerwalzer" <%= wienerwalzer %> disabled><br>
+											SWING
+											<input type="checkbox" name="swing" id="swing" <%= swing %> disabled><br>
+											RUMBA
+											<input type="checkbox" name="rumba" id="rumba" <%= rumba %> disabled><br>
+											FOXTROTT
+											<input type="checkbox" name="foxtrott" id="foxtrott" <%= foxtrott %> disabled><br>
+											BLUES
+											<input type="checkbox" name="blues" id="blues" <%= blues %> disabled><br>
+											<hr>
+											<h1>
+												STUFE 2 / DIE SUPPERTHEORIEPARTIES
+											</h1>
+											<% if(events!= undefined && events.length>0){%>
+												<h2>
+													DAS GELÄNDE SONDIEREN
+												</h2>
+												<br>
+												<% for(var i=0; i<events.length; i++) {%>
+													<% if(i===4){break;}%>
+													<% var checked = '';%>
+													<%= events[i].name %>
+													<% if(events[i].participants!= undefined && events[i].participants.length>0){
+														for(var j = 0; j < events[i].participants.length; j++) {
+															if(events[i].participants[j].id == id) {
+																checked = 'checked';
+															}
+														}
+													} %>
+													<input type="checkbox" name="<%= events[i].name %>" id="<%= events[i].name %>" <%= checked %> disabled><br>
+												<% } %>
+												<h2>
+													DER CONCERN HANDELT
+												</h2>
+												<br>
+												<% if(events!= undefined && events.length>4){%>
+													<% for(var i=4; i<events.length; i++) {%>
+														<%= events[i].name %>
+														<% var checked2 = '';%>
+														<% if(events[i].participants!= undefined && events[i].participants.length>0){
+															for(var j = 0; j < events[i].participants.length; j++) {
+																if(events[i].participants[j].id == id) {
+																	checked2 = 'checked';
+																}
+															}
+														} %>
+														<input type="checkbox" name="<%= events[i].name %>" id="<%= events[i].name %>" <%= checked2 %> disabled><br>
+													<% } %>
+												<% }else{ %>
+													Es gibt noch keine Concern Handlungen.
+												<% } %>
+											<% }else{%>
+												Es gibt noch keine Events
+											<% } %>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8 col-lg-offset-2">
+								<div class="content">
+								</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	    
+	    <script src="/public/js/jquery.easing.min.js"></script>
+	    <script src="/public/js/jquery.fullPage.min.js"></script>
+	    <script src="/public/js/custom.js"></script>
+	</body>
+</html>

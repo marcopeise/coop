@@ -31,7 +31,7 @@ internals.applyRoutes = function (server, next) {
                 updatemessage: ''
             });
 
-        },
+        }
     });
 
     server.route({
@@ -48,7 +48,7 @@ internals.applyRoutes = function (server, next) {
             //console.log('Admin POST, ', request.auth.credentials.user);
             //console.log('search: ', request.payload.coopid);
             function showUpdate(request, response) {
-                //console.log("User found: ", response.result);
+                console.log("User found: ", response.result);
                 var verknExtended = '', altersvorsorge = '', sozialakademie = '', knappenbar = '', gemuesefond = '', gluecklichtage = '', paybackpele = '';
                 var walzer = '', diskofox = '', chachacha = '', wienerwalzer = '', swing = '', rumba = '', foxtrott = '', blues = '';
                 if (response.result.verknExtended || response.result.verknExtended == true) verknExtended = 'checked';
@@ -66,33 +66,91 @@ internals.applyRoutes = function (server, next) {
                 if (response.result.rumba || response.result.rumba == true) rumba = 'checked';
                 if (response.result.foxtrott || response.result.foxtrott == true) foxtrott = 'checked';
                 if (response.result.blues || response.result.blues == true) blues = 'checked';
-                console.log("verknExtended: ", verknExtended);
-                return reply.view('adminprofil', {
-                    auth: JSON.stringify(request.auth),
-                    session: JSON.stringify(request.session),
-                    isLoggedIn: request.auth.isAuthenticated,
-                    username: response.result.username,
-                    email: response.result.email,
-                    mobile: response.result.mobile,
-                    town: response.result.town,
-                    coopid: response.result.coopid,
-                    id: response.result._id,
-                    verknExtendedValue: verknExtended,
-                    altersvorsorgeValue: altersvorsorge,
-                    sozialakademieValue: sozialakademie,
-                    knappenbarValue: knappenbar,
-                    gemuesefondValue: gemuesefond,
-                    gluecklichtageValue: gluecklichtage,
-                    paybackpeleValue: paybackpele,
-                    walzerValue: walzer,
-                    diskofoxValue: diskofox,
-                    chachachaValue: chachacha,
-                    wienerwalzerValue: wienerwalzer,
-                    swingValue: swing,
-                    rumbaValue: rumba,
-                    foxtrottValue: foxtrott,
-                    bluesValue: blues
+                //console.log("verknExtended: ", verknExtended);
+
+                /*var eventsList = [];
+                if(response.result.events !== undefined && response.result.events.length>0){
+                    response.result.events.forEach(function (event) {
+                        //add to array
+                        var participate = '';
+                        if(event.participate){
+                            participate = 'checked';
+                            console.log("event: ", event.name);
+                        }
+                        eventsList.push({
+                                name: event.name,
+                                participate: event.participate,
+                                displayparticipate: participate
+                        });
+                    });
+                }
+
+                console.log("eventList: ", eventsList);*/
+
+                var options ={
+                    method: 'GET',
+                    url: '/api/events',
+                    payload: {
+                    },
+                    credentials: request.auth.credentials
+                };
+
+                server.inject(options, function(eventResponse){
+                    //console.log("eventResponse: ", eventResponse.result);
+                    if(eventResponse.result.statusCode){
+                        if(eventResponse.result.statusCode == 400){
+                            return reply.view('../login/index',{
+                                message:   eventResponse.result.message
+                            });
+                        }else{
+                            return reply.redirect('/404');
+                        }
+                    }else{
+                        //console.log("Events: ", eventResponse.result.data);
+                        /*var events = eventResponse.result.data;
+                        for(var i=0; i<events.length; i++) {
+                            if(events[i].participants!= undefined && events[i].participants.length>0){
+                                console.log("participants: ", events[i].participants);
+                                //console.log("response.result._id: ", response.result._id);
+                                for(var j = 0; j < events[i].participants.length; j++) {
+                                    console.log("matching? ", events[i].participants[j].id.toString() + " : " + response.result._id);
+                                    if(events[i].participants[j].id == response.result._id) {
+                                        console.log("gefunden!");
+                                    }
+                                }
+                            }
+                        }*/
+
+                        return reply.view('adminprofil', {
+                            auth: JSON.stringify(request.auth),
+                            session: JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated,
+                            username: response.result.username,
+                            email: response.result.email,
+                            mobile: response.result.mobile,
+                            town: response.result.town,
+                            coopid: response.result.coopid,
+                            id: response.result._id,
+                            verknExtended: verknExtended,
+                            altersvorsorge: altersvorsorge,
+                            sozialakademie: sozialakademie,
+                            knappenbar: knappenbar,
+                            gemuesefond: gemuesefond,
+                            gluecklichtage: gluecklichtage,
+                            paybackpele: paybackpele,
+                            walzer: walzer,
+                            diskofox: diskofox,
+                            chachacha: chachacha,
+                            wienerwalzer: wienerwalzer,
+                            swing: swing,
+                            rumba: rumba,
+                            foxtrott: foxtrott,
+                            blues: blues,
+                            events: eventResponse.result.data
+                        });
+                    }
                 });
+
             }
 
             if(request.payload.coopid){
@@ -258,33 +316,113 @@ internals.applyRoutes = function (server, next) {
                 }else{
                     console.log("User updated: ", response.result);
 
-                    return reply.view('index',{
-                        auth:       JSON.stringify(request.auth),
-                        session:    JSON.stringify(request.session),
-                        isLoggedIn: request.auth.isAuthenticated,
-                        username:   response.result.username,
-                        email:      response.result.email,
-                        mobile:     response.result.mobile,
-                        town:       response.result.town,
-                        coopid:     response.result.coopid,
-                        verknExtended: response.result.verknExtended,
-                        altersvorsorge: response.result.altersvorsorge,
-                        sozialakademie: response.result.sozialakademie,
-                        knappenbar: response.result.knappenbar,
-                        gemuesefond: response.result.gemuesefond,
-                        gluecklichtage: response.result.gluecklichtage,
-                        paybackpele: response.result.paybackpele,
-                        walzer: response.result.walzer,
-                        diskofox: response.result.diskofox,
-                        chachacha: response.result.chachacha,
-                        wienerwalzer: response.result.wienerwalzer,
-                        swing: response.result.swing,
-                        rumba: response.result.rumba,
-                        foxtrott: response.result.foxtrott,
-                        blues: response.result.blues,
-                        updatemessage: 'Der Benutzer ' + response.result.username + ' (' + response.result.coopid +') mit der E-Mail: '+ response.result.email + ' wurde erfolgreich aktualisiert.',
-                        message: ''
-                    });
+                    // UPDATE EVENT PARTICIPATION
+                    if(request.payload.eventnumber !== undefined && request.payload.eventnumber>0){
+                        var eventList = new Array();
+
+                        function update_event_participation(request, user, callback) {
+                            for (var i=0; i<request.payload.eventnumber; i++) {
+                                try {
+                                    //console.log("event: ", eval('request.payload.event' + i));
+                                    //var participate = false;
+                                    if(eval('request.payload.event' + i) == 'on'){
+                                        //participate = true;
+                                        console.log("update Events with user!!!")
+
+                                        var options ={
+                                            method: 'POST',
+                                            url: '/api/participateevent/' + eval('request.payload.eventID' + i),
+                                            payload: {
+                                                participantId:          request.payload.id,
+                                                participantUsername:    request.payload.username
+                                            }
+                                        };
+
+                                        server.inject(options, function(participateEventResponse){
+                                            //console.log("response GET /email/email: ", participateEventResponse.result);
+                                            //console.log("participateEventResponse.result.message: ", participateEventResponse.result.message);
+                                            if(participateEventResponse.result.statusCode){
+                                                if(participateEventResponse.result.statusCode){
+                                                    return reply.view('index',{
+                                                        updatemessage:   participateEventResponse.result.message,
+                                                        message: '',
+                                                        auth:       JSON.stringify(request.auth),
+                                                        session:    JSON.stringify(request.session),
+                                                        isLoggedIn: request.auth.isAuthenticated
+                                                    });
+                                                }else{
+                                                    return reply.redirect('/404');
+                                                }
+                                            }else{
+                                                console.log("Successfull added to EVENT", participateEventResponse.result);
+                                            }
+                                        });
+                                    }else{
+                                        console.log("update Events without user!!!")
+
+                                        var options ={
+                                            method: 'POST',
+                                            url: '/api/notparticipateevent/' + eval('request.payload.eventID' + i),
+                                            payload: {
+                                                participantId:          request.payload.id
+                                            }
+                                        };
+
+                                        server.inject(options, function(notParticipateEventResponse){
+                                            //console.log("response GET /email/email: ", notParticipateEventResponse.result);
+                                            //console.log("notParticipateEventResponse.result.message: ", notParticipateEventResponse.result.message);
+                                            if(notParticipateEventResponse.result.statusCode){
+                                                if(notParticipateEventResponse.result.statusCode){
+                                                    return reply.view('index',{
+                                                        updatemessage:   notParticipateEventResponse.result.message,
+                                                        message: '',
+                                                        auth:       JSON.stringify(request.auth),
+                                                        session:    JSON.stringify(request.session),
+                                                        isLoggedIn: request.auth.isAuthenticated
+                                                    });
+                                                }else{
+                                                    return reply.redirect('/404');
+                                                }
+                                            }else{
+                                                console.log("Successfull removed from EVENT", notParticipateEventResponse.result);
+                                            }
+                                        });
+                                    }
+                                    /*eventList.push({
+                                        participate: participate,
+                                        id: eval('request.payload.eventID' + i),
+                                        displayparticipate: eval('request.payload.event' + i)
+                                    })*/
+                                } catch(ex) { }
+                            }
+                            callback(user);
+                        }
+
+                        update_event_participation(request, response.result, function(user){
+                            //console.log("mein array: ", eventList );
+                            return reply.view('index',{
+                                auth:       JSON.stringify(request.auth),
+                                session:    JSON.stringify(request.session),
+                                isLoggedIn: request.auth.isAuthenticated,
+                                updatemessage: 'Der Benutzer ' + user.username + ' (' + user.coopid +') mit der E-Mail: '+ user.email + ' wurde erfolgreich aktualisiert.',
+                                message: ''
+                            });
+                        })
+
+                    }else{
+                        return reply.view('index',{
+                            auth:       JSON.stringify(request.auth),
+                            session:    JSON.stringify(request.session),
+                            isLoggedIn: request.auth.isAuthenticated,
+                            username:   response.result.username,
+                            email:      response.result.email,
+                            mobile:     response.result.mobile,
+                            town:       response.result.town,
+                            coopid:     response.result.coopid,
+                            updatemessage: 'Der Benutzer ' + response.result.username + ' (' + response.result.coopid +') mit der E-Mail: '+ response.result.email + ' wurde erfolgreich aktualisiert.',
+                            message: ''
+                        });
+                    }
                 }
             });
         }

@@ -93,66 +93,71 @@
                             <div class="col-lg-8 col-lg-offset-2">
                                 <div class="content">
                                     <h1>
-                                        ADMIN Bereich!
+                                        ADMIN Bereich - Events
                                     </h1>
+                                    <a href="/admin"> ZURÜCK ZUM ADMINMENUE</a>
                                     <div class="message">
                                         <%= updatemessage %>
                                     </div>
                                     <p>
                                         <div class="col-lg-6 col-lg-offset-3 text-center">
                                             <br>
-                                            Gib die Nummer der Person ein, die Du suchst.
+                                            Erstelle ein neues Event für ALLE Teilnehmer.
                                             <br>
-                                            <form action="/admin" method="POST" id="reg-form" enctype="application/json">
+                                            <form action="/createevent" method="POST" id="reg-form" enctype="application/json">
                                                 <div class="form-group">
-                                                    <label for="email">COOPID</label>
-                                                    <input type="text" class="form-control" name="coopid" id="coopid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es nicht." required>
+                                                    <label for="eventname">Event Name</label>
+                                                    <input type="text" class="form-control" name="eventname" id="eventname" title="Bitte gib den Namen des Events ein den Du erstellen möchtest.">
                                                 </div>
-                                                <%= message %>
-                                                <button class="buttonHover">SUCHEN</button>
+                                                <button class="buttonHover">EVENT ERSTELLEN</button>
                                             </form>
                                         </div>
                                     </p>
-                                    <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
+
+                                    <% if(events!= undefined && events.length>0){%>
+                                        <div class="col-lg-12 col-lg-offset-0">
                                             <br>
-                                            Gib die E-Mail Adresse der Person ein, die Du suchst.
+                                            <h2>Es existieren folgende Events:</h2>
                                             <br>
-                                            <form action="/admin" method="POST" id="reg-form" enctype="application/json">
-                                                <div class="form-group">
-                                                    <label for="email">EMAIL</label>
-                                                    <input type="text" class="form-control" name="email" id="email" placeholder="" required>
-                                                </div>
-                                                <%= message %>
-                                                <button class="buttonHover">SUCHEN</button>
-                                            </form>
+                                            <h3>
+                                                DAS GELÄNDE SONDIEREN
+                                            </h3>
+                                            <% for(var i=0; i<events.length; i++) {%>
+                                                <% if(i===4){break;}%>
+                                                <div class="col-lg-8 col-lg-offset-2">
+                                                    <%= events[i].name %>
+                                                    &nbsp;
+                                                    <a href="/editevent/<%= events[i]._id %>"> editieren</a>
+                                                    &nbsp;|&nbsp;
+                                                    <a href="/deleteevent/<%= events[i]._id %>"> löschen </a>
+                                                    <br>
+                                                 </div>
+                                            <% } %>
                                         </div>
-                                    </p>
-                                    <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
-                                            <br>
-                                            Gib den Nick/Name der Person ein, die Du suchst.
-                                            <br>
-                                            <form action="/admin" method="POST" id="reg-form" enctype="application/json">
-                                                <div class="form-group">
-                                                    <label for="username">Nick/Name</label>
-                                                    <input type="text" class="form-control" name="username" id="username" placeholder="" required pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen.">
-                                                </div>
-                                                <%= message %>
-                                                <button class="buttonHover">SUCHEN</button>
-                                            </form>
+                                        <div class="col-lg-12 col-lg-offset-0">
+                                        <h3>
+                                            DER CONCERN HANDELT
+                                        </h3>
+                                        <br>
+                                        <% if(events!= undefined && events.length>4){%>
+                                            <% for(var i=4; i<events.length; i++) {%>
+                                                <%= events[i].name %>
+                                                &nbsp;
+                                                <a href="/editevent/<%= events[i]._id %>"> editieren</a>
+                                                &nbsp;|&nbsp;
+                                                <a href="/deleteevent/<%= events[i]._id %>"> löschen </a>
+                                                <br>
+                                            <% } %>
+                                        <% }else{ %>
+                                            Es gibt noch keine Concern Handlungen.
+                                        <% } %>
                                         </div>
-                                    </p>
-                                    <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
+                                    <% }else{%>
+                                        <div class="col-lg-8 col-lg-offset-2">
                                             <br>
-                                            Events
-                                            <br>
-                                            <form action="/events" method="GET" id="reg-form" enctype="application/json">
-                                                <button class="buttonHover">EVENTS</button>
-                                            </form>
+                                            Es gibt noch keine Events
                                         </div>
-                                    </p>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>

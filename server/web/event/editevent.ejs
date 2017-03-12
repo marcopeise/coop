@@ -93,7 +93,7 @@
                             <div class="col-lg-8 col-lg-offset-2">
                                 <div class="content">
                                     <h1>
-                                        ADMIN Bereich!
+                                        ADMIN Bereich - Events
                                     </h1>
                                     <div class="message">
                                         <%= updatemessage %>
@@ -101,58 +101,18 @@
                                     <p>
                                         <div class="col-lg-6 col-lg-offset-3 text-center">
                                             <br>
-                                            Gib die Nummer der Person ein, die Du suchst.
+                                            Aktualisiere den Namen des Events:
                                             <br>
-                                            <form action="/admin" method="POST" id="reg-form" enctype="application/json">
+                                            <form action="/editevent/<%= event._id %>" method="POST" id="reg-form" enctype="application/json">
                                                 <div class="form-group">
-                                                    <label for="email">COOPID</label>
-                                                    <input type="text" class="form-control" name="coopid" id="coopid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es nicht." required>
+                                                    <label for="eventname">Event Name</label>
+                                                    <input type="text" class="form-control" name="eventnamenew" id="eventnamenew" title="Bitte gib den Namen des Events ein das du aktualisieren möchtest." value="<%= event.name %>">
                                                 </div>
-                                                <%= message %>
-                                                <button class="buttonHover">SUCHEN</button>
+                                                <button class="buttonHover">EVENT AKTUALISIEREN</button>
                                             </form>
                                         </div>
                                     </p>
-                                    <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
-                                            <br>
-                                            Gib die E-Mail Adresse der Person ein, die Du suchst.
-                                            <br>
-                                            <form action="/admin" method="POST" id="reg-form" enctype="application/json">
-                                                <div class="form-group">
-                                                    <label for="email">EMAIL</label>
-                                                    <input type="text" class="form-control" name="email" id="email" placeholder="" required>
-                                                </div>
-                                                <%= message %>
-                                                <button class="buttonHover">SUCHEN</button>
-                                            </form>
-                                        </div>
-                                    </p>
-                                    <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
-                                            <br>
-                                            Gib den Nick/Name der Person ein, die Du suchst.
-                                            <br>
-                                            <form action="/admin" method="POST" id="reg-form" enctype="application/json">
-                                                <div class="form-group">
-                                                    <label for="username">Nick/Name</label>
-                                                    <input type="text" class="form-control" name="username" id="username" placeholder="" required pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen.">
-                                                </div>
-                                                <%= message %>
-                                                <button class="buttonHover">SUCHEN</button>
-                                            </form>
-                                        </div>
-                                    </p>
-                                    <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
-                                            <br>
-                                            Events
-                                            <br>
-                                            <form action="/events" method="GET" id="reg-form" enctype="application/json">
-                                                <button class="buttonHover">EVENTS</button>
-                                            </form>
-                                        </div>
-                                    </p>
+                                    <br>
                                 </div>
                             </div>
                         </div>

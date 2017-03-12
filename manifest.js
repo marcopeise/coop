@@ -59,7 +59,8 @@ const manifest = {
                         Session: './server/models/session',
                         Status: './server/models/status',
                         User: './server/models/user',
-                        Vote: './server/models/vote'
+                        Vote: './server/models/vote',
+                        Event:'./server/models/event'
                     },
                     autoIndex: Config.get('/hapiMongoModels/autoIndex')
                 }
@@ -150,6 +151,12 @@ const manifest = {
             }
         },
         {
+            plugin: './server/api/events',
+            options: {
+                routes: { prefix: '/api' }
+            }
+        },
+        {
             plugin: './server/web/home'
         },
         {
@@ -214,6 +221,9 @@ const manifest = {
         },
         {
             plugin: './server/web/vote'
+        },
+        {
+            plugin: './server/web/event'
         }
         
     ]

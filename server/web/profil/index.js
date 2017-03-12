@@ -550,7 +550,17 @@ internals.applyRoutes = function (server, next) {
 
             server.inject(options, function(usertworesponse) {
                 console.log("usertworesponse GET /coopid/id: ", usertworesponse.result);
-                return reply.redirect('/follow?message=Erfolgreich angehangen');
+                if (usertworesponse.result.statusCode) {
+                    if (usertworesponse.result.statusCode == 400) {
+                        return reply.view('../login/index', {
+                            message: usertworesponse.result.message
+                        });
+                    } else {
+                        return reply.redirect('/404');
+                    }
+                } else {
+                    return reply.redirect('/follow?message=Erfolgreich angehangen');
+                }
             });
         }
     });

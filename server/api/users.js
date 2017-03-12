@@ -639,7 +639,7 @@ internals.applyRoutes = function (server, next) {
             console.log('user requesting: ', request.payload.isUser);
 
             const isUserfields =        User.fieldsAdapter('username followedBy');
-            const followUserfields =    User.fieldsAdapter('username');
+            const followUserfields =    User.fieldsAdapter('username follows');
 
             User.findById(request.payload.isUser, isUserfields, (err, isUser) => {
 
@@ -671,42 +671,49 @@ internals.applyRoutes = function (server, next) {
                     }
                     console.log("followUser FOUND: ", followUser);
 
-                    User.findByIdAndUpdate(
-                        request.payload.followsUser,
-                        {
-                            $addToSet: {
-                                followedBy: {
-                                    id: isUser._id,
-                                    name: isUser.username,
-                                    votecount: votecount,
-                                    periodStart: new Date()
+                    // if user who should be followed is already following someone else -> not allowed
+                    if(followUser.follows != undefined && followUser.follows.length>0){
+                        console.log("followUser is following someone else - abort");
+                        return reply("followUser is following someone else - abort");
+                    }else{
+                        console.log("followUser is not following someone else - continuing...");
+                        User.findByIdAndUpdate(
+                            request.payload.followsUser,
+                            {
+                                $addToSet: {
+                                    followedBy: {
+                                        id: isUser._id,
+                                        name: isUser.username,
+                                        votecount: votecount,
+                                        periodStart: new Date()
+                                    }
                                 }
-                            }
-                        }, function (err) {
-                            if (err) {
-                                console.log("ERROR update followsUser: ", err);
-                                return reply(err);
-                            }
-                            User.findByIdAndUpdate(
-                                request.payload.isUser,
-                                {
-                                    $addToSet: {
-                                        follows: {
-                                            id: followUser._id,
-                                            name: followUser.username,
-                                            periodStart: new Date()
+                            }, function (err) {
+                                if (err) {
+                                    console.log("ERROR update followsUser: ", err);
+                                    return reply(err);
+                                }
+                                User.findByIdAndUpdate(
+                                    request.payload.isUser,
+                                    {
+                                        $addToSet: {
+                                            follows: {
+                                                id: followUser._id,
+                                                name: followUser.username,
+                                                periodStart: new Date()
+                                            }
                                         }
+                                    }, function (err) {
+                                        if (err) {
+                                            console.log("ERROR update isUser: ", err);
+                                            return reply(err);
+                                        }
+                                        reply(true);
                                     }
-                                }, function (err) {
-                                    if (err) {
-                                        console.log("ERROR update isUser: ", err);
-                                        return reply(err);
-                                    }
-                                    reply(true);
-                                }
-                            );
-                        }
-                    );
+                                );
+                            }
+                        );
+                    }
                 });
             });
         }

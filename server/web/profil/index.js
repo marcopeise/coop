@@ -559,7 +559,11 @@ internals.applyRoutes = function (server, next) {
                         return reply.redirect('/404');
                     }
                 } else {
-                    return reply.redirect('/follow?message=Erfolgreich angehangen');
+                    if(usertworesponse.result==true){
+                        return reply.redirect('/follow?message=Erfolgreich angehangen');
+                    }else{
+                        return reply.redirect('/follow?message=Dieser COOP3000 Nutzer ist inaktiv und folgt selbst einem anderen. Bitte suche Dir einen aktiven Teilnehmer.');
+                    }
                 }
             });
         }

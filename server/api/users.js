@@ -745,6 +745,11 @@ internals.applyRoutes = function (server, next) {
 
                 console.log("userfollowed AFTER: ", userfollowed);
 
+                //TODO: if followedUser also follows someone, one has to substract one votecount
+                /*if(userfollowed.follows != undefined && userfollowed.follows.length>0){
+
+                }*/
+
                 var update;
                 update = {
                     $pull: {

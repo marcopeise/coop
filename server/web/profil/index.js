@@ -534,6 +534,11 @@ internals.applyRoutes = function (server, next) {
             console.log('wants to follow: ', request.payload.followsUser);
             console.log('user requesting: ', request.auth.credentials.user._id);
 
+            // if user wants to follow to himself -> not allowed
+            if(request.payload.followsUser == request.auth.credentials.user._id){
+                return reply.redirect('/follow?message=Ein Saugnapf an sich selbst zu heften macht keinen Sinn.');
+            }
+
             var options ={
                 method: 'PUT',
                 url: '/api/follow',

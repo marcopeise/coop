@@ -1,5 +1,7 @@
 'use strict';
 const internals = {};
+const Moment = require('moment');
+Moment.locale('de');
 
 internals.applyRoutes = function (server, next) {
 
@@ -410,7 +412,8 @@ internals.applyRoutes = function (server, next) {
                         isLoggedIn: request.auth.isAuthenticated,
                         username:   response.result.username,
                         follows:    response.result.follows,
-                        followedBy: response.result.followedBy
+                        followedBy: response.result.followedBy,
+                        moment:     Moment
                     });
                 }
             });
@@ -543,6 +546,40 @@ internals.applyRoutes = function (server, next) {
             server.inject(options, function(usertworesponse) {
                 console.log("usertworesponse GET /coopid/id: ", usertworesponse.result);
                 return reply.redirect('/follow?message=Erfolgreich angehangen');
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/deletefollow',
+        config: {
+            auth: {
+                mode: 'try',
+                strategy: 'session'
+            },
+            plugins: {
+                'hapi-auth-cookie': {
+                    redirectTo: false
+                }
+            }
+        }, handler: function (request, reply) {
+
+            console.log('POST /deletefollow payload: ', request.payload);
+            console.log('user requesting: ', request.auth.credentials.user._id);
+
+            var options ={
+                method: 'DELETE',
+                url: '/api/unfollow',
+                payload: {
+                    followsUser:    request.payload.followsUser,
+                    isUser:         request.auth.credentials.user._id
+                }
+            };
+
+            server.inject(options, function(usertworesponse) {
+                console.log("usertworesponse GET /coopid/id: ", usertworesponse.result);
+                return reply.redirect('/follow?message=Dein Saugnapf wurde erfolgreich entfernt.');
             });
         }
     });

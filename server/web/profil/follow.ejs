@@ -103,10 +103,10 @@
 															<div class="form-group">
 																<label for="follows">COOP 3000 Benuzername: <%=follows[i].name%></label>
 																<br>
-																<label for="periodStart">Seit: <%= follows[i].periodStart %></label>
+																<label for="periodStart">Seit: <%= moment().to(follows[i].periodStart, true) %></label>
 															</div>
 															<form action="/deletefollow" method="POST" id="reg-form" enctype="application/json">
-																<input type="hidden" name="followsuser" value=<%= follows[i]._id %>>
+																<input type="hidden" name="followsUser" value="<%= follows[i].id %>">
 																<button class="buttonHover" onclick="FillName(this.form)">SAUGNAPF ENTFERNEN</button>
 															</form>
 															<hr>
@@ -156,7 +156,7 @@
 														<% for(var i=0; i<followedBy.length; i++) {%>
 															<label for="followedBy">COOP 3000 Benuzername: <%=followedBy[i].name%></label>
 															<br>
-															<label for="periodStart">Seit: <%= followedBy[i].periodStart %></label>
+															<label for="periodStart">Seit: <%= moment().to(followedBy[i].periodStart, true) %></label>
 															<hr>
 														<% } %>
 													<% }%>

@@ -669,7 +669,8 @@ internals.applyRoutes = function (server, next) {
                             $addToSet: {
                                 followedBy: {
                                     id: isUser._id,
-                                    name: isUser.username
+                                    name: isUser.username,
+                                    periodStart: new Date()
                                 }
                             }
                         }, function (err) {
@@ -683,7 +684,8 @@ internals.applyRoutes = function (server, next) {
                                     $addToSet: {
                                         follows: {
                                             id: followUser._id,
-                                            name: followUser.username
+                                            name: followUser.username,
+                                            periodStart: new Date()
                                         }
                                     }
                                 }, function (err) {
@@ -696,6 +698,64 @@ internals.applyRoutes = function (server, next) {
                             );
                         }
                     );
+                });
+            });
+        }
+    });
+
+    server.route({
+        method: 'DELETE',
+        path: '/unfollow',
+        handler: function (request, reply) {
+
+            console.log('wants to unfollow: ', request.payload.followsUser);
+            console.log('user requesting: ', request.payload.isUser);
+            var ObjectId = require('mongodb').ObjectID;
+
+            const followsUser = ObjectId(request.payload.followsUser);
+            const requestingUser = ObjectId(request.payload.isUser);
+
+            var update;
+            update = {
+                $pull: {
+                    followedBy: {
+                        id:         requestingUser
+                    }
+                }
+            };
+
+            User.findByIdAndUpdate(request.payload.followsUser, update, (err, userfollowed) => {
+
+                if (err) {
+                    return reply(err);
+                }
+
+                if (!userfollowed) {
+                    return reply(Boom.notFound('Document not found.'));
+                }
+
+                console.log("userfollowed AFTER: ", userfollowed);
+
+                var update;
+                update = {
+                    $pull: {
+                        follows: {
+                            id:         followsUser
+                        }
+                    }
+                };
+
+                User.findByIdAndUpdate(request.payload.isUser, update, (err, freeuser) => {
+
+                    if (err) {
+                        return reply(err);
+                    }
+
+                    if (!freeuser) {
+                        return reply(Boom.notFound('Document not found.'));
+                    }
+
+                    reply(freeuser);
                 });
             });
         }

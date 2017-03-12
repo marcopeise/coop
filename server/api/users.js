@@ -638,7 +638,7 @@ internals.applyRoutes = function (server, next) {
             console.log('wants to follow: ', request.payload.followsUser);
             console.log('user requesting: ', request.payload.isUser);
 
-            const isUserfields =        User.fieldsAdapter('username');
+            const isUserfields =        User.fieldsAdapter('username followedBy');
             const followUserfields =    User.fieldsAdapter('username');
 
             User.findById(request.payload.isUser, isUserfields, (err, isUser) => {
@@ -651,6 +651,14 @@ internals.applyRoutes = function (server, next) {
                     return reply(Boom.notFound('Document not found. That is strange.'));
                 }
                 console.log("isUser FOUND: ", isUser);
+
+                //if isUser has Followers -> Number of Followers will be added to votecount
+                var votecount = 1;
+                if(isUser.followedBy != undefined && isUser.followedBy.length>0){
+                    votecount = votecount + isUser.followedBy.length;
+                    console.log("votecount: ", votecount);
+                }
+                console.log("votecount: ", votecount);
 
                 User.findById(request.payload.followsUser, followUserfields, (err, followUser) => {
 
@@ -670,6 +678,7 @@ internals.applyRoutes = function (server, next) {
                                 followedBy: {
                                     id: isUser._id,
                                     name: isUser.username,
+                                    votecount: votecount,
                                     periodStart: new Date()
                                 }
                             }

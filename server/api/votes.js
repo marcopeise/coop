@@ -108,41 +108,110 @@ internals.applyRoutes = function (server, next) {
 
             console.log("POST /voting ", request.payload);
 
-            const id = request.params.id;
-            var update;
-            if(request.payload.decision=='plus'){
-                console.log("Vote in Favor: ", request.payload.decision);
-                update = {
-                    $addToSet: {
-                        votespos: {
-                            id:     request.payload.ownerId,
-                            name:   request.payload.ownerUsername
-                        }
-                    }
-                };
-            }else{
-                console.log("Vote Oppose: ", request.payload.decision);
-                update = {
-                    $addToSet: {
-                        votesneg: {
-                            id:     request.payload.ownerId,
-                            name:   request.payload.ownerUsername
-                        }
-                    }
-                };
-            }
+            // get all attached users
+            const isUserfields =        User.fieldsAdapter('username followedBy follows');
 
-            Vote.findByIdAndUpdate(id, update, (err, user) => {
+            User.findById(request.payload.ownerId, isUserfields, (err, votingUser) => {
 
                 if (err) {
                     return reply(err);
                 }
 
-                if (!user) {
-                    return reply(Boom.notFound('Document not found.'));
+                if (!votingUser){
+                    return reply(Boom.notFound('Document not found. That is strange.'));
+                }
+                console.log("voting User FOUND: ", votingUser);
+
+                //check if user is currenly following somebody -> not allowed
+                if(votingUser.follows != undefined && votingUser.follows.length>0){
+                    return reply("Keine Abstimmung erlaubt, wenn aktuell mit einem Anderen Teilnehmer via Saugnapf verbunden.");
                 }
 
-                reply(user);
+                const id = request.params.id;
+                var update;
+
+                if(request.payload.decision=='plus'){
+                    console.log("Vote in Favor: ", request.payload.decision);
+                    update = {
+                        $addToSet: {
+                            votespos: {
+                                id:     request.payload.ownerId,
+                                name:   request.payload.ownerUsername
+                            }
+                        }
+                    };
+                }else{
+                    console.log("Vote Oppose: ", request.payload.decision);
+                    update = {
+                        $addToSet: {
+                            votesneg: {
+                                id:     request.payload.ownerId,
+                                name:   request.payload.ownerUsername
+                            }
+                        }
+                    };
+                }
+
+                Vote.findByIdAndUpdate(id, update, (err, user) => {
+
+                    if (err) {
+                        return reply(err);
+                    }
+
+                    if (!user) {
+                        return reply(Boom.notFound('Document not found.'));
+                    }
+
+                    //check if user has followers -> must be added too when voting to the vote
+                    if(votingUser.followedBy != undefined && votingUser.followedBy.length>0){
+                        console.log("user has followers - voting: ", votingUser.followedBy);
+                        for (var i = 0; i < votingUser.followedBy.length; i++) {
+                            var followedBy = votingUser.followedBy[i];
+                            console.log("votingUser in Loop: ", followedBy);
+                            for (var j = 0; j < followedBy.votecount; j++) {
+                                var updateByFollowed;
+                                if (request.payload.decision == 'plus') {
+                                    console.log("Vote in Favor by followed: ", followedBy.name);
+                                    updateByFollowed = {
+                                        $push: {
+                                            votespos: {
+                                                id: followedBy.id,
+                                                name: followedBy.name
+                                            }
+                                        }
+                                    };
+                                } else {
+                                    console.log("Vote Oppose by followed: ", followedBy.name);
+                                    updateByFollowed = {
+                                        $push: {
+                                            votesneg: {
+                                                id: followedBy.id,
+                                                name: followedBy.name
+                                            }
+                                        }
+                                    };
+                                }
+
+                                Vote.findByIdAndUpdate(id, updateByFollowed, (err, user) => {
+
+                                    if (err) {
+                                        return reply(err);
+                                    }
+
+                                    if (!user) {
+                                        return reply(Boom.notFound('Document not found.'));
+                                    }
+                                });
+                            }
+                        }
+                        console.log("user with followers - voting done");
+                        reply(user);
+                    }else{
+                        console.log("user has no followers - voting done");
+                        reply(user);
+                    }
+
+                });
             });
         }
     });

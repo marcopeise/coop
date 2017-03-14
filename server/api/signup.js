@@ -82,6 +82,7 @@ internals.applyRoutes = function (server, next) {
                     }
 
                     request.payload.password = customPassword();
+                    console.log("payload.response.xyz: ", request.payload.password);
                     request.payload.coopid = makeid();
 
                     const conditions = {

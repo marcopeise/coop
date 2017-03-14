@@ -154,11 +154,13 @@ internals.applyRoutes = function (server, next) {
                     User.findOne(conditions, (err, user) => {
 
                         if (err) {
+                            console.log("Error while searching: ", err);
                             return reply(err);
                         }
 
                         if (!user) {
-                            return reply({ message: 'Success.' }).takeover();
+                            console.log("NOT FOUND");
+                            return reply({ message: 'Diese E-Mail Adresse ist leider nicht im COOP3000 System hinterlegt.' }).takeover();
                         }
 
                         reply(user);
@@ -253,6 +255,7 @@ internals.applyRoutes = function (server, next) {
         },
         handler: function (request, reply) {
 
+            console.log("payload.response.wxyz: ", request.payload.password);
             Async.auto({
                 keyMatch: function (done) {
 

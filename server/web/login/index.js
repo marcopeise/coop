@@ -53,9 +53,15 @@ internals.applyRoutes = function (server, next) {
 
             server.inject(options, function(forgotResponse) {
                 //console.log("forgotResponse POST: ", forgotResponse.result);
-                return reply.view('forgot',{
-                    message: 'Eine E-Mail ist auf dem Weg zu Dir.'
-                });
+                if(forgotResponse.result!=undefined && forgotResponse.result.message!=undefined){
+                    return reply.view('forgot',{
+                        message: forgotResponse.result.message
+                    });
+                }else{
+                    return reply.view('forgot',{
+                        message: 'Eine E-Mail ist auf dem Weg zu Dir.'
+                    });
+                }
             });
 
         }

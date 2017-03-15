@@ -15,7 +15,8 @@ $(document).ready(function(){
 		e.preventDefault();
 		$.fn.fullpage.moveTo(3);
 	});
-	if($('#home').length){
+	
+	if($('#home1111').length){
 		$.scrollify({
 			section : ".section-scroll",
 		});

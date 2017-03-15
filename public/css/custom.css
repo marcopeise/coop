@@ -582,7 +582,11 @@ section .container-fluid {
 	height: 100%;
     background-repeat: no-repeat;
 	background-position: 50% 0px;
-	margin-bottom: 50px;
+	padding-bottom: 50px;
+}
+
+#section2 .container-fluid {
+	padding-bottom: 0px;
 }
 
 #section0 {
@@ -1098,7 +1102,13 @@ div.message {
 		max-height: 50px !important;
 	}
 	
+	#home #section2 .container-fluid .row {
+		height: auto !important;
+		min-height: 100% !important;
+	}
 	
-
+	#home #section2 .container-fluid {
+		background-color: #6DFE95;
+	}
 }
 

@@ -93,76 +93,52 @@
                             <div class="col-lg-8 col-lg-offset-2">
                                 <div class="content">
                                     <h1>
-                                        ADMIN Bereich!
+                                        ADMIN Bereich - Vorschlagsrunden
                                     </h1>
+                                    <a href="/admin"> ZURÜCK ZUM ADMINMENUE</a>
                                     <div class="message">
                                         <%= updatemessage %>
                                     </div>
                                     <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
+                                        <div class="col-lg-12 col-lg-offset-0 text-center">
                                             <br>
-                                            Gib die Nummer der Person ein, die Du suchst.
-                                            <br>
-                                            <form action="/admin" method="POST" id="reg-form" enctype="application/json">
-                                                <div class="form-group">
-                                                    <label for="email">COOPID</label>
-                                                    <input type="text" class="form-control" name="coopid" id="coopid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es nicht." required>
-                                                </div>
-                                                <%= message %>
-                                                <button class="buttonHover">SUCHEN</button>
+                                            Erstelle eine neue Vorschlagsrunde für ALLE Teilnehmer. <br>Hiermit beendest Du die aktuelle Vorschlagsrunde und löscht ALLE Saugnäpfe zwischen den Teilnehmern.<br>
+                                            <h3>VORSICHT!</h3> Diese Aktion kann nicht rückgängig gemacht werden!
+                                            <br> <br>
+                                            <form action="/votingperiod" method="POST" id="reg-form" enctype="application/json">
+                                                <button class="buttonHover">NEUE VORSCHLAGSRUNDE ERSTELLEN</button>
                                             </form>
                                         </div>
                                     </p>
-                                    <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
+
+                                    <br> <br>
+
+                                    <% if(followsHistory!= undefined && followsHistory.length>0){%>
+                                        <div class="col-lg-12 col-lg-offset-0">
+                                            <h2>Es existieren die folgenden Vorschlagsrunden:</h2>
                                             <br>
-                                            Gib die E-Mail Adresse der Person ein, die Du suchst.
-                                            <br>
-                                            <form action="/admin" method="POST" id="reg-form" enctype="application/json">
-                                                <div class="form-group">
-                                                    <label for="email">EMAIL</label>
-                                                    <input type="text" class="form-control" name="email" id="email" placeholder="" required>
-                                                </div>
-                                                <%= message %>
-                                                <button class="buttonHover">SUCHEN</button>
-                                            </form>
+                                            <% for(var i=0; i<followsHistory.length; i++) {%>
+                                                <div class="col-lg-12 col-lg-offset-0">
+                                                    Vorschlagsrunde&nbsp;<%= i+1 %>:&nbsp;
+                                                    <% if(i<1){%>
+                                                        Start: <%= moment(followsHistory[i].periodStart).format('DD.MM.YYYY HH:mm:ss') %>
+                                                        &nbsp;|&nbsp;
+                                                        Ende: <%= moment(followsHistory[i].periodEnd).format('DD.MM.YYYY HH:mm:ss') %>
+                                                    <% }else{%>
+                                                        Start: <%= moment(followsHistory[i-1].periodEnd).format('DD.MM.YYYY HH:mm:ss') %>
+                                                        &nbsp;|&nbsp;
+                                                        Ende: <%= moment(followsHistory[i].periodEnd).format('DD.MM.YYYY HH:mm:ss') %>
+                                                    <% } %>
+                                                    <br>
+                                                 </div>
+                                            <% } %>
                                         </div>
-                                    </p>
-                                    <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
+                                    <% }else{%>
+                                        <div class="col-lg-8 col-lg-offset-2">
                                             <br>
-                                            Gib den Nick/Name der Person ein, die Du suchst.
-                                            <br>
-                                            <form action="/admin" method="POST" id="reg-form" enctype="application/json">
-                                                <div class="form-group">
-                                                    <label for="username">Nick/Name</label>
-                                                    <input type="text" class="form-control" name="username" id="username" placeholder="" required pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen.">
-                                                </div>
-                                                <%= message %>
-                                                <button class="buttonHover">SUCHEN</button>
-                                            </form>
+                                            Es gibt noch keine vergangenen Vorschlagsrunden
                                         </div>
-                                    </p>
-                                    <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
-                                            <br>
-                                            Events
-                                            <br>
-                                            <form action="/events" method="GET" id="reg-form" enctype="application/json">
-                                                <button class="buttonHover">EVENTS</button>
-                                            </form>
-                                        </div>
-                                    </p>
-                                    <p>
-                                        <div class="col-lg-6 col-lg-offset-3 text-center">
-                                            <br>
-                                            Vorschlagsrunden
-                                            <br>
-                                            <form action="/votingperiod" method="GET" id="reg-form" enctype="application/json">
-                                                <button class="buttonHover">VORSCHLAGSRUNDEN</button>
-                                            </form>
-                                        </div>
-                                    </p>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>

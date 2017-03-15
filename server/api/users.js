@@ -2,6 +2,7 @@
 const AuthPlugin = require('../auth');
 const Boom = require('boom');
 const Joi = require('joi');
+const Async = require('async');
 
 
 const internals = {};
@@ -778,6 +779,121 @@ internals.applyRoutes = function (server, next) {
 
                     reply(freeuser);
                 });
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/users/newvotingperiod',
+        handler: function (request, reply) {
+            console.log('POST newvotingperiod: ', request.payload);
+
+            User.find({}, {}, function(err, users){
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+
+                Async.each(users, function(user, callback){
+                        //console.log("user.follows: ", user.follows);
+                        //console.log("user.followedBy: ", user.followedBy);
+                        var followsHistoryNew = {
+                            periodEnd: new Date()
+                        };
+                        if(user.follows!=undefined && user.follows.length>0){
+                            //console.log("user.follows.name: ", user.follows[0].name);
+                            followsHistoryNew.id = user.follows[0].id;
+                            followsHistoryNew.name = user.follows[0].name;
+                            followsHistoryNew.periodStart = user.follows[0].periodStart
+                        }
+                        var followedByHistoryNew = {
+                            periodEnd: new Date()
+                        };
+                        if(user.followedBy!=undefined && user.followedBy.length>0){
+                            //console.log("user.followedBy.name: ", user.followedBy[0].name);
+                            followedByHistoryNew.id = user.followedBy[0].id;
+                            followedByHistoryNew.name = user.followedBy[0].name;
+                            followedByHistoryNew.votecount = user.followedBy[0].votecount;
+                            followedByHistoryNew.periodStart = user.followedBy[0].periodStart
+                        }
+                        //console.log("updat with followsHistoryNew: ", followsHistoryNew);
+                        //console.log("updat with followedByHistoryNew: ", followedByHistoryNew);
+                        User.findByIdAndUpdate(
+                            user._id,
+                            {
+                                $push: {
+                                    followsHistory: followsHistoryNew,
+                                    followedByHistory: followedByHistoryNew
+                                },
+                                $set: {
+                                    follows: [],
+                                    followedBy: []
+                                }
+                            }, function (err,updatedUser) {
+                                if (err) {
+                                    console.log("ERROR update isUser: ", err);
+                                    return reply(err);
+                                }
+                                console.log("updatedUser: ", updatedUser);
+                                callback();
+                            }
+                        );
+                    },function(err){
+                        // All tasks are done now
+                        reply({message:"VORSCHLAGSRUNDE ERFOLGREICH ERSTELLT."});
+                    }
+                );
+
+                /*users.forEach(function(user, index) {
+                    console.log(index + " key: ", user.follows);
+                    var followsHistoryNew = {
+                        periodEnd: new Date()
+                    };
+                    if(user.follows!=undefined && user.follows.length>0){
+                        followsHistoryNew.id = user.follows[0].id;
+                        followsHistoryNew.name = user.follows[0].name;
+                        followsHistoryNew.periodStart = user.follows[0].periodStart
+                    }
+                    //var followsHistory = [];
+                    /*if(user.followsHistory!=undefined && user.followsHistory.length>0){
+                        followsHistory = user.followsHistory;
+                    }
+                    //followsHistory.push(followsHistoryNew);
+
+                    var followedByHistoryNew = {
+                        periodEnd: new Date()
+                    };
+                    if(user.followedByHistory!=undefined && user.followedByHistory.length>0){
+                        followedByHistoryNew.id = user.follows[0].id;
+                        followedByHistoryNew.name = user.follows[0].name;
+                        followedByHistoryNew.periodStart = user.follows[0].periodStart
+                    }
+
+                    User.findByIdAndUpdate(
+                        user._id,
+                        {
+                            $push: {
+                                followsHistory: followsHistoryNew
+                            },
+                            $set: {
+                                follows: []
+                            },
+                            $push: {
+                                followedByHistory: followedByHistoryNew
+                            },
+                            $set: {
+                                followedBy: []
+                            }
+
+                        }, function (err) {
+                            if (err) {
+                                console.log("ERROR update isUser: ", err);
+                                return reply(err);
+                            }
+                        }
+                    );
+                });*/
             });
         }
     });

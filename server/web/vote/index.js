@@ -575,6 +575,97 @@ internals.applyRoutes = function (server, next) {
         }
     });
 
+    server.route({
+        method: 'GET',
+        path: '/votingperiod',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: 'admin'
+            }
+        },
+        handler: function (request, reply) {
+
+            //console.log('Admin GET votingperiod, ', request.auth.credentials.user);
+            var message = '';
+            var options ={
+                method: 'GET',
+                url: '/api/users/my',
+                payload: {
+                },
+                credentials: request.auth.credentials
+            };
+
+            server.inject(options, function(response){
+                //console.log("response: ", response.result);
+                if(response.result.statusCode){
+                    if(response.result.statusCode == 400){
+                        return reply.view('../login/index',{
+                            message:   response.result.message
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    console.log("User: ", response.result);
+                    if(request.query != undefined && request.query.message !== undefined){
+                        message =  request.query.message;
+                    }
+
+                    return reply.view('votingperiods',{
+                        auth:           JSON.stringify(request.auth),
+                        session:        JSON.stringify(request.session),
+                        isLoggedIn:     request.auth.isAuthenticated,
+                        updatemessage:  message,
+                        followsHistory: response.result.followsHistory,
+                        follows:        response.result.follows,
+                        moment:         Moment
+                    });
+                }
+            });
+
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/votingperiod',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: 'admin'
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log('Admin POST votingperiod, ', request.auth.credentials.user);
+
+            var options ={
+                method: 'POST',
+                url: '/api/users/newvotingperiod',
+                payload: {
+                }
+            };
+
+            server.inject(options, function(createVotingPeriodResponse) {
+                console.log("createVotingPeriodResponse: ", createVotingPeriodResponse.result);
+
+                if(createVotingPeriodResponse.result.statusCode){
+                    if(createVotingPeriodResponse.result.statusCode){
+                        request.session.message = createVotingPeriodResponse.result.message;
+                        return reply.redirect('/events');
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    return reply.redirect('/votingperiod?updatemessage='+ createVotingPeriodResponse.result.message);
+
+                }
+            });
+
+        }
+    });
+
     next();
 };
 

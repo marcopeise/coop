@@ -233,13 +233,14 @@ User.schema = Joi.object().keys({
     followedBy: Joi.object().keys({
         id: Joi.string().required(),
         name: Joi.string().required(),
-        votecount: Joi.number().required(),
+        votecount: Joi.number(),
         periodStart: Joi.date().required(),
         periodEnd: Joi.date().required()
     }),
     followedByHistory: Joi.object().keys({
         id: Joi.string().required(),
         name: Joi.string().required(),
+        votecount: Joi.number(),
         periodStart: Joi.date().required(),
         periodEnd: Joi.date().required()
     }),

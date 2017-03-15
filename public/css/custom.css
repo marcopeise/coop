@@ -897,7 +897,7 @@ h1 .subline {
 	background-color: #FFFF65;
 }
 
-#profil form {
+#profil #coopform {
 	width: 60%;
 	display: inline-block;
 }

@@ -598,18 +598,6 @@ section .container-fluid {
     background-color: #07A7FF;
 }
 
-#home #section1 button {
-	background-color: #3600b7;
-	box-shadow: 5px 4px #3600b7;
-	border: 5px solid #3600b7;
-}
-
-#home #section1 button:hover {
-	background-color: #ffffff;
-	border-color: #3600b7;
-	color: #3600b7; 
-}
-
 #section1 .container-fluid {
 	background-image: url('../files/images/COO_COLLAGEN_STP_170203_01.jpg');
 }
@@ -636,6 +624,15 @@ section .container-fluid {
 	font-size: 26px;
 }
 
+#section2 .col img ~ img {
+	max-height: 250px !important;
+}
+
+#section2 h2 {
+	color: #000000;
+	letter-spacing: 3px;
+}
+
 div.message {
 	font-size: 28px;
 	color: red;
@@ -648,6 +645,10 @@ div.message {
 
 #home #section2 .container-fluid .row {
 	height: 100%;
+}
+
+#home #section2 .container-fluid {
+	background-color: #6DFE95;
 }
 
 #home #section2 .col.col-lg-4 {
@@ -673,16 +674,23 @@ div.message {
 	display: inline-block;
 }
 
-#section2 .col img ~ img {
-	max-height: 250px !important;
+
+#home #section1 button {
+	background-color: #3600b7;
+	box-shadow: 5px 4px #3600b7;
+	border: 5px solid #3600b7;
 }
 
-#section2 h2 {
-	color: #000000;
-	letter-spacing: 3px;
+#home #section1 button:hover {
+	background-color: #ffffff;
+	border-color: #3600b7;
+	color: #3600b7; 
 }
 
-#home #section2 .col.col-lg-4 p {
+
+#home #section2 .col.col-lg-4 p,
+#home #section2 .visible-xs-block p
+ {
 	font-size: 1.2em;
 	font-weight: 600;
 	letter-spacing: 3px;
@@ -691,7 +699,6 @@ div.message {
 
 #home #header {
 	position: static;
-	height: 105px;
 	display: block;
 	width: 100%;
 	z-index: 9000;
@@ -715,6 +722,24 @@ div.message {
 
 #home #header img {
 	max-height: none;
+}
+
+#home #section2 .visible-xs-block .content {
+	margin-top: 0px;
+	padding-top: 20px;
+}
+
+#home #section2 .content.fuellhorn {
+	background-color: #6DFE95;
+	
+}
+
+#home #section2 .content.suppertheorieparties {
+	background-color: #07A7FF;
+}
+
+#home #section2 .content.concernopening {
+	background-color: #FFFF65;
 }
 
 .typoImage {
@@ -928,11 +953,11 @@ div.message {
 	}
 	
 	.header-logo {
-	    height: 60px;
+	    height: 50px;
 	}
 	
 	#header {
-		height: 60px;
+		height: 50px !important;
 	}
 	
 	#nav-icon {
@@ -1047,5 +1072,33 @@ div.message {
 	    background-size: 140% auto;
 	    background-position: 40% 100px;
 	}
+	
+	#home #main-nav .content {
+		margin-top: 20px !important;
+	}
+	
+	#main-nav .content {
+		margin-top: 70px !important;
+	}
+	
+	#home #section2 .row:nth-of-type(2) {
+		margin-top: -50px;
+	}
+	
+	#home #section2 img {
+	    max-height: 150px;
+	}
+	
+	#home #section2 .visible-xs-block .content {
+		padding-bottom: 20px;
+	}
+	
+	#home .typoImage {
+		margin-bottom: 20px;
+		max-height: 50px !important;
+	}
+	
+	
+
 }
 

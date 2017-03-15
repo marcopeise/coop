@@ -1,21 +1,28 @@
 $(document).ready(function(){
+	windowSize = $(window).width();
+	
+	$('#fullpage').fullpage({
+		scrollOverflow: true
+	});
+	
 	$('#nav-icon').click(function(){
 		$(this).toggleClass('open');
 		$('#main-nav').fadeToggle();
 
 	});
 	
-	$('#fullpage').fullpage({
-		scrollOverflow: true
-	});
-	
 	$('#goToReg').click(function(e){
 		e.preventDefault();
 		$.fn.fullpage.moveTo(3);
 	});
-	
-	$('.scroll1, .scroll2').click(function(e){
-		$.scrollify.next();
-	});
+	if($('#home').length){
+		$.scrollify({
+			section : ".section-scroll",
+		});
+		
+		$('.scroll1, .scroll2').click(function(e){
+			$.scrollify.next();
+		});
+	}		
 	
 });

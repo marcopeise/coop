@@ -760,6 +760,12 @@ div.message {
 	line-height: 20px !important;
 }
 
+h1 .subline {
+	font-size: 0.5em;
+	letter-spacing: 2px;
+	line-height: 20px !important;
+}
+
 #coop3000 #section0 .container-fluid {
 	background-image: none;
 }
@@ -878,6 +884,92 @@ div.message {
 #registrierung #section0 {
 	background-color: #FFFF65;
 }
+
+/* Profil */
+
+#profil #section0 .container-fluid {
+	background-image: none;
+	
+    background-position: 30% 0px;
+}
+
+#profil #section0 {
+	background-color: #FFFF65;
+}
+
+#profil form {
+	width: 60%;
+	display: inline-block;
+}
+
+#profil legend {
+	text-align: left;
+	width: auto;
+	border-bottom: 1px solid #000000;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+#profil .form-group label:first-of-type  {
+	text-align: left;
+	float: left;
+	width: auto;
+	font-family: "Myriad";
+	font-weight: normal;
+	text-transform: none;
+	letter-spacing: inherit;	
+}
+
+.clearer { 
+	display: block;
+	line-height: 0px;
+	height: 1px;
+	clear: both; }
+
+.squaredTwo {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin: 0px auto 0px auto;
+  background: #000000;
+	float: right;
+}
+
+.squaredTwo label {
+  width: 20px !important;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+	background: #ffffff;
+}
+.squaredTwo label:after {
+  content: '';
+  width: 9px;
+  height: 5px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border: 3px solid #000000;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.squaredTwo label:hover::after {
+  opacity: 0.3;
+}
+.squaredTwo input[type=checkbox] {
+  visibility: hidden;
+}
+.squaredTwo input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+
 
 /* NEWSLETTER */
 

@@ -124,7 +124,7 @@ internals.applyRoutes = function (server, next) {
 
                 //check if user is currenly following somebody -> not allowed
                 if(votingUser.follows != undefined && votingUser.follows.length>0){
-                    return reply("Keine Abstimmung erlaubt, wenn aktuell mit einem Anderen Teilnehmer via Saugnapf verbunden.");
+                    return reply("Sorry, wenn Du aktuell mit einem anderen Teilnehmer via Saugnapf verbunden bist, kannst du nicht mit abstimmen.");
                 }
 
                 const id = request.params.id;

@@ -100,11 +100,11 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												Abstimmung!
+												Vorschläge
 											</h1>
 											<p>
 												 Text hier<br />
-												 Erstelle eine Abstimmung
+												 Erstelle einen Vorschlag
 											</p>
 										</div>
 									</div>
@@ -115,13 +115,13 @@
 										<form action="/createVote" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 											<div class="form-group">
 												<label for="title">Titel</label>
-										    	<input type="text" class="form-control" name="title" id="title" placeholder="Wie soll der Titel deiner Abstimmung sein?" data-minlength="1" title="Bitte gib einen Titel für Deine Abstimmung ein." required>
+										    	<input type="text" class="form-control" name="title" id="title" placeholder="Wie soll der Titel deines Vorschlags sein?" data-minlength="1" title="Bitte gib einen Titel für Deinen Vorschlag ein." required>
 												  <div class="help-block with-errors"></div>
 											</div>
 
 											<div class="form-group">
 												<label for="content">Inhalt</label>
-												<textarea class="form-control" name="content" placeholder="Hier Dein Text für die Abstimmung..." id="content" rows="10" cols="70" maxlength="3000"></textarea>
+												<textarea class="form-control" name="content" placeholder="Hier Dein Text für deinen Vorschlag..." id="content" rows="10" cols="70" maxlength="3000"></textarea>
 												<div class="help-block with-errors"></div>
 											</div>
 

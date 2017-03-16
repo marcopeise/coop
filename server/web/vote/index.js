@@ -75,11 +75,8 @@ internals.applyRoutes = function (server, next) {
                 //console.log("createVoteResponse: ", createVoteResponse.result);
                 if(createVoteResponse.result.statusCode){
                     if(createVoteResponse.result.statusCode){
-                        return reply.view('index',{
-                            message:   createVoteResponse.result.message,
-                            auth:       JSON.stringify(request.auth),
-                            session:    JSON.stringify(request.session),
-                            isLoggedIn: request.auth.isAuthenticated
+                        return reply.view('../login/index',{
+                            message:   response.result.message
                         });
                     }else{
                         return reply.redirect('/404');
@@ -135,11 +132,8 @@ internals.applyRoutes = function (server, next) {
                 //console.log("getVotesResponse: ", getVotesResponse.result);
                 if(getVotesResponse.result.statusCode){
                     if(getVotesResponse.result.statusCode){
-                        return reply.view('index',{
-                            message:   getVotesResponse.result.message,
-                            auth:       JSON.stringify(request.auth),
-                            session:    JSON.stringify(request.session),
-                            isLoggedIn: request.auth.isAuthenticated
+                        return reply.view('../login/index',{
+                            message:   response.result.message
                         });
                     }else{
                         return reply.redirect('/404');
@@ -233,11 +227,8 @@ internals.applyRoutes = function (server, next) {
                 //console.log("getVoteResponse: ", getVoteResponse.result);
                 if(getVoteResponse.result.statusCode){
                     if(getVoteResponse.result.statusCode){
-                        return reply.view('index',{
-                            message:   getVoteResponse.result.message,
-                            auth:       JSON.stringify(request.auth),
-                            session:    JSON.stringify(request.session),
-                            isLoggedIn: request.auth.isAuthenticated
+                        return reply.view('../login/index',{
+                            message:   response.result.message
                         });
                     }else{
                         return reply.redirect('/404');
@@ -328,11 +319,8 @@ internals.applyRoutes = function (server, next) {
                 //console.log("postVoteResponse: ", postVoteResponse.result);
                 if(postVoteResponse.result.statusCode){
                     if(postVoteResponse.result.statusCode){
-                        return reply.view('index',{
-                            message:   postVoteResponse.result.message,
-                            auth:       JSON.stringify(request.auth),
-                            session:    JSON.stringify(request.session),
-                            isLoggedIn: request.auth.isAuthenticated
+                        return reply.view('../login/index',{
+                            message:   response.result.message
                         });
                     }else{
                         return reply.redirect('/404');
@@ -376,11 +364,8 @@ internals.applyRoutes = function (server, next) {
                 //console.log("postVoteResponse: ", postVoteResponse.result);
                 if(postVoteResponse.result.statusCode){
                     if(postVoteResponse.result.statusCode){
-                        return reply.view('index',{
-                            message:   postVoteResponse.result.message,
-                            auth:       JSON.stringify(request.auth),
-                            session:    JSON.stringify(request.session),
-                            isLoggedIn: request.auth.isAuthenticated
+                        return reply.view('../login/index',{
+                            message:   response.result.message
                         });
                     }else{
                         return reply.redirect('/404');
@@ -425,11 +410,8 @@ internals.applyRoutes = function (server, next) {
                 //console.log("postCommentVoteResponse: ", postCommentVoteResponse.result);
                 if(postCommentVoteResponse.result.statusCode){
                     if(postCommentVoteResponse.result.statusCode){
-                        return reply.view('index',{
-                            message:   postCommentVoteResponse.result.message,
-                            auth:       JSON.stringify(request.auth),
-                            session:    JSON.stringify(request.session),
-                            isLoggedIn: request.auth.isAuthenticated
+                        return reply.view('../login/index',{
+                            message:   response.result.message
                         });
                     }else{
                         return reply.redirect('/404');
@@ -472,11 +454,8 @@ internals.applyRoutes = function (server, next) {
                 //console.log("postDeleteVoteResponse: ", postDeleteVoteResponse.result);
                 if(postDeleteVoteResponse.result.statusCode){
                     if(postDeleteVoteResponse.result.statusCode){
-                        return reply.view('index',{
-                            message:   postDeleteVoteResponse.result.message,
-                            auth:       JSON.stringify(request.auth),
-                            session:    JSON.stringify(request.session),
-                            isLoggedIn: request.auth.isAuthenticated
+                        return reply.view('../login/index',{
+                            message:   response.result.message
                         });
                     }else{
                         return reply.redirect('/404');
@@ -557,11 +536,8 @@ internals.applyRoutes = function (server, next) {
                 //console.log("putEditVoteResponse: ", putEditVoteResponse.result);
                 if(putEditVoteResponse.result.statusCode){
                     if(putEditVoteResponse.result.statusCode){
-                        return reply.view('index',{
-                            message:   putEditVoteResponse.result.message,
-                            auth:       JSON.stringify(request.auth),
-                            session:    JSON.stringify(request.session),
-                            isLoggedIn: request.auth.isAuthenticated
+                        return reply.view('../login/index',{
+                            message:   response.result.message
                         });
                     }else{
                         return reply.redirect('/404');

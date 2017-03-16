@@ -38,16 +38,6 @@
 		<!-- End Google Analytics -->
 		<script>
 			$(function() {
-				var isLoggedIn = ('<%=isLoggedIn%>' === 'true');
-				if( isLoggedIn ) {
-					$('.showLogout').show();
-					$('.showLogin').hide();
-				} else {
-					$('.showLogout').hide();
-					$('.showLogin').show();
-				}
-			});
-			$(function() {
 				var verknExtended = (verknExtended = ('<%=verknExtended%>' === 'true')) ? $('.showverknExtended').show() : $('.showverknExtended').hide();
 				var altersvorsorge = (altersvorsorge = ('<%=altersvorsorge%>' === 'true')) ? $('.showaltersvorsorge').show() : $('.showaltersvorsorge').hide();
 				var sozialakademie = (sozialakademie = ('<%=sozialakademie%>' === 'true')) ? $('.showsozialakademie').show() : $('.showsozialakademie').hide();
@@ -114,20 +104,18 @@
 											</h1>
 
 											<ul class="subnav">
-												<li><a href="/profil">Profil</a></li>
+												<li><a href="/profile/<%=id%>">Profil</a></li>
 												<li><span>COOPS</span></li>
-												<li><a href="/follow">Anhängen</a></li>
-												<li><a href="/listvotes">VORSCHLÄGE</a></li>
+												<li><a href="/following/<%=id%>">Anhängen</a</li>
 												<li><a href="">VORSCHLAGSAKTIVITÄT</a></li>
 												<li><a href="">SUCHEN</a></li>
-												<li><a href="/logout">Logout</a></li>
 											</ul>
 
 											<h1>
 												ZUSAMMEN EINEN CONCERN BAUEN
 											</h1>
 											<br>
-											<p>Du hast bisher mit diesen COOPS deinen Anteil im Concern erweitert:</p>
+											<p>Dieser Teilnehmer hat bisher mit diesen COOPS seinen Anteil im Concern erweitert:</p>
 											
 											<span class="divider"><span></span></span>
 											

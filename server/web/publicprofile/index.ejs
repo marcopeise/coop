@@ -34,37 +34,18 @@
 
 			ga('create', 'UA-84474181-1', 'auto');
 			ga('send', 'pageview');
-
 		</script>
 		<!-- End Google Analytics -->
-
-		<script>
-			function FillName(f) {
-					f.name.value = f.username.value;
-			}
-		</script>
-		<script>
-			$(function() {
-				var isLoggedIn = ('<%=isLoggedIn%>' === 'true');
-				if( isLoggedIn ) {
-					$('.showLogout').show();
-					$('.showLogin').hide();
-				} else {
-					$('.showLogout').hide();
-					$('.showLogin').show();
-				}
-			});
-		</script>
 	</head>
-	<body id="registrierung">
-
+	<body id="profil" class="index">
+		
 		<div id="nav-icon">
 			<span></span>
 			<span></span>
 			<span></span>
 			<span></span>
 		</div>
-
+		
 		<nav id="main-nav">
 			<div class="container-fluid">
 				<div class="row">
@@ -72,79 +53,74 @@
 						<div id="header">
 							<a href="/">
 								<img src="/public/files/images/COO_MENU_Logo.jpg" class="header-logo" title="Logo Coop3000" />
-							</a>
+							</a>								
 						</div>
 						<div class="content">
 							<nav>
 								<% include ../elements/navigation %>
 							</nav>
-						</div>
+						</div>						
 					</div>
-				</div>
+				</div>					
 			</div>
 		</nav>
-
+		
 		<div id="fullpage">
 			<section class="section" id="section0">
 				<div class="container-fluid">
 					<div class="row">
-						<div>
+						<div class="col-12">
 							<div id="header">
 								<a href="/">
-									<img src="/public/files/images/COO_Bildungswerke_Logo.png" class="header-logo" title="Logo Coop3000" />
-								</a>
+									<img src="/public/files/images/COO_03_Registrierung_Logo.png" class="header-logo" title="Logo Coop3000" />
+								</a>	
 							</div>
-
+							
 							<div class="container">
 								<div class="row">
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												VORSCHLÄGE!
+												Profil
 											</h1>
-
+											
 											<ul class="subnav">
-												<li><a href="/profil">Profil</a></li>
-												<li><a href="/coops">COOPS</a></li>
-												<li><a href="/follow">Anhängen</a></li>
-												<li><span>VORSCHLÄGE</span></li>
-												<li><a href="/voteactivity">VORSCHLAGSAKTIVITÄT</a></li>
-												<li><a href="/logout">Logout</a></li>
+												<li><span>Profil</span></li>
+												<li><a href="/coops/<%=id%>">COOPS</a></li>
+												<li><a href="/following/<%=id%>">Anhängen</a></li>
+												<li><a href="">VORSCHLAGSAKTIVITÄT</a></li>
+												<li><a href="">SUCHEN</a></li>
 											</ul>
-
+											
 											<p>
-												 Text hier<br />
-												 Erstelle einen Vorschlag
+												Ein Anteilseigner*in,
+												<br><br>
+												auf dessen Angaben sein Anteil registriert ist:
+												<br>
+												<div class="col-lg-6 col-lg-offset-3 text-center">
+													<div class="form-group">
+														<label for="name">Nick/Name</label>
+														<input type="text" class="form-control" name="username" id="username" value=<%=username%> disabled>
+													</div>
+
+													<div class="form-group">
+														<label for="town">Ort</label>
+														<input type="text" class="form-control" name="town" id="town" value=<%= town %> disabled>
+													</div>
+
+													<div class="form-group">
+														<label for="coopid">CoopId</label>
+														<input type="text" class="form-control" name="coopid" id="coopid" disabled="disabled" value=<%= coopid %> disabled>
+													</div>
+												</div>
 											</p>
 										</div>
 									</div>
-									<div class="col-lg-6 col-lg-offset-3 text-center">
-										<div class="message">
-											<%= message %>
+									<div class="col-lg-8 col-lg-offset-2">
+										<div class="content">
+											<br>
 										</div>
-										<form action="/createVote" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
-											<div class="form-group">
-												<label for="title">Titel</label>
-										    	<input type="text" class="form-control" name="title" id="title" placeholder="Wie soll der Titel deines Vorschlags sein?" data-minlength="1" title="Bitte gib einen Titel für Deinen Vorschlag ein." required>
-												  <div class="help-block with-errors"></div>
-											</div>
-
-											<div class="form-group">
-												<label for="content">Inhalt</label>
-												<textarea class="form-control" name="content" placeholder="Hier Dein Text für den Vorschlag..." id="content" rows="10" cols="70" maxlength="3000"></textarea>
-												<div class="help-block with-errors"></div>
-											</div>
-
-									    <div class="form-group">
-									      <label for="enddate">Enddatum</label>
-									      <input type="date" class="form-control" name="enddate" id="enddate" min="2017-02-19" max="2019-12-31" required>
-											  <div class="help-block with-errors"></div>
-										  </div>
-
-											<input type="hidden" name="name" value="">
-											<button class="buttonHover" onclick="FillName(this.form)">Erstellen</button>
-										</form>
-									</div>							
+									</div>
 								</div>
 							</div>
 						</div>

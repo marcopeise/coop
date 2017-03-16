@@ -100,11 +100,21 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												Abstimmung bearbeien
+												Vorschlag bearbeien
 											</h1>
+
+											<ul class="subnav">
+												<li><a href="/profil">Profil</a></li>
+												<li><a href="/coops">COOPS</a></li>
+												<li><a href="/follow">Anhängen</a></li>
+												<li><span>VORSCHLÄGE</span></li>
+												<li><a href="/voteactivity">VORSCHLAGSAKTIVITÄT</a></li>
+												<li><a href="/logout">Logout</a></li>
+											</ul>
+
 											<p>
 												 Text hier<br />
-												 Bearbeite Deine Abstimmung
+												 Bearbeite Deinen Vorschlag
 											</p>
 											<form action="/listvotes" method="GET" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 												<button class="buttonHover" onclick="FillName(this.form)">Abrechen</button>
@@ -118,13 +128,13 @@
 										<form action="/editVote/<%= voteId %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 											<div class="form-group">
 												<label for="title">Titel</label>
-										    	<input type="text" class="form-control" name="voteTitle" id="voteTitle" data-minlength="1" title="Bitte gib einen Titel für Deine Abstimmung ein." value="<%= voteTitle %>" required>
+										    	<input type="text" class="form-control" name="voteTitle" id="voteTitle" data-minlength="1" title="Bitte gib einen Titel für Deinen Vorschlag ein." value="<%= voteTitle %>" required>
 												  <div class="help-block with-errors"></div>
 											</div>
 
 											<div class="form-group">
 												<label for="content">Inhalt</label>
-												<textarea class="form-control" name="voteContent" placeholder="Hier Dein Text für die Abstimmung..." id="voteContent" rows="10" cols="70" maxlength="3000"><%= voteContent %></textarea>
+												<textarea class="form-control" name="voteContent" placeholder="Hier Dein Text für deinen Vorschlag..." id="voteContent" rows="10" cols="70" maxlength="3000"><%= voteContent %></textarea>
 												<div class="help-block with-errors"></div>
 											</div>
 

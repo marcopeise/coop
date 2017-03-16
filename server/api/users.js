@@ -215,6 +215,31 @@ internals.applyRoutes = function (server, next) {
         }
     });
 
+    server.route({
+        method: 'GET',
+        path: '/user/public/{id}',
+        config: {
+        },
+        handler: function (request, reply) {
+
+            const id = request.params.id;
+            const fields = User.fieldsAdapter('username town coopid connections follows followedBy verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues');
+
+            User.findById(id, fields, (err, user) => {
+
+                if (err) {
+                    return reply(err);
+                }
+
+                if (!user) {
+                    return reply(Boom.notFound('Document not found. That is strange.'));
+                }
+
+                reply(user);
+            });
+        }
+    });
+
 
     server.route({
         method: 'POST',

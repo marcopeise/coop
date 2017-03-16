@@ -93,13 +93,24 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												tbd
+												DAS VORSCHLAGSWESEN
 											</h1>
+
+											<ul class="subnav">
+												<li><a href="/profil">Profil</a></li>
+												<li><a href="/coops">COOPS</a></li>
+												<li><a href="/follow">Anhängen</a></li>
+												<li><span>VORSCHLÄGE</span></li>
+												<li><a href="/voteactivity">VORSCHLAGSAKTIVITÄT</a></li>
+												<li><a href="/logout">Logout</a></li>
+											</ul>
+
 											<p>
-												tbd
-												...
-												<a href="/listvotes">Zurück zu allen Abstimmungen</a>
+												<a href="/listvotes">zu allen Vorschlägen</a>
 											</p>
+											<h3>
+												VORSCHLAG KOMMENTIEREN
+											</h3>
 											<p>
 												<% if(isOwner || isAdmin){%>
 													<form action="/editvotemode/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
@@ -107,7 +118,7 @@
 														<input type="hidden" name="voteTitle" value="<%= vote.title %>">
 														<input type="hidden" name="voteContent" value="<%= vote.content %>"">
 														<input type="hidden" name="voteEndDate" value="<%= vote.endDate %>"">
-														<button class="buttonHover" onclick="FillName(this.form)">Abstimmung bearbeiten</button>
+														<button class="buttonHover" onclick="FillName(this.form)">Vorschlag bearbeiten</button>
 													</form>
 											<% } %>
 											</p>
@@ -143,13 +154,13 @@
 
 												<% if(vote.votespos!=undefined){%>
 													<% for(var i=0; i<vote.votespos.length; i++) {%>
-														<%=vote.votespos[i].name%>,&nbsp;
+														<a href="/profile/<%=vote.votespos[i].id%>"><%=vote.votespos[i].name%></a>,&nbsp;&nbsp;
 													<% } %>
 												<% } %>
 
 												<% if(vote.votesneg!=undefined){%>
 													<% for(var i=0; i<vote.votesneg.length; i++) {%>
-														<%=vote.votesneg[i].name%>,&nbsp;
+														<a href="/profile/<%=vote.votesneg[i].id%>"><%=vote.votesneg[i].name%></a>,&nbsp;
 													<% } %>
 												<% } %>
 
@@ -160,7 +171,7 @@
 														<label for="title"><%= vote.votespos.length %> Teilnehmer dafür:</label>
 													</div>
 													<% for(var i=0; i<vote.votespos.length; i++) {%>
-														<%=vote.votespos[i].name%>,&nbsp;
+														<a href="/profile/<%=vote.votespos[i].id%>"><%=vote.votespos[i].name%></a>,&nbsp;
 													<% } %>
 												<% } %>
 
@@ -169,7 +180,7 @@
 														<label for="title"><%= vote.votesneg.length %> Teilnehmer dagegen:</label>
 													</div>
 													<% for(var i=0; i<vote.votesneg.length; i++) {%>
-														<%=vote.votesneg[i].name%>,&nbsp;
+														<a href="/profile/<%=vote.votesneg[i].id%>"><%=vote.votesneg[i].name%></a>,&nbsp;
 													<% } %>
 												<% } %>
 
@@ -198,7 +209,7 @@
 																	<label for="timeCreated">Erstellt: <%= moment().to(vote.comments[i].timeCreated) %></label>
 																	<br>
 																	<label for="creator">Erstellt von:</label>
-																		<%= vote.comments[i].name %>
+																		<a href="/profile/<%=vote.comments[i].id%>"><%=vote.comments[i].name%></a>
 																	<br>
 																</div>
 																<hr>
@@ -229,7 +240,7 @@
 													<% if(isOwner || isAdmin){%>
 														<form action="/deletevote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 															<input type="hidden" name="voteOwnerId" value=<%= vote.ownerId %>>
-															<button class="buttonHover" onclick="FillName(this.form)">Abstimmung löschen</button>
+															<button class="buttonHover" onclick="FillName(this.form)">Vorschlag löschen</button>
 														</form>
 													<% } %>
 												</p>

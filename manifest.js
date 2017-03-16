@@ -224,6 +224,9 @@ const manifest = {
         },
         {
             plugin: './server/web/event'
+        },
+        {
+            plugin: './server/web/publicprofile'
         }
         
     ]

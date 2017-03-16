@@ -51,57 +51,65 @@
 	</head>
 	<body id="registrierung">
 
-		<div id="nav-icon">
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
+	<div id="nav-icon">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
 
-		<nav id="main-nav">
+	<nav id="main-nav">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div id="header">
+						<a href="/">
+							<img src="/public/files/images/COO_MENU_Logo.jpg" class="header-logo" title="Logo Coop3000" />
+						</a>
+					</div>
+					<div class="content">
+						<nav>
+							<% include ../elements/navigation %>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div id="fullpage">
+		<section class="section" id="section0">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12">
 						<div id="header">
 							<a href="/">
-								<img src="/public/files/images/COO_MENU_Logo.jpg" class="header-logo" title="Logo Coop3000" />
+								<img src="/public/files/images/COO_03_Registrierung_Logo.png" class="header-logo" title="Logo Coop3000" />
 							</a>
 						</div>
-						<div class="content">
-							<nav>
-								<% include ../elements/navigation %>
-							</nav>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
 
-		<div id="fullpage">
-			<section class="section" id="section0">
-				<div class="container-fluid">
-					<div class="row">
-						<div>
-							<div id="header">
-								<a href="/">
-									<img src="/public/files/images/COO_Bildungswerke_Logo.png" class="header-logo" title="Logo Coop3000" />
-								</a>
-							</div>
-
-							<div class="container">
-								<div class="row">
-									<div class="col-lg-8 col-lg-offset-2">
-										<div class="content">
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-8 col-lg-offset-2">
+									<div class="content">
 											<h1>
-												TBD
+												DAS VORSCHLAGSWESEN
 											</h1>
+
+											<ul class="subnav">
+												<li><a href="/profil">Profil</a></li>
+												<li><a href="/coops">COOPS</a></li>
+												<li><a href="/follow">Anhängen</a></li>
+												<li><span>VORSCHLÄGE</span></li>
+												<li><a href="/voteactivity">VORSCHLAGSAKTIVITÄT</a></li>
+												<li><a href="/logout">Logout</a></li>
+											</ul>
+
 											<p>
-												Hier alle aktuellen Abstimmungen des COOP3000
+												Hier findest du alle aktuellen Vorschläge von Anteilseigner*innen des Concerns
 												<br>
-												Anzahl:
-													<%= voteList.length %>
 												<br>
-												<a href="/createvote">Erstelle eine neue Abstimmung</a>
+												<a href="/createvote">Erstelle einen neuen Vorschlag</a>
 											</p>
 											<% if(voteList.length>0){%>
 												<% for(var i=0; i<voteList.length; i++) {%>
@@ -115,19 +123,16 @@
 																<label for="endDate">Schließt in: <%= moment().to(voteList[i].endDate, true) %></label>
 															<% } %>
 															<br>
-															<label for="nrVoters"><%= voteList[i].nrVoters %> Teilnehmer</label>
-															<br>
-															<label for="endDate">Aktiv: </label>
-															<%= voteList[i].isActive %>
+															<label for="nrVoters">Teilnehmer: <%= voteList[i].nrVoters %></label>
 														</div>
 														<hr>
 													</div>
 
 												<% } %>
 											<% }else{%>
-												Es gibt noch keine Abstimmungen
+												Es gibt noch keine Vorschläge
 												<br>
-												<a href="/createvote">Hier kannst Du eine Abstimmung erstellen</a>
+												<a href="/createvote">Hier kannst Du einen Vorschlag erstellen</a>
 											<% } %>
 										</div>
 									</div>							

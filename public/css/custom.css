@@ -273,6 +273,13 @@ button {
 	border: 5px solid #000000;
 }
 
+button.smallButton {
+	font-size: 20px;
+	box-shadow: 5px 4px #000000;
+	padding: 5px 5px;
+	letter-spacing: 3px;
+}
+
 button.buttonHover:hover {
 	background-color: #ffffff;
 	color: #000000;
@@ -643,10 +650,6 @@ div.message {
 }
 
 /* HOME */
-#home h2 {
-	color: #ffffff;
-}
-
 #home #section2 .container-fluid .row {
 	height: 100%;
 }
@@ -754,13 +757,8 @@ div.message {
 
 /* COOP 3000 */
 
-#coop3000 h1 .subline {
-	font-size: 0.5em;
-	letter-spacing: 2px;
-	line-height: 20px !important;
-}
-
-h1 .subline {
+h1 .subline,
+h2 .subline {
 	font-size: 0.5em;
 	letter-spacing: 2px;
 	line-height: 20px !important;
@@ -906,18 +904,28 @@ h1 .subline {
 	text-align: left;
 	width: auto;
 	border-bottom: 1px solid #000000;
-	font-size: 1em;
+	font-size: 20px;
 	font-weight: bold;
+	line-height: 28px;
+	letter-spacing: 2px;	
+	font-family: 'Giorgio Sans Web';
 }
 
-#profil .form-group label:first-of-type  {
+#profil label {
+	letter-spacing: 2px;
+}
+
+#profil #coopform .form-group label:first-of-type  {
 	text-align: left;
 	float: left;
 	width: auto;
+	max-width: 90%;
 	font-family: "Myriad";
 	font-weight: normal;
 	text-transform: none;
 	letter-spacing: inherit;	
+	font-size: 18px;
+	line-height: 26px;
 }
 
 .clearer { 
@@ -1115,6 +1123,12 @@ h1 .subline {
 	
 	button.buttonHover:hover {
 		border: 3px solid #000000;
+	}
+	
+	button.smallbutton {
+		letter-spacing: 3px;
+		
+		
 	}
 	
 	label {

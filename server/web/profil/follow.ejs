@@ -37,7 +37,7 @@
 		</script>
 		<!-- End Google Analytics -->
 	</head>
-	<body id="registrierung">
+	<body id="profil" class="follow">
 		
 		<div id="nav-icon">
 			<span></span>
@@ -123,12 +123,11 @@
 													</div>
 													<p>
 														<div class="col-lg-6 col-lg-offset-3 text-center">
-															<br>
-															Gib die Nummer der Person ein, die Du suchst.
-															<br>
+															
 															<form action="/follow" method="POST" id="reg-form" enctype="application/json">
+																<label for="coopid">COOPID</label>
+																<p>Gib die Nummer der Person ein, die Du suchst. <p>
 																<div class="form-group">
-																	<label for="email">COOPID</label>
 																	<input type="text" class="form-control" name="coopid" id="coopid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es nicht." required>
 																</div>
 																<button class="buttonHover" onclick="FillName(this.form)">SUCHEN</button>
@@ -137,12 +136,11 @@
 													</p>
 													<p>
 														<div class="col-lg-6 col-lg-offset-3 text-center">
-															<br>
-															Gib den Nick/Name der Person ein, die Du suchst.
-															<br>
+															
 															<form action="/follow" method="POST" id="reg-form" enctype="application/json">
+																<label for="coopid">Nick/Name</label>
+																<p>Gib den Nick/Name der Person ein, die Du suchst.<p>
 																<div class="form-group">
-																	<label for="username">Nick/Name</label>
 																	<input type="text" class="form-control" name="username" id="username" placeholder="" required pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen.">
 																</div>
 																<button class="buttonHover" onclick="FillName(this.form)">SUCHEN</button>
@@ -162,7 +160,7 @@
 															<label for="periodStart">Seit: <%= moment().to(followedBy[i].periodStart, true) %></label>
 															<br>
 															<label for="periodStart">Saugnapfstärke: <%= followedBy[i].votecount %></label>
-															<hr>
+															
 														<% } %>
 													<% }%>
 												</div>

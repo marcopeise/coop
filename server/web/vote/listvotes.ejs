@@ -110,8 +110,9 @@
 												Hier findest du alle aktuellen Vorschläge von Anteilseigner*innen des Concerns
 												<br>
 												<br>
-												<a href="/createvote">Erstelle einen neuen Vorschlag</a>
+												<button class="smallButton" onclick="window.open('/createvote')">Erstelle einen neuen Vorschlag</button>
 											</p>
+											<span class="divider"><span></span></span>
 											<% if(voteList.length>0){%>
 												<% for(var i=0; i<voteList.length; i++) {%>
 													<div class="col-lg-6 col-lg-offset-3 text-center">

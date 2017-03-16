@@ -712,6 +712,124 @@ internals.applyRoutes = function (server, next) {
         }
     });
 
+    server.route({
+        method: 'GET',
+        path: '/voteactivity',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log("GET votingactivity");
+            console.log("user._id: ", request.auth.credentials.user._id);
+
+            var options ={
+                method: 'GET',
+                url: '/api/votes',
+                payload: {
+                    sort    : '_id',
+                    limit   : 200,
+                    page    : 1
+                }
+            };
+
+            //console.log("BEFORE server.inject: ", options);
+            server.inject(options, function(getVotesResponse){
+                //console.log("getVotesResponse: ", getVotesResponse.result);
+                if(getVotesResponse.result.statusCode){
+                    if(getVotesResponse.result.statusCode){
+                        return reply.view('../login/index',{
+                            message:   response.result.message
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+
+                    //console.log("data: ", getVotesResponse.result.data);
+                    //console.log("get first Vote title: ", getVotesResponse.result.data[0].title);
+                    //console.log("get first Vote _id: ", getVotesResponse.result.data[0]._id);
+                    var voteList = getVotesResponse.result.data;
+                    //console.log("voteList: ", voteList);
+
+                    var userIsOwnerList = [];
+                    var userIsVotingList = [];
+                    var userIsCommentingList = [];
+
+                    //var tempArray1 = JSON.parse(JSON.stringify(voteList));
+                    //var tempArray2 = JSON.parse(JSON.stringify(voteList));
+                    //var tempArray3 = JSON.parse(JSON.stringify(voteList));
+
+                    //get only those votes where user is either owner, votes or makes a comment
+                    for (var i = 0; i < voteList.length; i++) {
+                        //console.log("vote: ", voteList[i]);
+                        // user is owner
+                        if (voteList[i].ownerId==request.auth.credentials.user._id) {
+                            //console.log("user is owner");
+                            userIsOwnerList.push(voteList[i]);
+                        }
+                        // user is voting
+                        loop1:
+                            if(voteList[i].votespos != undefined && voteList[i].votespos.length>0){
+                                for (var k = 0; k < voteList[i].votespos.length; k++) {
+                                    if (voteList[i].votespos[k].id == request.auth.credentials.user._id) {
+                                        //console.log("user is voting pos");
+                                        voteList[i].voting="DAFÜR";
+                                        userIsVotingList.push(voteList[i]);
+                                        break loop1;
+                                    }
+                                }
+                            }
+                        loop2:
+                            if(voteList[i].votesneg != undefined && voteList[i].votesneg.length>0){
+                                for (var l = 0; l < voteList[i].votesneg.length; l++) {
+                                    //console.log("negativId: ", voteList[i].votesneg[l].id);
+                                    //console.log("request.auth.credentials.user._id: ", request.auth.credentials.user._id);
+                                    if (voteList[i].votesneg[l].id == request.auth.credentials.user._id) {
+                                        //console.log("user is voting neg");
+                                        voteList[i].voting="DAGEGEN";
+                                        userIsVotingList.push(voteList[i]);
+                                        break loop2;
+                                    }
+                                }
+                            }
+
+                        // user is commenting
+                        if(voteList[i].comments != undefined && voteList[i].comments.length>0){
+                            var commentList = [];
+                            for (var m = 0; m < voteList[i].comments.length; m++) {
+                                if (voteList[i].comments[m].id == request.auth.credentials.user._id) {
+                                    //console.log("user is commenting");
+                                    commentList.push(voteList[i].comments[m]);
+                                    voteList[i].commentList = commentList;
+                                    //console.log("pushing voteList[i]: ", voteList[i]);
+                                }
+                            }
+                            userIsCommentingList.push(voteList[i]);
+                        }
+                    }
+
+                    console.log("userIsOwnerList: ", userIsOwnerList.length);
+                    console.log("userIsVotingList: ", userIsVotingList.length);
+                    console.log("userIsCommentingList: ", userIsCommentingList.length);
+
+                    return reply.view('voteactivity',{
+                        auth:       JSON.stringify(request.auth),
+                        session:    JSON.stringify(request.session),
+                        isLoggedIn: request.auth.isAuthenticated,
+                        userIsOwnerList:        userIsOwnerList,
+                        userIsVotingList:       userIsVotingList,
+                        userIsCommentingList:   userIsCommentingList,
+                        moment:                 Moment
+                    });
+                }
+            });
+        }
+    });
+
     next();
 };
 

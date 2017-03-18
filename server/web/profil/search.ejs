@@ -36,20 +36,8 @@
 			ga('send', 'pageview');
 		</script>
 		<!-- End Google Analytics -->
-		<script>
-			$(function() {
-				var isLoggedIn = ('<%=isLoggedIn%>' === 'true');
-				if( isLoggedIn ) {
-					$('.showLogout').show();
-					$('.showLogin').hide();
-				} else {
-					$('.showLogout').hide();
-					$('.showLogin').show();
-				}
-			});
-		</script>
 	</head>
-	<body id="registrierung">
+	<body id="profil" class="follow">
 		
 		<div id="nav-icon">
 			<span></span>
@@ -99,36 +87,50 @@
 											<ul class="subnav">
 												<li><a href="/profil">Profil</a></li>
 												<li><a href="/coops">COOPS</a></li>
-												<li><span>Anhängen</span></li>
+												<li><a href="/follow">Anhängen</a></li>
 												<li><a href="/listvotes">VORSCHLÄGE</a></li>
 												<li><a href="/voteactivity">VORSCHLAGSAKTIVITÄT</a></li>
-												<li><a href="/search">SUCHEN</a></li>
+												<li><span>SUCHEN</span></li>
 												<li><a href="/logout">Logout</a></li>
 											</ul>
-											
+
 											<p>
-												<br>
-												Dein gesuchter Partner ist:
-											<div class="col-lg-6 col-lg-offset-3 text-center">
-												<div class="form-group">
-														<label for="name">Nick/Name</label>
-														<input type="text" class="form-control" name="username" id="username" value=<%=username%> disabled="disabled">
-												</div>
-												Gib hier deine COOP 3000 ID ein, um Dich mit <%=username%> zu verbinden.
-													<form action="/verbinden02" method="POST" id="reg-form" enctype="application/json">
-														<div class="form-group">
-															<label for="email">Meine COOP 3000 ID</label>
-															<input type="text" class="form-control" name="usertwoid" id="usertwoid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es leider nicht." required>
+												Werte*r Anteilseigner*in!
+												<br><br>
+												Hier kannst du weitere COOP Mitglieder deiner Wahl suchen und mehr über sie erfahren.
+												<br><br>
+													<div class="message">
+														<%= message %>
+													</div>
+													<p>
+														<div class="col-lg-6 col-lg-offset-3 text-center">
+															
+															<form action="/search" method="POST" id="reg-form" enctype="application/json">
+																<label for="coopid">COOPID</label>
+																<p>Gib die COOP Nummer der Person ein, die Du suchst. </p>
+																<div class="form-group">
+																	<input type="text" class="form-control" name="coopid" id="coopid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es nicht." required>
+																</div>
+																<button class="buttonHover" onclick="FillName(this.form)">SUCHEN</button>
+															</form>
 														</div>
-														<input type="hidden" name="useroneid" value=<%= id %>>
-														<input type="hidden" name="useronecoopid" value=<%= coopid %>>
-														<input type="hidden" name="useroneusername" value=<%= username %>>
-														<button>VERBINDEN</button>
-													</form>
-												</div>
+													</p>
+													<p>
+														<div class="col-lg-6 col-lg-offset-3 text-center">
+															<br><br>
+															<form action="/search" method="POST" id="reg-form" enctype="application/json">
+																<label for="coopid">Nick/Name</label>
+																<p>Gib den Nick/Name der Person ein, die Du suchst.<p>
+																<div class="form-group">
+																	<input type="text" class="form-control" name="username" id="username" placeholder="" required pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen.">
+																</div>
+																<button class="buttonHover" onclick="FillName(this.form)">SUCHEN</button>
+															</form>
+														</div>
+													</p>
 											</p>
 										</div>
-									</div>							
+									</div>
 								</div>
 							</div>
 						</div>

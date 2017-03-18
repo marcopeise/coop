@@ -839,6 +839,132 @@ internals.applyRoutes = function (server, next) {
         }
     });
 
+    server.route({
+        method: 'GET',
+        path: '/search',
+        config: {
+            auth: {
+                strategy: 'session',
+                scope: ['user', 'admin', 'account']
+            },
+        },
+        handler: function (request, reply) {
+
+            console.log("payload", request.query);
+            var message = '';
+
+            var options ={
+                method: 'GET',
+                url: '/api/users/my',
+                payload: {
+                },
+                credentials: request.auth.credentials
+            };
+
+            server.inject(options, function(response){
+                //console.log("response: ", response.result);
+                if(response.result.statusCode){
+                    if(response.result.statusCode == 400){
+                        return reply.view('../login/index',{
+                            message:   response.result.message
+                        });
+                    }else{
+                        return reply.redirect('/404');
+                    }
+                }else{
+                    console.log("User: ", response.result);
+
+                    if(request.query != undefined && request.query.message !== undefined){
+                        message =  request.query.message;
+                    }
+
+                    return reply.view('search',{
+                        message:    message,
+                        auth:       JSON.stringify(request.auth),
+                        session:    JSON.stringify(request.session),
+                        isLoggedIn: request.auth.isAuthenticated,
+                        username:   response.result.username,
+                        moment:     Moment
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/search',
+        config: {
+            auth: {
+                mode: 'try',
+                strategy: 'session'
+            },
+            plugins: {
+                'hapi-auth-cookie': {
+                    redirectTo: false
+                }
+            }
+        },
+        handler: function (request, reply) {
+
+            console.log('Profil POST follow, ', request.auth.credentials.user);
+            console.log('search: ', request.payload);
+            function foundUser(request, response) {
+                console.log("User found: ", response.result);
+                return reply.view('founduser', {
+                    auth:           JSON.stringify(request.auth),
+                    session:        JSON.stringify(request.session),
+                    isLoggedIn:     request.auth.isAuthenticated,
+                    foundUser:      response.result
+                });
+            }
+
+            if(request.payload.coopid){
+                var options ={
+                    method: 'GET',
+                    url: '/api/coopid/' + request.payload.coopid,
+                    payload: {
+                    }
+                };
+
+                server.inject(options, function(response){
+                    console.log("response GET /coopid/id: ", response.result);
+                    if(response.result.statusCode){
+                        if(response.result.statusCode){
+                            return reply.redirect('/follow?message='+ response.result.message);
+                        }else{
+                            return reply.redirect('/404');
+                        }
+                    }else{
+                        return foundUser(request, response);
+                    }
+                });
+            }else{
+                var options ={
+                    method: 'GET',
+                    url: '/api/username/' + request.payload.username,
+                    payload: {
+                    }
+                };
+
+                server.inject(options, function(response){
+                    console.log("response GET /username/username: ", response.result);
+                    //console.log("response.result.message: ", response.result.message);
+                    if(response.result.statusCode){
+                        if(response.result.statusCode){
+                            request.session.message = response.result.message;
+                            return reply.redirect('/follow');
+                        }else{
+                            return reply.redirect('/404');
+                        }
+                    }else{
+                        return foundUser(request, response);
+                    }
+                });
+            }
+        }
+    });
+
     next();
 };
 

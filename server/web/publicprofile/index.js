@@ -92,7 +92,7 @@ internals.applyRoutes = function (server, next) {
         },
         handler: function (request, reply) {
 
-            //console.log("XXX", request.auth.credentials);
+            //console.log("XXX", request.params.id);
 
             var options ={
                 method: 'GET',
@@ -160,6 +160,144 @@ internals.applyRoutes = function (server, next) {
                                 foxtrott: foxtrott,
                                 blues: blues,
                                 events: eventResponse.result.data
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/votingactivity/{id}',
+        config: {
+        },
+        handler: function (request, reply) {
+
+            console.log("GET votingactivity");
+            console.log("request:", request.params.id);
+
+            // get user first
+
+            var options = {
+                method: 'GET',
+                url: '/api/user/public/' + request.params.id,
+                payload: {},
+            };
+
+            server.inject(options, function (userResponse) {
+                //console.log("userResponse: ", userResponse.result);
+                if (userResponse.result.statusCode) {
+                    return reply.redirect('/404');
+                } else {
+                    console.log("User: ", userResponse.result);
+
+                    var user = userResponse.result;
+
+                    if (request.query != undefined && request.query.message !== undefined) {
+                        message = request.query.message;
+                    }
+
+                    var options = {
+                        method: 'GET',
+                        url: '/api/votes',
+                        payload: {
+                            sort: '_id',
+                            limit: 200,
+                            page: 1
+                        }
+                    };
+
+                    //console.log("BEFORE server.inject: ", options);
+                    server.inject(options, function (getVotesResponse) {
+                        //console.log("getVotesResponse: ", getVotesResponse.result);
+                        if (getVotesResponse.result.statusCode) {
+                            if (getVotesResponse.result.statusCode) {
+                                return reply.view('../login/index', {
+                                    message: response.result.message
+                                });
+                            } else {
+                                return reply.redirect('/404');
+                            }
+                        } else {
+
+                            //console.log("data: ", getVotesResponse.result.data);
+                            //console.log("get first Vote title: ", getVotesResponse.result.data[0].title);
+                            //console.log("get first Vote _id: ", getVotesResponse.result.data[0]._id);
+                            var voteList = getVotesResponse.result.data;
+                            //console.log("voteList: ", voteList);
+
+                            var userIsOwnerList = [];
+                            var userIsVotingList = [];
+                            var userIsCommentingList = [];
+
+                            //var tempArray1 = JSON.parse(JSON.stringify(voteList));
+                            //var tempArray2 = JSON.parse(JSON.stringify(voteList));
+                            //var tempArray3 = JSON.parse(JSON.stringify(voteList));
+
+                            //get only those votes where user is either owner, votes or makes a comment
+                            for (var i = 0; i < voteList.length; i++) {
+                                //console.log("vote: ", voteList[i]);
+                                // user is owner
+                                if (voteList[i].ownerId == request.params.id) {
+                                    //console.log("user is owner");
+                                    userIsOwnerList.push(voteList[i]);
+                                }
+                                // user is voting
+                                loop1:
+                                    if (voteList[i].votespos != undefined && voteList[i].votespos.length > 0) {
+                                        for (var k = 0; k < voteList[i].votespos.length; k++) {
+                                            if (voteList[i].votespos[k].id == request.params.id) {
+                                                //console.log("user is voting pos");
+                                                voteList[i].voting = "DAFÜR";
+                                                userIsVotingList.push(voteList[i]);
+                                                break loop1;
+                                            }
+                                        }
+                                    }
+                                loop2:
+                                    if (voteList[i].votesneg != undefined && voteList[i].votesneg.length > 0) {
+                                        for (var l = 0; l < voteList[i].votesneg.length; l++) {
+                                            //console.log("negativId: ", voteList[i].votesneg[l].id);
+                                            //console.log("request.auth.credentials.user._id: ", request.auth.credentials.user._id);
+                                            if (voteList[i].votesneg[l].id == request.params.id) {
+                                                //console.log("user is voting neg");
+                                                voteList[i].voting = "DAGEGEN";
+                                                userIsVotingList.push(voteList[i]);
+                                                break loop2;
+                                            }
+                                        }
+                                    }
+
+                                // user is commenting
+                                if (voteList[i].comments != undefined && voteList[i].comments.length > 0) {
+                                    var commentList = [];
+                                    for (var m = 0; m < voteList[i].comments.length; m++) {
+                                        if (voteList[i].comments[m].id == request.params.id) {
+                                            //console.log("user is commenting");
+                                            //console.log("pushing voteList[i].comments[m]: ", voteList[i].comments[m]);
+                                            commentList.push(voteList[i].comments[m]);
+                                            voteList[i].commentList = commentList;
+                                        }
+                                    }
+                                    if(commentList.length>0){
+                                        //console.log("pushing voteList[i]: ", voteList[i]);
+                                        userIsCommentingList.push(voteList[i]);
+                                    }
+                                }
+                            }
+
+                            console.log("userIsOwnerList: ", userIsOwnerList.length);
+                            console.log("userIsVotingList: ", userIsVotingList.length);
+                            console.log("userIsCommentingList: ", userIsCommentingList.length);
+
+                            return reply.view('votingactivity', {
+                                user:                   user,
+                                userIsOwnerList:        userIsOwnerList,
+                                userIsVotingList:       userIsVotingList,
+                                userIsCommentingList:   userIsCommentingList,
+                                moment:                 Moment
                             });
                         }
                     });

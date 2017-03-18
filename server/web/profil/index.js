@@ -723,7 +723,7 @@ internals.applyRoutes = function (server, next) {
         },
         handler: function (request, reply) {
 
-            console.log("GET votingactivity");
+            console.log("GET voteactivity");
             console.log("user._id: ", request.auth.credentials.user._id);
 
             var options ={
@@ -808,7 +808,10 @@ internals.applyRoutes = function (server, next) {
                                     //console.log("pushing voteList[i]: ", voteList[i]);
                                 }
                             }
-                            userIsCommentingList.push(voteList[i]);
+                            if(commentList.length>0){
+                                //console.log("pushing voteList[i]: ", voteList[i]);
+                                userIsCommentingList.push(voteList[i]);
+                            }
                         }
                     }
 

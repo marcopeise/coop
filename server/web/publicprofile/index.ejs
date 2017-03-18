@@ -109,6 +109,15 @@
 													</div>
 
 													<div class="form-group">
+														<label for="comment">Kurzbeschreibung</label>
+														<% if(typeof description !== "undefined" && description.length>0){%>
+															<textarea class="form-control" name="description" style="overflow:hidden" style="resize: none" id="description" rows="3" cols="70" maxlength="140" disabled><%= description %></textarea>
+														<%}else{%>
+															<textarea class="form-control" name="description" style="overflow:hidden" style="resize: none" id="description" rows="3" cols="70" maxlength="140" disabled></textarea>
+														<%}%>
+													</div>
+
+													<div class="form-group">
 														<label for="coopid">CoopId</label>
 														<input type="text" class="form-control" name="coopid" id="coopid" disabled="disabled" value=<%= coopid %> disabled>
 													</div>

@@ -110,6 +110,7 @@ internals.applyRoutes = function (server, next) {
                     roles: request.pre.user.roles,
                     mobile: request.pre.user.mobile,
                     town: request.pre.user.town,
+                    description:request.pre.user.description,
                     coopid: request.pre.user.coopid,
                     verknExtended: request.pre.user.verknExtended,
                     altersvorsorge: request.pre.user.altersvorsorge,

@@ -214,6 +214,7 @@ User.schema = Joi.object().keys({
     mobile: Joi.number(),
     town: Joi.string(),
     coopid: Joi.string(),
+    description: Joi.string(),
     connections: Joi.object().keys({
         id: Joi.string().required(),
         name: Joi.string().required()

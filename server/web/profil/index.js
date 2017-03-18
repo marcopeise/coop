@@ -69,6 +69,7 @@ internals.applyRoutes = function (server, next) {
                         mobile:     response.result.user.mobile,
                         town:       response.result.user.town,
                         coopid:     response.result.user.coopid,
+                        description:response.result.user.description,
                         id:         response.result.user._id
                     });
                 }
@@ -118,6 +119,7 @@ internals.applyRoutes = function (server, next) {
                         mobile:     response.result.mobile,
                         town:       response.result.town,
                         coopid:     response.result.coopid,
+                        description:response.result.description,
                         id:         response.result._id
                     });
                 }
@@ -149,7 +151,9 @@ internals.applyRoutes = function (server, next) {
                     mobile:     request.payload.mobile,
                     town:       request.payload.town,
                     coopid:     request.payload.idhelper,
-                    isActive:   true
+                    description:request.payload.description,
+                    isActive:   true,
+                    isAdmin:    false
                 }
             };
 
@@ -175,6 +179,7 @@ internals.applyRoutes = function (server, next) {
                         mobile:     response.result.mobile,
                         town:       response.result.town,
                         coopid:     response.result.coopid,
+                        description:response.result.description,
                         id:         response.result._id
                     });
                 }
@@ -253,6 +258,7 @@ internals.applyRoutes = function (server, next) {
                         mobile:     response.result.mobile,
                         town:       response.result.town,
                         coopid:     response.result.coopid,
+                        description:response.result.description,
                         id:         response.result._id
                     });
                 }

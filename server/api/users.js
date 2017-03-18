@@ -198,7 +198,7 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             const id = request.auth.credentials.user._id.toString();
-            const fields = User.fieldsAdapter('username email roles isActive mobile town coopid connections follows followsHistory followedBy followedByHistory verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues token expires timeCreated');
+            const fields = User.fieldsAdapter('username email roles isActive mobile town coopid connections description follows followsHistory followedBy followedByHistory verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues token expires timeCreated');
 
             User.findById(id, fields, (err, user) => {
 
@@ -223,7 +223,7 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             const id = request.params.id;
-            const fields = User.fieldsAdapter('username town coopid connections follows followedBy verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues');
+            const fields = User.fieldsAdapter('username town coopid connections description follows followedBy verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues');
 
             User.findById(id, fields, (err, user) => {
 
@@ -381,7 +381,7 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             const id = request.params.id;
-            const update = {
+            var update = {
                 $set: {
                     isActive:   request.payload.isActive,
                     username:   request.payload.username,
@@ -389,23 +389,38 @@ internals.applyRoutes = function (server, next) {
                     mobile:     request.payload.mobile,
                     town:       request.payload.town,
                     coopid:     request.payload.coopid,
-                    verknExtended: request.payload.verknExtended,
-                    altersvorsorge: request.payload.altersvorsorge,
-                    sozialakademie: request.payload.sozialakademie,
-                    knappenbar: request.payload.knappenbar,
-                    gemuesefond: request.payload.gemuesefond,
-                    gluecklichtage: request.payload.gluecklichtage,
-                    paybackpele: request.payload.paybackpele,
-                    walzer: request.payload.walzer,
-                    diskofox: request.payload.diskofox,
-                    chachacha: request.payload.chachacha,
-                    wienerwalzer: request.payload.wienerwalzer,
-                    swing: request.payload.swing,
-                    rumba: request.payload.rumba,
-                    foxtrott: request.payload.foxtrott,
-                    blues: request.payload.blues
+                    description: request.payload.description
                 }
             };
+
+            if(request.payload.isAdmin){
+                update = {
+                    $set: {
+                        isActive:   request.payload.isActive,
+                        username:   request.payload.username,
+                        email:      request.payload.email,
+                        mobile:     request.payload.mobile,
+                        town:       request.payload.town,
+                        coopid:     request.payload.coopid,
+                        description: request.payload.description,
+                        verknExtended: request.payload.verknExtended,
+                        altersvorsorge: request.payload.altersvorsorge,
+                        sozialakademie: request.payload.sozialakademie,
+                        knappenbar: request.payload.knappenbar,
+                        gemuesefond: request.payload.gemuesefond,
+                        gluecklichtage: request.payload.gluecklichtage,
+                        paybackpele: request.payload.paybackpele,
+                        walzer: request.payload.walzer,
+                        diskofox: request.payload.diskofox,
+                        chachacha: request.payload.chachacha,
+                        wienerwalzer: request.payload.wienerwalzer,
+                        swing: request.payload.swing,
+                        rumba: request.payload.rumba,
+                        foxtrott: request.payload.foxtrott,
+                        blues: request.payload.blues
+                    }
+                };
+            }
 
             User.findByIdAndUpdate(id, update, (err, user) => {
 
@@ -870,55 +885,6 @@ internals.applyRoutes = function (server, next) {
                     }
                 );
 
-                /*users.forEach(function(user, index) {
-                    console.log(index + " key: ", user.follows);
-                    var followsHistoryNew = {
-                        periodEnd: new Date()
-                    };
-                    if(user.follows!=undefined && user.follows.length>0){
-                        followsHistoryNew.id = user.follows[0].id;
-                        followsHistoryNew.name = user.follows[0].name;
-                        followsHistoryNew.periodStart = user.follows[0].periodStart
-                    }
-                    //var followsHistory = [];
-                    /*if(user.followsHistory!=undefined && user.followsHistory.length>0){
-                        followsHistory = user.followsHistory;
-                    }
-                    //followsHistory.push(followsHistoryNew);
-
-                    var followedByHistoryNew = {
-                        periodEnd: new Date()
-                    };
-                    if(user.followedByHistory!=undefined && user.followedByHistory.length>0){
-                        followedByHistoryNew.id = user.follows[0].id;
-                        followedByHistoryNew.name = user.follows[0].name;
-                        followedByHistoryNew.periodStart = user.follows[0].periodStart
-                    }
-
-                    User.findByIdAndUpdate(
-                        user._id,
-                        {
-                            $push: {
-                                followsHistory: followsHistoryNew
-                            },
-                            $set: {
-                                follows: []
-                            },
-                            $push: {
-                                followedByHistory: followedByHistoryNew
-                            },
-                            $set: {
-                                followedBy: []
-                            }
-
-                        }, function (err) {
-                            if (err) {
-                                console.log("ERROR update isUser: ", err);
-                                return reply(err);
-                            }
-                        }
-                    );
-                });*/
             });
         }
     });

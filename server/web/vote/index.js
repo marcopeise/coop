@@ -175,6 +175,7 @@ internals.applyRoutes = function (server, next) {
 
     function getNrOfVoters(getVoteResponse, request, notvoted) {
         var nrVoters = 0;
+        var vote = "DAGEGEN";
         if (getVoteResponse.result.votespos != undefined) {
             //console.log("getVoteResponse.result.votespos.length: ", getVoteResponse.result.votespos.length);
             nrVoters = nrVoters + getVoteResponse.result.votespos.length;
@@ -185,6 +186,7 @@ internals.applyRoutes = function (server, next) {
 
                 if (getVoteResponse.result.votespos[i].id == request.auth.credentials.user._id) {
                     notvoted = false;
+                    vote = "DAFÜR";
                     //console.log("FOUND");
                 }
             }
@@ -200,7 +202,7 @@ internals.applyRoutes = function (server, next) {
                 }
             }
         }
-        return {nrVoters: nrVoters, notvoted: notvoted};
+        return {nrVoters: nrVoters, notvoted: notvoted, vote: vote};
     }
 
     server.route({
@@ -272,12 +274,14 @@ internals.applyRoutes = function (server, next) {
                         var __ret = getNrOfVoters(getVoteResponse, request, notvoted);
                         var nrVoters = __ret.nrVoters;
                         notvoted = __ret.notvoted;
+                        var vote = __ret.vote;
 
                         return reply.view('showvote',{
                             auth:       JSON.stringify(request.auth),
                             session:    JSON.stringify(request.session),
                             notvoted:   notvoted,
                             nrVoters:   nrVoters,
+                            ownvote:    vote,
                             isLoggedIn: request.auth.isAuthenticated,
                             isAdmin:    isAdmin,
                             isOwner:    isOwner,

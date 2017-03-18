@@ -186,6 +186,12 @@
 												<% } %>
 
 												<hr>
+												<% if(!notvoted){%>
+													<label for="voting">Du hast mit <b><%=ownvote%></b> abgestimmt.</label>
+													<br>
+													<hr>
+												<%}%>
+
 
 												<% if(moment().diff(vote.endDate, 'days')<0){%>
 													<% if(notvoted){%>
@@ -198,7 +204,7 @@
 																<button class="buttonHover" onclick="FillName(this.form)">Stimme dagegen</button>
 															</form>
 													<% } %>
-												<% } %>
+												<% }%>
 												<p>
 													<% if(vote.comments!=undefined && vote.comments.length>0){%>
 														<% for(var i=0; i<vote.comments.length; i++) {%>

@@ -123,7 +123,7 @@
 													</form>
 											<% } %>
 											</p>
-											<div class="col-lg-6 col-lg-offset-3 text-center">
+											<div class="col-lg-8 col-lg-offset-2 text-center">
 												<div class="form-group">
 													<label for="title">Titel</label>
 													<input type="text" class="form-control" name="title" id="title" disabled="disabled" value='<%= vote.title %>'>
@@ -208,7 +208,7 @@
 												<p>
 													<% if(vote.comments!=undefined && vote.comments.length>0){%>
 														<% for(var i=0; i<vote.comments.length; i++) {%>
-															<div class="col-lg-6 col-lg-offset-3 text-center">
+															<div class="col-lg-12 col-lg-offset-0 text-center">
 																<div class="form-group">
 																	<label for="comment">Kommentar:</label>
 																		<%= vote.comments[i].comment %>

@@ -81,7 +81,7 @@
 								<div class="col-lg-8 col-lg-offset-2">
 									<div class="content">
 											<h1>
-												Profil
+												Profil: <%=user.username%>
 											</h1>
 
 											<ul class="subnav">
@@ -89,7 +89,6 @@
 												<li><a href="/coops/<%=user._id%>">COOPS</a></li>
 												<li><a href="/following/<%=user._id%>">Anhängen</a></li>
 												<li><span>VORSCHLAGSAKTIVITÄT</span></li>
-												<li><a href="">SUCHEN</a></li>
 											</ul>
 
 											<p>
@@ -97,7 +96,7 @@
 											</p>
 											<div class="col-lg-12 col-lg-offset-0 text-center">
 												<h3>
-													Erstellte Vorschläge von <%=user.username%>
+													von <%=user.username%> Erstellte Vorschläge
 												</h3>
 											</div>
 											<% if(userIsOwnerList.length>0){%>
@@ -116,7 +115,7 @@
 											<hr>
 											<div class="col-lg-12 col-lg-offset-0 text-center">
 												<h3>
-													Vorschläge, bei den <%=user.username%> abgestimmt hat.
+													VORSCHLÄGE, BEI DENEN <%=user.username%> MITGESTIMMT HAT.
 												</h3>
 											</div>
 											<% if(userIsVotingList.length>0){%>
@@ -127,7 +126,6 @@
 															<label for="title">Abgestimmt mit: </label>
 															<%= userIsVotingList[k].voting%>
 														</div>
-														<br>
 													</div>
 												<% } %>
 											<% }else{%>
@@ -137,7 +135,7 @@
 											&nbsp;<hr>
 											<div class="col-lg-12 col-lg-offset-0 text-center">
 												<h3>
-													Vorschläge, bei den <%=user.username%> einen Kommentar hinterlegt hat.
+													VORSCHLÄGE, BEI DENEN <%=user.username%> EINEN KOMMENTAR HINTERLEGT HAT.
 												</h3>
 											</div>
 											<% if(userIsVotingList.length>0){%>

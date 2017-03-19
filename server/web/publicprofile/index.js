@@ -77,6 +77,7 @@ internals.applyRoutes = function (server, next) {
 
                     return reply.view('follow',{
                         id:         request.params.id,
+                        username:   response.result.username,
                         follows:    response.result.follows,
                         followedBy: response.result.followedBy,
                         moment:     Moment
@@ -145,6 +146,7 @@ internals.applyRoutes = function (server, next) {
 
                             return reply.view('coops', {
                                 id: request.params.id,
+                                username: response.result.username,
                                 verknExtended: verknExtended,
                                 altersvorsorge: altersvorsorge,
                                 sozialakademie: sozialakademie,

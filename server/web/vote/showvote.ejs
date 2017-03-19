@@ -165,7 +165,7 @@
 													<% } %>
 												<% } %>
 
-												<hr>
+												<span class="divider"><span></span></span>
 
 												<% if(vote.votespos!=undefined){%>
 													<div class="form-group">
@@ -185,11 +185,11 @@
 													<% } %>
 												<% } %>
 
-												<hr>
+												<span class="divider"><span></span></span>
 												<% if(!notvoted){%>
 													<label for="voting">Du hast mit <b><%=ownvote%></b> abgestimmt.</label>
 													<br>
-													<hr>
+													<span class="divider"><span></span></span>
 												<%}%>
 
 
@@ -219,7 +219,7 @@
 																		<a href="/profile/<%=vote.comments[i].id%>"><%=vote.comments[i].name%></a>
 																	<br>
 																</div>
-																<hr>
+																<span class="divider"><span></span></span>
 															</div>
 														<% } %>
 														<form action="/commentvote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">

@@ -113,13 +113,6 @@
 												<li><a href="/search">SUCHEN</a></li>
 												<li><a href="/logout">Logout</a></li>
 											</ul>
-
-											<p>
-												 Hier kannst du deinen Vorschlag bearbeiten.
-											</p>
-											<form action="/listvotes" method="GET" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
-												<button class="buttonHover" onclick="FillName(this.form)">Abrechen</button>
-											</form>
 										</div>
 									</div>
 									<div class="col-lg-6 col-lg-offset-3 text-center">
@@ -139,15 +132,19 @@
 												<div class="help-block with-errors"></div>
 											</div>
 
-									    <div class="form-group">
-									      <label for="voteEndDate">Enddatum</label>
-									      <input type="date" class="form-control datepicker" name="voteEndDate" id="voteEndDate" min="2017-02-19" max="2019-12-31" value="<%= voteEndDate %>" required>
-											  <div class="help-block with-errors"></div>
-										  </div>
+									    	<div class="form-group">
+									      		<label for="voteEndDate">Enddatum</label>
+									      		<input type="date" class="form-control datepicker" name="voteEndDate" id="voteEndDate" min="2017-02-19" max="2019-12-31" value="<%= voteEndDate %>" required>
+											  	<div class="help-block with-errors"></div>
+										  	</div>
 
 											<input type="hidden" name="voteOwnerId" id="voteOwnerId" value="<%= voteOwnerId %>">
 											<input type="hidden" name="currentUserId" id="currentUserId" value="<%= currentUserId %>">
 											<button class="buttonHover" onclick="FillName(this.form)">Aktualisieren</button>
+										</form>
+										
+										<form action="/listvotes" method="GET" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+											<button class="buttonHover" onclick="FillName(this.form)">Abbrechen</button>
 										</form>
 									</div>							
 								</div>

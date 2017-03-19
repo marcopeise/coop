@@ -25,5 +25,8 @@ $(document).ready(function(){
 			$.scrollify.next();
 		});
 	}		
-	
+
+    $( ".datepicker" ).datepicker({
+	  dateFormat: "dd.mm.yy"
+	});
 });

@@ -242,7 +242,8 @@ p {
 	margin-bottom: 20px;
 }
 
-input.form-control {
+input.form-control,
+textarea.form-control {
 	height: 60px;
 	border: 7px solid #000000;
 	border-radius: 0;
@@ -301,7 +302,11 @@ textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
 
 textarea, input, input[type] {   
     font-family: 'Myriad';
-    font-size: 19px;
+    font-size: 19px !important;
+}
+
+textarea {
+	min-height: 150px;
 }
 
 .container .content p a {
@@ -507,7 +512,8 @@ textarea, input, input[type] {
 	position: fixed;
     top: 0;
     left: 0;
-    z-index: 1001;	
+    z-index: 1001;
+    overflow: auto;
 }
 
 #main-nav .content,
@@ -644,7 +650,8 @@ section .container-fluid {
 	letter-spacing: 3px;
 }
 
-div.message {
+div.message,
+p.message {
 	font-size: 28px;
 	color: red;
 }
@@ -957,8 +964,8 @@ h2 .subline {
   width: 9px;
   height: 5px;
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 7px;
+  left: 6px;
   border: 3px solid #000000;
   border-top: none;
   border-right: none;
@@ -969,6 +976,7 @@ h2 .subline {
 }
 .squaredTwo label:hover::after {
   opacity: 0.3;
+  font-size: 20px !important;
 }
 .squaredTwo input[type=checkbox] {
   visibility: hidden;

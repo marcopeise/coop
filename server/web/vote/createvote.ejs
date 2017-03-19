@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="/public/css/jquery.fullPage.css" />
 		<link rel="stylesheet" href="/public/css/custom.css">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
 		<script type="text/javascript" src="/public/js/jquery-3.1.0.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -100,47 +101,47 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												Profil
+												Ich hab einen Vorschlag!
 											</h1>
 
 											<ul class="subnav">
 												<li><a href="/profil">Profil</a></li>
 												<li><a href="/coops">COOPS</a></li>
 												<li><a href="/follow">Anhängen</a></li>
-												<li><span>VORSCHLÄGE</span></li>
-												<li><a href="/voteactivity">VORSCHLAGSAKTIVITÄT</a></li>
+												<li><span>VORSCHLAGSWESEN</span></li>
+												<li><a href="/voteactivity">MEINE VORSCHLÄGE</a></li>
 												<li><a href="/search">SUCHEN</a></li>
 												<li><a href="/logout">Logout</a></li>
 											</ul>
 
 											<p>
-												 Text hier<br />
-												 Erstelle einen Vorschlag
+												 Was soll der Concern tun?<br />
+												Hier kannst du Veranstaltungen mitbestimmen, gemeinsam mit anderen auf Anfragen von aussen reagieren, neue Aktionen starten.
 											</p>
 										</div>
 									</div>
 									<div class="col-lg-6 col-lg-offset-3 text-center">
-										<div class="message">
+										<p class="message">
 											<%= message %>
-										</div>
+										</p>
 										<form action="/createVote" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 											<div class="form-group">
 												<label for="title">Titel</label>
-										    	<input type="text" class="form-control" name="title" id="title" placeholder="Wie soll der Titel deines Vorschlags sein?" data-minlength="1" title="Bitte gib einen Titel für Deinen Vorschlag ein." required>
+										    	<input type="text" class="form-control" name="title" id="title" placeholder="Wie soll dein Vorschlag heissen?" data-minlength="1" title="Bitte gib einen Titel für Deinen Vorschlag ein." required>
 												  <div class="help-block with-errors"></div>
 											</div>
 
 											<div class="form-group">
 												<label for="content">Inhalt</label>
-												<textarea class="form-control" name="content" placeholder="Hier Dein Text für den Vorschlag..." id="content" rows="10" cols="70" maxlength="3000"></textarea>
+												<textarea class="form-control" name="content" placeholder="Beschreib deinen Vorschlag möglichst klar. Z.B.: Wieso möchtest du das? Wie könnte es gehen? Warum sollten dem andere zustimmen? Können sie daran mitwirken?" id="content" rows="10" cols="70" maxlength="3000"></textarea>
 												<div class="help-block with-errors"></div>
 											</div>
 
-									    <div class="form-group">
-									      <label for="enddate">Enddatum</label>
-									      <input type="date" class="form-control" name="enddate" id="enddate" min="2017-02-19" max="2019-12-31" required>
-											  <div class="help-block with-errors"></div>
-										  </div>
+										    <div class="form-group">
+										      	<label for="enddate">Enddatum</label>
+										      	<input type="date" class="form-control datepicker" name="enddate" id="enddate" min="2017-02-19" max="2019-12-31" value="dd-mm-yyyy" placeholder="Bis wann willst du ein Ergebnis haben?" required>
+												<div class="help-block with-errors"></div>
+											</div>
 
 											<input type="hidden" name="name" value="">
 											<button class="buttonHover" onclick="FillName(this.form)">Erstellen</button>

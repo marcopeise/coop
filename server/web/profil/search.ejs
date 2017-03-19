@@ -81,54 +81,49 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												Profil
+												SUCHEN
 											</h1>
 
 											<ul class="subnav">
 												<li><a href="/profil">Profil</a></li>
 												<li><a href="/coops">COOPS</a></li>
 												<li><a href="/follow">Anhängen</a></li>
-												<li><a href="/listvotes">VORSCHLÄGE</a></li>
-												<li><a href="/voteactivity">VORSCHLAGSAKTIVITÄT</a></li>
+												<li><a href="/listvotes">VORSCHLAGSWESEN</a></li>
+												<li><a href="/voteactivity">MEINE VORSCHLÄGE</a></li>
 												<li><span>SUCHEN</span></li>
 												<li><a href="/logout">Logout</a></li>
 											</ul>
 
 											<p>
-												Werte*r Anteilseigner*in!
+												Hier kannst du andere Anteilseigner*innen suchen & dir anschauen, was sie vorschlagen oder wofür sie stimmen.
 												<br><br>
-												Hier kannst du weitere COOP Mitglieder deiner Wahl suchen und mehr über sie erfahren.
-												<br><br>
-													<div class="message">
-														<%= message %>
-													</div>
-													<p>
-														<div class="col-lg-6 col-lg-offset-3 text-center">
-															
-															<form action="/search" method="POST" id="reg-form" enctype="application/json">
-																<label for="coopid">COOPID</label>
-																<p>Gib die COOP Nummer der Person ein, die Du suchst. </p>
-																<div class="form-group">
-																	<input type="text" class="form-control" name="coopid" id="coopid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es nicht." required>
-																</div>
-																<button class="buttonHover" onclick="FillName(this.form)">SUCHEN</button>
-															</form>
-														</div>
-													</p>
-													<p>
-														<div class="col-lg-6 col-lg-offset-3 text-center">
-															<br><br>
-															<form action="/search" method="POST" id="reg-form" enctype="application/json">
-																<label for="coopid">Nick/Name</label>
-																<p>Gib den Nick/Name der Person ein, die Du suchst.<p>
-																<div class="form-group">
-																	<input type="text" class="form-control" name="username" id="username" placeholder="" required pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen.">
-																</div>
-																<button class="buttonHover" onclick="FillName(this.form)">SUCHEN</button>
-															</form>
-														</div>
-													</p>
 											</p>
+											<p class="message">
+												<%= message %>
+											</p>
+											<div class="col-lg-6 col-lg-offset-3 text-center" style="margin-bottom: 30px;">
+												
+												<form action="/search" method="POST" id="reg-form" enctype="application/json">
+													<label for="coopid">COOPID</label>
+													<p>Gib die COOP Nummer der Person ein, die Du suchst. </p>
+													<div class="form-group">
+														<input type="text" class="form-control" name="coopid" id="coopid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es nicht." required>
+													</div>
+													<button class="buttonHover" onclick="FillName(this.form)">SUCHEN</button>
+												</form>
+											</div>
+											
+											<div class="col-lg-6 col-lg-offset-3 text-center">
+												<br><br>
+												<form action="/search" method="POST" id="reg-form" enctype="application/json">
+													<label for="coopid">Nick/Name</label>
+													<p>Gib den Nick/Name der Person ein, die Du suchst.<p>
+													<div class="form-group">
+														<input type="text" class="form-control" name="username" id="username" placeholder="" required pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen.">
+													</div>
+													<button class="buttonHover" onclick="FillName(this.form)">SUCHEN</button>
+												</form>
+											</div>
 										</div>
 									</div>
 								</div>

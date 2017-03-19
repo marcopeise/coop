@@ -93,15 +93,15 @@
 								<div class="col-lg-8 col-lg-offset-2">
 									<div class="content">
 											<h1>
-												Profil
+												MEINE VORSCHLÄGE
 											</h1>
 
 											<ul class="subnav">
 												<li><a href="/profil">Profil</a></li>
 												<li><a href="/coops">COOPS</a></li>
 												<li><a href="/follow">Anhängen</a></li>
-												<li><a href="/listvotes">VORSCHLÄGE</a></li>
-												<li><span>VORSCHLAGSAKTIVITÄT</span></li>
+												<li><a href="/listvotes">VORSCHLAGSWESEN</a></li>
+												<li><span>MEINE VORSCHLÄGE</span></li>
 												<li><a href="/search">SUCHEN</a></li>
 												<li><a href="/logout">Logout</a></li>
 											</ul>
@@ -109,70 +109,59 @@
 											<p>
 												Hier kannst Du alle Deine Aktivitäten in den Vorschlägen sehen.
 											</p>
-											<div class="col-lg-12 col-lg-offset-0 text-center">
+											<div class="col-lg-12 text-center">
 												<h3>
-													Erstellte Vorschläge von Dir
+													VON MIR ERSTELLTE VORSCHLÄGE
 												</h3>
-											</div>
-											<% if(userIsOwnerList.length>0){%>
-												<br>
-												<% for(var i=0; i<userIsOwnerList.length; i++) {%>
-													<div class="col-lg-12 col-lg-offset-0 text-center">
+											
+												<% if(userIsOwnerList.length>0){%>
+													<br>
+													<% for(var i=0; i<userIsOwnerList.length; i++) {%>
 														<div class="form-group">
 															<label for="title">Titel: </label><a href="/getvote/<%=userIsOwnerList[i]._id%>"><%= userIsOwnerList[i].title %></a>
 															<br>
-													</div>
+														</div>
+													<% } %>
+												<% }else{%>
+													<p>Es gibt noch keine Vorschläge von Dir.<br /></p>
+													<button class="buttonHover" onclick="window.location.href = '/createvote';">Hier kannst Du einen Vorschlag erstellen</button><br /><br /><br />
 												<% } %>
-											<% }else{%>
-												Es gibt noch keine Vorschläge von Dir.
-												<br>
-												<a href="/createvote">Hier kannst Du einen Vorschlag erstellen</a>
-											<% } %>
-											<hr>
-											<div class="col-lg-12 col-lg-offset-0 text-center">
+												<span class="divider"><span></span></span>
 												<h3>
-													Vorschläge, bei den Du abgestimmt hast.
+													VORSCHLÄGE, BEI DENEN ICH MITGESTIMMT HABE
 												</h3>
-											</div>
-											<% if(userIsVotingList.length>0){%>
-												<% for(var k=0; k<userIsVotingList.length; k++) {%>
-													<div class="col-lg-12 col-lg-offset-0 text-center">
+												<% if(userIsVotingList.length>0){%>
+													<% for(var k=0; k<userIsVotingList.length; k++) {%>
 														<div class="form-group">
 															<label for="title">Titel: </label><a href="/getvote/<%=userIsVotingList[k]._id%>"><%= userIsVotingList[k].title %> </a>
 															<label for="title">Abgestimmt mit: </label>
 															<%= userIsVotingList[k].voting%>
 														</div>
 														<br>
-													</div>
+													<% } %>
+												<% }else{%>
+														<p>Es gibt noch keine Vorschläge bei den Du abgestimmt hast.<br /></p><br />
 												<% } %>
-											<% }else{%>
-												Es gibt noch keine Vorschläge bei den Du abgestimmt hast.
-												<br>
-											<% } %>
-											&nbsp;<hr>
-											<div class="col-lg-12 col-lg-offset-0 text-center">
+												<span class="divider"><span></span></span>
 												<h3>
-													Vorschläge, bei den Du einen Kommentar hinterlegt hast.
+													VORSCHLÄGE, BEI DENEN ICH EINEN KOMMENTAR HINTERLEGT HABE
 												</h3>
-											</div>
-											<% if(userIsVotingList.length>0){%>
-												<% for(var l=0; l<userIsCommentingList.length; l++) {%>
-												<div class="col-lg-12 col-lg-offset-0 text-center">
-													<div class="form-group">
-														<label for="title">Titel: </label><a href="/getvote/<%=userIsCommentingList[l]._id%>"><%= userIsCommentingList[l].title %> </a>
-														<% for(var m=0; m<userIsCommentingList[l].commentList.length; m++) {%>
-															<label for="title">Dein Kommentar: </label>
-															<%= userIsCommentingList[l].commentList[m].comment%>
-															<br>
-														<% } %>
-													</div>
-													<br>
-												</div>
+												<% if(userIsVotingList.length>0){%>
+													<% for(var l=0; l<userIsCommentingList.length; l++) {%>
+														<div class="form-group">
+															<label for="title">Titel: </label><a href="/getvote/<%=userIsCommentingList[l]._id%>"><%= userIsCommentingList[l].title %> </a>
+															<% for(var m=0; m<userIsCommentingList[l].commentList.length; m++) {%>
+																<label for="title">Dein Kommentar: </label>
+																<%= userIsCommentingList[l].commentList[m].comment%>
+																<br>
+															<% } %>
+														</div>
+														<br>
+													<% } %>
+												<% }else{%>
+													<p>Es gibt noch keine Vorschläge die Du kommentiert hast.<br /></p>
 												<% } %>
-											<% }else{%>
-												Es gibt noch keine Vorschläge die Du kommentiert hast.
-												<br>
-											<% } %>
+											</div>
 										</div>
 									</div>							
 								</div>

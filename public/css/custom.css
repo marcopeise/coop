@@ -391,6 +391,10 @@ textarea {
    	margin: 0 0 20px 0;
 }
 
+#fullpage .divider {
+	display: block;
+}
+
 .scroll {
 	
 	margin-left: -10px;

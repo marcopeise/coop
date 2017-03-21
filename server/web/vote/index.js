@@ -526,6 +526,7 @@ internals.applyRoutes = function (server, next) {
 
             //var from = request.payload.voteEndDate.split("-");
             //var voteEndDate = new Date(from[2], from[1] - 1, from[0]);
+            var endDate = Moment.utc(request.payload.voteEndDate, 'DD.MM.YYYY');
 
             var options ={
                 method: 'PUT',
@@ -535,7 +536,7 @@ internals.applyRoutes = function (server, next) {
                     currentUserId:      request.auth.credentials.user._id,
                     voteTitle:          request.payload.voteTitle,
                     voteContent:        request.payload.voteContent,
-                    voteEndDate:        request.payload.voteEndDate
+                    voteEndDate:        endDate
                 }
             };
 

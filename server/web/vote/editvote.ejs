@@ -133,10 +133,10 @@
 											</div>
 
 									    	<div class="form-group">
-									      		<label for="voteEndDate">Enddatum</label>
-									      		<input type="date" class="form-control datepicker" name="voteEndDate" id="voteEndDate" min="2017-02-19" max="2019-12-31" value="<%= voteEndDate %>" required>
-											  	<div class="help-block with-errors"></div>
-										  	</div>
+										      	<label for="voteEndDate">Enddatum</label>
+										      	<input type="text" class="form-control datepicker" name="voteEndDate" id="voteEndDate" placeholder="Bis wann willst du ein Ergebnis haben?" required>
+												<div class="help-block with-errors"></div>
+											</div>
 
 											<input type="hidden" name="voteOwnerId" id="voteOwnerId" value="<%= voteOwnerId %>">
 											<input type="hidden" name="currentUserId" id="currentUserId" value="<%= currentUserId %>">

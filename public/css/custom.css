@@ -393,6 +393,7 @@ textarea {
 
 #fullpage .divider {
 	display: block;
+	margin-bottom: 20px;
 }
 
 .scroll {

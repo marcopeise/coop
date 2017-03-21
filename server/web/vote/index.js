@@ -52,8 +52,12 @@ internals.applyRoutes = function (server, next) {
         },
         handler: function (request, reply) {
 
+            var endDate = Moment.utc(request.payload.enddate, 'DD.MM.YYYY');
+
             /*console.log("CreateVote Request");
             console.log(request.payload);
+            console.log("Enddate: ", request.payload.enddate);
+            console.log("endDate: ", endDate);
             console.log("Auth Request");
             console.log(request.auth.credentials.user._id);
             console.log(request.auth.credentials.user.username);*/
@@ -64,7 +68,7 @@ internals.applyRoutes = function (server, next) {
                 payload: {
                     title:      request.payload.title,
                     content:    request.payload.content,
-                    enddate:    request.payload.enddate,
+                    enddate:    endDate,
                     ownerId:    request.auth.credentials.user._id,
                     ownerUsername: request.auth.credentials.user.username
                 }

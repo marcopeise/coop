@@ -116,16 +116,17 @@
 											<% if(voteList.length>0){%>
 												<% for(var i=0; i<voteList.length; i++) {%>
 													<div class="col-lg-6 col-lg-offset-3 text-center">
-														<div class="form-group">
-															<label for="title">Titel: <a href="/getvote/<%=voteList[i]._id%>"><%= voteList[i].title %></a></label>
-															<br>
+														<div class="votetopic">
+															<span>Titel: <a href="/getvote/<%=voteList[i]._id%>"><%= voteList[i].title %></a></span>
+															<p>
 															<% if(moment().diff(voteList[i].endDate, 'days')>=0){%>
-																<label for="endDate">Beendet seit: <%= moment().to(voteList[i].endDate, true) %></label>
+																Beendet seit: <%= moment().to(voteList[i].endDate, true) %>
 															<% }else { %>
-																<label for="endDate">Schließt in: <%= moment().to(voteList[i].endDate, true) %></label>
+																Schließt in: <%= moment().to(voteList[i].endDate, true) %>
 															<% } %>
 															<br>
-															<label for="nrVoters">Teilnehmer: <%= voteList[i].nrVoters %></label>
+															Teilnehmer: <%= voteList[i].nrVoters %>
+															</p>
 														</div>
 														<span class="divider"><span></span></span>
 													</div>

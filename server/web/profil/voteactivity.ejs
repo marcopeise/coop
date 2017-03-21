@@ -118,7 +118,7 @@
 													<br>
 													<% for(var i=0; i<userIsOwnerList.length; i++) {%>
 														<div class="form-group">
-															<label for="title">Titel: </label><a href="/getvote/<%=userIsOwnerList[i]._id%>"><%= userIsOwnerList[i].title %></a>
+															<label for="title">Titel:&nbsp;</label><a href="/getvote/<%=userIsOwnerList[i]._id%>"><%= userIsOwnerList[i].title %></a>
 														</div>
 													<% } %>
 												<% }else{%>
@@ -133,7 +133,7 @@
 													<br>
 													<% for(var k=0; k<userIsVotingList.length; k++) {%>
 														<div class="form-group">
-															<label for="title">Titel: </label><a href="/getvote/<%=userIsVotingList[k]._id%>"><%= userIsVotingList[k].title %> </a>
+															<label for="title">Titel:&nbsp;</label><a href="/getvote/<%=userIsVotingList[k]._id%>"><%= userIsVotingList[k].title %> </a>
 															<label for="title">Abgestimmt mit: </label>
 															<%= userIsVotingList[k].voting%>
 														</div>
@@ -149,7 +149,7 @@
 													<br>
 													<% for(var l=0; l<userIsCommentingList.length; l++) {%>
 														<div class="form-group">
-															<label for="title">Titel: </label><a href="/getvote/<%=userIsCommentingList[l]._id%>"><%= userIsCommentingList[l].title %> </a>
+															<label for="title">Titel:&nbsp;</label><a href="/getvote/<%=userIsCommentingList[l]._id%>"><%= userIsCommentingList[l].title %> </a>
 															<% for(var m=0; m<userIsCommentingList[l].commentList.length; m++) {%>
 																<label for="title">Dein Kommentar: </label>
 																<%= userIsCommentingList[l].commentList[m].comment%>

@@ -93,7 +93,7 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												VORSCHLAGSWESEN
+												VORSCHLAG KOMMENTIEREN
 											</h1>
 
 											<ul class="subnav">
@@ -105,152 +105,113 @@
 												<li><a href="/search">SUCHEN</a></li>
 												<li><a href="/logout">Logout</a></li>
 											</ul>
-
-											<p>
-												<a href="/listvotes">zu allen Vorschlägen</a>
-											</p>
-											<h3>
-												VORSCHLAG KOMMENTIEREN
-											</h3>
-											<p>
-												<% if(isOwner || isAdmin){%>
-													<form action="/editvotemode/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
-														<input type="hidden" name="voteOwnerId" value="<%= vote.ownerId %>">
-														<input type="hidden" name="voteTitle" value="<%= vote.title %>">
-														<input type="hidden" name="voteContent" value="<%= vote.content %>"">
-														<input type="hidden" name="voteEndDate" value="<%= vote.endDate %>"">
-														<button class="smallButton buttonHover" onclick="FillName(this.form)">Vorschlag bearbeiten</button>
-													</form>
-											<% } %>
-											</p>
+											
 											<div class="col-lg-8 col-lg-offset-2 text-center">
-												<div class="form-group">
-													<label for="title">Titel</label>
-													<input type="text" class="form-control" name="title" id="title" disabled="disabled" value='<%= vote.title %>'>
+												<p>
+													<a href="/listvotes">zu allen Vorschlägen</a>
+												</p>
+												
+												<div class="topic">
+													<h3>Titel: <%= vote.title %></h3>
+													<p class="description"><%= vote.content %></p>
+													<p class="created">Erstellt am: <%= moment(vote.timeCreated).format('DD.MM.YYYY') %></p>
+													<p class="enddate">Schließt am: <%= moment(vote.endDate).format('DD.MM.YYYY') %></p>
+													<p class="author">Ersteller: <%= vote.ownerUsername %></p>
 												</div>
-
-												<div class="form-group">
-													<label for="content">Inhalt</label>
-													<textarea class="form-control" name="content" id="content" disabled="disabled" rows="10" cols="70" maxlength="3000"><%= vote.content %></textarea>
-												</div>
-
-												<div class="form-group">
-													<label for="endDate">Enddatum</label>
-													<input type="text" class="form-control" name="endDate" id="endDate" disabled="disabled" value='<%= moment(vote.endDate).format('DD.MM.YYYY') %>'>
-												</div>
-
-												<div class="form-group">
-													<label for="ownerUsername">Autor</label>
-													<input type="text" class="form-control" name="ownerUsername" id="ownerUsername" disabled="disabled" value='<%= vote.ownerUsername %>'>
-												</div>
-
-												<div class="form-group">
-													<label for="timeCreated">Erstellt am</label>
-													<input type="text" class="form-control" name="timeCreated" id="timeCreated" disabled="disabled" value='<%= moment(vote.timeCreated).format('DD.MM.YYYY') %>'>
-												</div>
-
-												<div class="form-group">
-													<label for="title"><%= nrVoters %> Teilnehmer</label>
-												</div>
-
-												<% if(vote.votespos!=undefined){%>
-													<% for(var i=0; i<vote.votespos.length; i++) {%>
-														<a href="/profile/<%=vote.votespos[i].id%>"><%=vote.votespos[i].name%></a>,&nbsp;&nbsp;
-													<% } %>
+												
+												<p>
+													<% if(isOwner || isAdmin){%>
+														<form action="/editvotemode/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+															<input type="hidden" name="voteOwnerId" value="<%= vote.ownerId %>">
+															<input type="hidden" name="voteTitle" value="<%= vote.title %>">
+															<input type="hidden" name="voteContent" value="<%= vote.content %>"">
+															<input type="hidden" name="voteEndDate" value="<%= vote.endDate %>"">
+															<button class="smallButton buttonHover" onclick="FillName(this.form)">Vorschlag bearbeiten</button>
+														</form>
 												<% } %>
-
-												<% if(vote.votesneg!=undefined){%>
-													<% for(var i=0; i<vote.votesneg.length; i++) {%>
-														<a href="/profile/<%=vote.votesneg[i].id%>"><%=vote.votesneg[i].name%></a>,&nbsp;
-													<% } %>
-												<% } %>
-
+												</p>
+											
+												<h4><%= nrVoters %> Teilnehmer</h4>
+												
 												<span class="divider"><span></span></span>
 
 												<% if(vote.votespos!=undefined){%>
-													<div class="form-group">
-														<label for="title"><%= vote.votespos.length %> Teilnehmer dafür:</label>
-													</div>
-													<% for(var i=0; i<vote.votespos.length; i++) {%>
-														<a href="/profile/<%=vote.votespos[i].id%>"><%=vote.votespos[i].name%></a>,&nbsp;
-													<% } %>
+													<h4><%= vote.votespos.length %> Teilnehmer dafür:</h4>
+													<p class="userlist">
+														<% for(var i=0; i<vote.votespos.length; i++) {%>
+															<a href="/profile/<%=vote.votespos[i].id%>"><%=vote.votespos[i].name%></a>,&nbsp;
+														<% } %>
+													</p>
+													<span class="divider"><span></span></span>
 												<% } %>
 
 												<% if(vote.votesneg!=undefined){%>
-													<div class="form-group">
-														<label for="title"><%= vote.votesneg.length %> Teilnehmer dagegen:</label>
-													</div>
-													<% for(var i=0; i<vote.votesneg.length; i++) {%>
-														<a href="/profile/<%=vote.votesneg[i].id%>"><%=vote.votesneg[i].name%></a>,&nbsp;
-													<% } %>
+													<h4><%= vote.votesneg.length %> Teilnehmer dagegen:</h4>
+													<p class="userlist">
+														<% for(var i=0; i<vote.votesneg.length; i++) {%>
+															<a href="/profile/<%=vote.votesneg[i].id%>"><%=vote.votesneg[i].name%></a>,&nbsp;
+														<% } %>
+													</p>
+													<span class="divider"><span></span></span>
 												<% } %>
 
-												<span class="divider"><span></span></span>
 												<% if(!notvoted){%>
 													<label for="voting">Du hast mit <b><%=ownvote%></b> abgestimmt.</label>
 													<br>
 													<span class="divider"><span></span></span>
 												<%}%>
 
-
 												<% if(moment().diff(vote.endDate, 'days')<0){%>
 													<% if(notvoted){%>
 														<div class="form-group">
 															<label for="voting">Abstimmen</label>
 															<form action="/voteplus/<%=vote._id%>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
-																<button class="buttonHover" onclick="FillName(this.form)">Stimme dafür</button>
+																<button class="smallButton buttonHover" onclick="FillName(this.form)">Stimme dafür</button>
 															</form>
+															<br />
 															<form action="/voteminus/<%=vote._id%>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
-																<button class="buttonHover" onclick="FillName(this.form)">Stimme dagegen</button>
+																<button class="smallButton buttonHover" onclick="FillName(this.form)">Stimme dagegen</button>
 															</form>
+															<br />
 													<% } %>
 												<% }%>
-												<p>
-													<% if(vote.comments!=undefined && vote.comments.length>0){%>
-														<% for(var i=0; i<vote.comments.length; i++) {%>
-															<div class="col-lg-12 col-lg-offset-0 text-center">
-																<div class="form-group">
-																	<label for="comment">Kommentar:</label>
-																		<%= vote.comments[i].comment %>
-																	<br>
-																	<label for="timeCreated">Erstellt: <%= moment().to(vote.comments[i].timeCreated) %></label>
-																	<br>
-																	<label for="creator">Erstellt von:</label>
-																		<a href="/profile/<%=vote.comments[i].id%>"><%=vote.comments[i].name%></a>
-																	<br>
-																</div>
-																<span class="divider"><span></span></span>
-															</div>
-														<% } %>
-														<form action="/commentvote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
-															<div class="form-group">
-																<label for="comment">Dein Kommentar</label>
-																<textarea class="form-control" name="comment" placeholder="Hier Dein Kommentar..." id="comment" rows="10" cols="70" maxlength="3000"></textarea>
-																<div class="help-block with-errors"></div>
-															</div>
+												
+												<form action="/commentvote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+													<div class="form-group">
+														<label for="comment">Dein Kommentar</label>
+														<textarea class="form-control" name="comment" placeholder="Hier Dein Kommentar..." id="comment" rows="10" cols="70" maxlength="3000"></textarea>
+														<div class="help-block with-errors"></div>
+													</div>
 
-															<button class="buttonHover" onclick="FillName(this.form)">Kommentieren</button>
-														</form>
-													<% }else{%>
-														<form action="/commentvote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
-															<div class="form-group">
-																<label for="content">Dein Kommentar</label>
-																<textarea class="form-control" name="comment" placeholder="Hier Dein Kommentar..." id="comment" rows="10" cols="70" maxlength="3000"></textarea>
-																<div class="help-block with-errors"></div>
-															</div>
-
-															<button class="buttonHover" onclick="FillName(this.form)">Kommentieren</button>
-														</form>
-													<% } %>
-												</p>
+													<button class="smallButton buttonHover" onclick="FillName(this.form)">Kommentieren</button>
+												</form>
+												
 												<p>
 													<% if(isOwner || isAdmin){%>
 														<form action="/deletevote/<%= vote._id %>" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 															<input type="hidden" name="voteOwnerId" value=<%= vote.ownerId %>>
-															<button class="buttonHover" onclick="FillName(this.form)">Vorschlag löschen</button>
+															<button class="smallButton buttonHover" onclick="FillName(this.form)">Vorschlag löschen</button>
 														</form>
 													<% } %>
 												</p>
+												
+												<% if(vote.comments!=undefined && vote.comments.length>0){%>
+													<div class="col-lg-12 col-lg-offset-0 text-center comments">
+														<span class="divider"><span></span></span>
+														
+														<h3>Kommentare</h3>
+														<p>
+															<% for(var i=0; i<vote.comments.length; i++) {%>
+																<span class="comment"><%= vote.comments[i].comment %></span>
+																<br />
+																<span class="commentmeta"><a href="/profile/<%=vote.comments[i].id%>"><%=vote.comments[i].name%></a>, <%= moment().to(vote.comments[i].timeCreated) %></span>
+																<br /><br />
+																<span class="divider"><span></span></span>
+															<% } %>
+														</p>
+													</div>
+												<% } %>
+												
 											</div>
 										</div>
 									</div>							

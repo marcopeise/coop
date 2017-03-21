@@ -1022,6 +1022,21 @@ h2 .subline {
 	line-height: 20px;
 }
 
+.topic .description {
+	
+}
+
+.topic .created,
+.topic .enddate,
+.topic .author,
+.commentmeta,
+.container .content .commentmeta a {
+	padding: 0px;
+	margin: 0px;
+	font-size: 14px;
+	text-decoration: none !important;
+}
+
 
 /* NEWSLETTER */
 

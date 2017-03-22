@@ -114,6 +114,19 @@
 										</div>
 										<form action="/register" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 											<div class="form-group">
+												<h3>Welcher Coop-typ bist du?</h3>
+												<label for="avatar">Wähle dein Profilbild</label>
+													<input type="radio" name="avatar" value="empathy" checked> ABWÄGEND EMPATHISCH
+												<br>
+													<input type="radio" name="avatar" value="male"> FROHGEMUT PRINZIPIELL
+												<br>
+													<input type="radio" name="avatar" value="male"> IMPULSIV KUMPELIG
+												<br>
+												<input type="text" class="form-control" name="username" id="username" placeholder="Auf welchen Namen soll Dein Anteil eingetragen werden?" data-minlength="1" pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen." required>
+												<div class="help-block with-errors"></div>
+											</div>
+
+											<div class="form-group">
 												<label for="username">Nick/Name</label>
 										    	<input type="text" class="form-control" name="username" id="username" placeholder="Auf welchen Namen soll Dein Anteil eingetragen werden?" data-minlength="1" pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen." required>
 												  <div class="help-block with-errors"></div>

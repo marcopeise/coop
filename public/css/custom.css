@@ -396,12 +396,12 @@ input[type="date"]::-webkit-input-placeholder{
    	background-color: #000;
    	display: inline-block;
    	text-align: center;
-   	margin: 0 0 20px 0;
+   	margin: 0 0 30px 0;
 }
 
 #fullpage .divider {
 	display: block;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
 .scroll {
@@ -929,6 +929,7 @@ h2 .subline {
 	line-height: 28px;
 	letter-spacing: 2px;	
 	font-family: 'Giorgio Sans Web';
+	color: #000000;
 }
 
 #profil label {
@@ -1185,9 +1186,7 @@ h2 .subline {
 	}
 	
 	button.smallbutton {
-		letter-spacing: 3px;
-		
-		
+		letter-spacing: 3px;	
 	}
 	
 	label {

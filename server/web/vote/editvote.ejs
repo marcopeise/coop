@@ -137,12 +137,12 @@
 										      	<input type="text" class="form-control datepicker" name="voteEndDate" id="voteEndDate" placeholder="Bis wann willst du ein Ergebnis haben?" required>
 												<div class="help-block with-errors"></div>
 											</div>
-
+<br />
 											<input type="hidden" name="voteOwnerId" id="voteOwnerId" value="<%= voteOwnerId %>">
 											<input type="hidden" name="currentUserId" id="currentUserId" value="<%= currentUserId %>">
 											<button class="buttonHover" onclick="FillName(this.form)">Aktualisieren</button>
 										</form>
-										
+										<br />
 										<form action="/listvotes" method="GET" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
 											<button class="buttonHover" onclick="FillName(this.form)">Abbrechen</button>
 										</form>

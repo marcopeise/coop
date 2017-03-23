@@ -125,7 +125,7 @@ internals.applyRoutes = function (server, next) {
                             return reply.redirect('/404');
                         }
                     }else{
-                        //console.log("User: ", response.result.user.email);
+                        console.log("User: ", response.result.user);
 
                         request.cookieAuth.set(response.result);
                         //request.auth.credentials = response.result;
@@ -143,6 +143,7 @@ internals.applyRoutes = function (server, next) {
                             town:       response.result.user.town,
                             coopid:     response.result.user.coopid,
                             id:         response.result.user._id,
+                            avatar:     response.result.user.avatar,
                             verknExtended: response.result.user.verknExtended,
                             altersvorsorge: response.result.user.altersvorsorge,
                             sozialakademie: response.result.user.sozialakademie,

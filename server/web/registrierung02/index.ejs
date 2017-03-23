@@ -11,7 +11,9 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="/public/css/jquery.fullPage.css" />
 		<link rel="stylesheet" href="/public/css/custom.css">
-	
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+
 		<script type="text/javascript" src="/public/js/jquery-3.1.0.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
@@ -113,6 +115,61 @@
 											<%= message %>
 										</div>
 										<form action="/register" method="POST" id="reg-form" enctype="application/json" data-toggle="validator" role="form">
+											<div class="form-group">
+												<h3>Welcher Coop-typ bist du?</h3>
+												<label for="avatar">Wähle dein Profilbild</label>
+												<div class="w3-content" style="max-width:500px align-items: center;">
+													<img class="mySlides" src="/public/files/images/COO_Avatare_abwägend_empathisch.jpg" style="width:100%">
+													<img class="mySlides" src="/public/files/images/COO_Avatare_frohgemut_prinzipiell.jpg" style="width:100%">
+													<img class="mySlides" src="/public/files/images/COO_Avatare_impulsiv_kumpelig.jpg" style="width:100%">
+
+													<div class="w3-row-padding w3-section">
+														<div class="w3-col s4">
+															<img class="demo w3-opacity w3-hover-opacity-off" src="/public/files/images/COO_Avatare_abwägend_empathisch.jpg" style="width:100%" onclick="currentDiv(1, 'empathy')">
+														</div>
+														<div class="w3-col s4">
+															<img class="demo w3-opacity w3-hover-opacity-off" src="/public/files/images/COO_Avatare_frohgemut_prinzipiell.jpg" style="width:100%" onclick="currentDiv(2, 'happy')">
+														</div>
+														<div class="w3-col s4">
+															<img class="demo w3-opacity w3-hover-opacity-off" src="/public/files/images/COO_Avatare_impulsiv_kumpelig.jpg" style="width:100%" onclick="currentDiv(3, 'impulsive')">
+														</div>
+													</div>
+
+													<input type="hidden" name="avatar" id="avatar" value="empathy">
+
+												</div>
+												<script>
+													var slideIndex = 1;
+													showDivs(slideIndex);
+
+													function plusDivs(n) {
+														showDivs(slideIndex += n);
+													}
+
+													function currentDiv(n, avatar) {
+														document.getElementById("avatar").value = avatar;
+														showDivs(slideIndex = n);
+													}
+
+													function showDivs(n) {
+														var i;
+														var x = document.getElementsByClassName("mySlides");
+														var dots = document.getElementsByClassName("demo");
+														if (n > x.length) {slideIndex = 1}
+														if (n < 1) {slideIndex = x.length}
+														for (i = 0; i < x.length; i++) {
+															x[i].style.display = "none";
+														}
+														for (i = 0; i < dots.length; i++) {
+															dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+														}
+														x[slideIndex-1].style.display = "block";
+														dots[slideIndex-1].className += " w3-opacity-off";
+													}
+												</script>
+												<br>
+											</div>
+
 											<div class="form-group">
 												<label for="username">Nick/Name</label>
 										    	<input type="text" class="form-control" name="username" id="username" placeholder="Auf welchen Namen soll Dein Anteil eingetragen werden?" data-minlength="1" pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen." required>

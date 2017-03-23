@@ -105,6 +105,21 @@
 											</p>
 											<div class="col-lg-6 col-lg-offset-3 text-center">
 												<div class="form-group">
+													<label for="name">Profilbild</label>
+													<div class="w3-content" style="max-width:500px align-items: center;">
+														<% if(avatar==='empathy'){%>
+															<img class="avatar" src="/public/files/images/COO_Avatare_abwägend_empathisch.jpg" style="width:100%">
+														<%}%>
+														<% if(avatar==='happy'){%>
+															<img class="avatar" src="/public/files/images/COO_Avatare_frohgemut_prinzipiell.jpg" style="width:100%">
+														<%}%>
+														<% if(avatar==='impulsive'){%>
+															<img class="avatar" src="/public/files/images/COO_Avatare_impulsiv_kumpelig.jpg" style="width:100%">
+														<%}%>
+													</div>
+												</div>
+
+												<div class="form-group">
 													<label for="name">Nick/Name</label>
 													<input type="text" class="form-control" name="username" id="username" disabled="disabled" value=<%=username%>>
 												</div>

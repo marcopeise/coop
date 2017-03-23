@@ -32,7 +32,7 @@ class User extends MongoModels {
         });
     }
 
-    static create(username, password, email, mobile, town, callback) {
+    static create(username, password, email, mobile, town, avatar, callback) {
 
         const self = this;
         function makeid()
@@ -58,6 +58,7 @@ class User extends MongoModels {
                     timeCreated: new Date(),
                     mobile: mobile,
                     town: town,
+                    avatar: avatar,
                     coopid: makeid()
                 };
 
@@ -274,7 +275,8 @@ User.schema = Joi.object().keys({
         token: Joi.string().required(),
         expires: Joi.date().required()
     }),
-    timeCreated: Joi.date()
+    timeCreated: Joi.date(),
+    avartar: Joi.string().required()
 });
 
 

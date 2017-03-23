@@ -52,8 +52,8 @@ internals.applyRoutes = function (server, next) {
         },
         handler: function (request, reply) {
 
-            //console.log("Register Request");
-            //console.log(request.payload);
+            console.log("Register Request");
+            console.log(request.payload);
 
             var options ={
                 method: 'POST',
@@ -63,7 +63,8 @@ internals.applyRoutes = function (server, next) {
                     email: request.payload.email,
                     mobile: request.payload.mobile,
                     town: request.payload.town,
-                    name: request.payload.name
+                    name: request.payload.name,
+                    avatar: request.payload.avatar
                 }
             };
 
@@ -99,7 +100,8 @@ internals.applyRoutes = function (server, next) {
                         town:       registerResponse.result.user.town,
                         coopid:     registerResponse.result.user.coopid,
                         id:         registerResponse.result.user._id,
-                        coopid:     registerResponse.result.user.coopid
+                        coopid:     registerResponse.result.user.coopid,
+                        avatar:     registerResponse.result.user.avatar
                     });
                 }
             });

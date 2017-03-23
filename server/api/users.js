@@ -198,7 +198,7 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             const id = request.auth.credentials.user._id.toString();
-            const fields = User.fieldsAdapter('username email roles isActive mobile town coopid connections description follows followsHistory followedBy followedByHistory verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues token expires timeCreated');
+            const fields = User.fieldsAdapter('username email roles isActive mobile town coopid connections description follows followsHistory followedBy followedByHistory verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues token expires timeCreated avatar');
 
             User.findById(id, fields, (err, user) => {
 
@@ -223,7 +223,7 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             const id = request.params.id;
-            const fields = User.fieldsAdapter('username town coopid connections description follows followedBy verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues');
+            const fields = User.fieldsAdapter('username town coopid connections description follows followedBy verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues avatar');
 
             User.findById(id, fields, (err, user) => {
 
@@ -389,7 +389,8 @@ internals.applyRoutes = function (server, next) {
                     mobile:     request.payload.mobile,
                     town:       request.payload.town,
                     coopid:     request.payload.coopid,
-                    description: request.payload.description
+                    description: request.payload.description,
+                    avatar:     request.payload.avatar
                 }
             };
 
@@ -403,6 +404,7 @@ internals.applyRoutes = function (server, next) {
                         town:       request.payload.town,
                         coopid:     request.payload.coopid,
                         description: request.payload.description,
+                        avatar:     request.payload.avatar,
                         verknExtended: request.payload.verknExtended,
                         altersvorsorge: request.payload.altersvorsorge,
                         sozialakademie: request.payload.sozialakademie,

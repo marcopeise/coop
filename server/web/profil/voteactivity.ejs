@@ -132,7 +132,7 @@
 												<% if(userIsVotingList.length>0){%>
 													<% for(var k=0; k<userIsVotingList.length; k++) {%>
 														<div class="topic">
-															<h4>Titel: <a href="/getvote/<%=userIsOwnerList[i]._id%>"><%= userIsOwnerList[i].title %></a><br />
+															<h4>Titel: <a href="/getvote/<%=userIsVotingList[k]._id%>"><%= userIsVotingList[k].title %></a><br />
 																Abgestimmt mit:
 															</h4>
 															<p><%= userIsVotingList[k].voting%></p>
@@ -149,10 +149,10 @@
 												<% if(userIsVotingList.length>0){%>
 													<% for(var l=0; l<userIsCommentingList.length; l++) {%>
 														<div class="topic">
-															<h4>Titel: <a href="/getvote/<%=userIsOwnerList[i]._id%>"><%= userIsOwnerList[i].title %></a></h4>
+															<h4>Titel: <a href="/getvote/<%=userIsCommentingList[l]._id%>"><%= userIsCommentingList[l].title %></a></h4>
 															<% for(var m=0; m<userIsCommentingList[l].commentList.length; m++) {%>
 																<h4>Dein Kommentar: </h4>
-																<p<%= userIsCommentingList[l].commentList[m].comment%></p>
+																<p><%= userIsCommentingList[l].commentList[m].comment%></p>
 															<% } %>
 														</div>
 														

@@ -130,6 +130,7 @@ internals.applyRoutes = function (server, next) {
                             mobile: response.result.mobile,
                             town: response.result.town,
                             description: response.result.description,
+                            avatar: response.result.avatar,
                             coopid: response.result.coopid,
                             id: response.result._id,
                             verknExtended: verknExtended,
@@ -281,6 +282,7 @@ internals.applyRoutes = function (server, next) {
                     mobile:     request.payload.mobile,
                     town:       request.payload.town,
                     description:request.payload.description,
+                    avatar:     request.payload.avatar,
                     coopid:     request.payload.idhelper,
                     isActive:   true,
                     isAdmin:    true,
@@ -422,6 +424,7 @@ internals.applyRoutes = function (server, next) {
                             mobile:     response.result.mobile,
                             town:       response.result.town,
                             description:response.result.description,
+                            avatar:     response.result.avatar,
                             coopid:     response.result.coopid,
                             updatemessage: 'Der Benutzer ' + response.result.username + ' (' + response.result.coopid +') mit der E-Mail: '+ response.result.email + ' wurde erfolgreich aktualisiert.',
                             message: ''

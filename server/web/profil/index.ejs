@@ -96,12 +96,10 @@
 											</ul>
 											
 											<p>
-												Werte*r Anteilseigner*in,
-												<br><br>
-												auf diese Angaben ist Dein Anteil registriert: 
-												<br>
 												<div class="col-lg-6 col-lg-offset-3 text-center">
 													<form action="updateMyProfile" method="POST" id="reg-form">
+														<h3>WELCHER COOP-TYP BIST DU?</h3>
+														<label for="name">WÄHLE DEIN PROFILBILD</label>
 														<div class="w3-content" style="max-width:500px align-items: center;">
 															<img class="avatar" src="/public/files/images/COO_Avatare_abwägend_empathisch.jpg" style="width:100%; border: 3px solid #000000;">
 															<img class="avatar" src="/public/files/images/COO_Avatare_frohgemut_prinzipiell.jpg" style="width:100%; border: 3px solid #000000;">
@@ -159,7 +157,12 @@
 																dots[slideIndex-1].className += " w3-opacity-off";
 															}
 														</script>
+														<br>
+														<span class="divider"><span></span></span>
 
+														<h3>DEIN PROFIL</h3>
+														<label for="name">DU MUSST WAS ÄNDERN? TUE ES HIER</label>
+														<br> <br>
 														<div class="form-group">
 															<label for="name">Nick/Name</label>
 															<input type="text" class="form-control" name="username" id="username" value=<%=username%> data-minlength="1" pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen." required>

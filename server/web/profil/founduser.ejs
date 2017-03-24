@@ -124,10 +124,10 @@
 
 												<div class="form-group">
 													<label for="comment">Kurzbeschreibung</label>
-													<% if(typeof description !== "undefined" && description.length>0){%>
-													<textarea class="form-control" name="description" style="overflow:hidden" style="resize: none" id="description" rows="3" cols="70" maxlength="140" disabled><%= foundUser.description %></textarea>
+													<% if(typeof foundUser.description !== "undefined" && foundUser.description.length>0){%>
+														<textarea class="form-control" name="description" style="overflow:hidden" style="resize: none" id="description" rows="3" cols="70" maxlength="140" disabled><%= foundUser.description %></textarea>
 													<%}else{%>
-													<textarea class="form-control" name="description" style="overflow:hidden" style="resize: none" id="description" rows="3" cols="70" maxlength="140" disabled></textarea>
+														<textarea class="form-control" name="description" style="overflow:hidden" style="resize: none" id="description" rows="3" cols="70" maxlength="140" disabled></textarea>
 													<%}%>
 												</div>
 

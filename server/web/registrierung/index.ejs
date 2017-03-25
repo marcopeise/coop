@@ -118,11 +118,13 @@
 												<span class="subline">&amp; was brauchst du so?</span>
 											</h1>
 
-											<form action="/registrierung02"  method="" id="reg-form" data-toggle="validator" role="form">
+											<form action="/registrierung02"  method="GET" id="reg-form" data-toggle="validator" role="form">
 												<div class="form-group">
-													<input type="text" class="form-control" name="ticketNumber" id="ticketNumber" placeholder="" pattern="^[A-Z\u00c4\u00e4\u00d6\u00f6\u00dc\u00fc\u00df0-9-_\.]{12,18}$" title="Diesen COOP3000 Code gibt es nicht." required>
+													<label for="username">Nick/Name</label>
+													<input type="text" class="form-control" name="username" id="username" placeholder="Auf welchen Namen soll Dein Anteil eingetragen werden?" data-minlength="1" pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen." required>
 													<div class="help-block with-errors"></div>
 												</div>
+
 												<button class="buttonHover">Senden</button>
 											</form>
 											<br />

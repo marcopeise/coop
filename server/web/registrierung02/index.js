@@ -26,11 +26,12 @@ internals.applyRoutes = function (server, next) {
         },
         handler: function (request, reply) {
 
-            //console.log("request.auth registrierung02: ", request.auth);
+            //console.log("request.auth registrierung02: ", request.query.username);
             return reply.view('index', {
                 auth:       JSON.stringify(request.auth),
                 session:    JSON.stringify(request.session),
                 isLoggedIn: request.auth.isAuthenticated,
+                username:   request.query.username,
                 message:    ''
             });
         }

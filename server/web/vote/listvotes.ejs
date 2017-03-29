@@ -116,33 +116,53 @@
 												<br />
 												<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Erstelle einen neuen Vorschlag</button>
 											</p>
-											<span class="divider"><span></span></span>
-											<% if(voteList.length>0){%>
-												<% for(var i=0; i<voteList.length; i++) {%>
+											<h3>GESCHLOSSEN</h3>
+											<% if(pastVoteList.length>0){%>
+												<% for(var i=0; i<pastVoteList.length; i++) {%>
 													<div class="col-lg-6 col-lg-offset-3 text-center">
 														<div class="votetopic">
-															<span>Titel: <a href="/getvote/<%=voteList[i]._id%>"><%= voteList[i].title %></a></span>
+															<span>Titel: <a href="/getvote/<%=pastVoteList[i]._id%>"><%= pastVoteList[i].title %></a></span>
 															<p>
-															<% if(moment().diff(voteList[i].endDate, 'days')>=0){%>
-																Beendet seit: <%= moment().to(voteList[i].endDate, true) %>
-															<% }else { %>
-																Schließt in: <%= moment().to(voteList[i].endDate, true) %>
-															<% } %>
-															<br>
-															Teilnehmer: <%= voteList[i].nrVoters %>
+																Beendet seit: <%= moment().to(pastVoteList[i].endDate, true) %>
+																<br>
+																Teilnehmer: <%= pastVoteList[i].nrVoters %>
 															</p>
 														</div>
 														<span class="divider"><span></span></span>
 													</div>
-
 												<% } %>
 											<% }else{%>
-												<p>Es gibt noch keine Vorschläge
-												<br></p>
+												<p>
+													Es gibt noch keine geschlossenen Vorschläge
+												</p>
+											<% } %>
+
+											<% if(activeVoteList.length>0){%>
+											<div class="col-lg-6 col-lg-offset-3 text-center">
+												<h3>OFFEN</h3>
+											</div>
+												<% for(var i=0; i<activeVoteList.length; i++) {%>
+													<div class="col-lg-6 col-lg-offset-3 text-center">
+														<div class="votetopic">
+															<span>Titel: <a href="/getvote/<%=activeVoteList[i]._id%>"><%= activeVoteList[i].title %></a></span>
+															<p>
+																Schließt in: <%= moment().to(activeVoteList[i].endDate, true) %>
+																<br>
+																Teilnehmer: <%= activeVoteList[i].nrVoters %>
+															</p>
+														</div>
+														<span class="divider"><span></span></span>
+													</div>
+												<% } %>
+											<% }else{%>
+												<p>
+													Es gibt noch keine offenen Vorschläge
+												</p>
 												<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Hier kannst Du einen Vorschlag erstellen</button>
 											<% } %>
+
 										</div>
-									</div>							
+									</div>
 								</div>
 							</div>
 						</div>

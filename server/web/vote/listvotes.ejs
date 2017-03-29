@@ -132,15 +132,18 @@
 													</div>
 												<% } %>
 											<% }else{%>
-												<p>
-													Es gibt noch keine geschlossenen Vorschläge
-												</p>
+												<div class="col-lg-6 col-lg-offset-3 text-center">
+													<p>
+														Es gibt noch keine geschlossenen Vorschläge
+													</p>
+													<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Hier kannst Du einen Vorschlag erstellen</button>
+												</div>
 											<% } %>
 
-											<% if(activeVoteList.length>0){%>
 											<div class="col-lg-6 col-lg-offset-3 text-center">
 												<h3>OFFEN</h3>
 											</div>
+											<% if(activeVoteList.length>0){%>
 												<% for(var i=0; i<activeVoteList.length; i++) {%>
 													<div class="col-lg-6 col-lg-offset-3 text-center">
 														<div class="votetopic">
@@ -155,10 +158,37 @@
 													</div>
 												<% } %>
 											<% }else{%>
-												<p>
-													Es gibt noch keine offenen Vorschläge
-												</p>
-												<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Hier kannst Du einen Vorschlag erstellen</button>
+												<div class="col-lg-6 col-lg-offset-3 text-center">
+													<p>
+														Es gibt noch keine offenen Vorschläge
+													</p>
+													<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Hier kannst Du einen Vorschlag erstellen</button>
+												</div>
+											<% } %>
+
+											<div class="col-lg-6 col-lg-offset-3 text-center">
+												<h3>KÜRZLICH AKUALISIERT</h3>
+											</div>
+											<% if(recentVoteList.length>0){%>
+												<% for(var i=0; i<recentVoteList.length; i++) {%>
+												<div class="col-lg-6 col-lg-offset-3 text-center">
+													<div class="votetopic">
+														<span>Titel: <a href="/getvote/<%=recentVoteList[i]._id%>"><%= recentVoteList[i].title %></a></span>
+														<p>
+															Schließt in: <%= moment().to(recentVoteList[i].endDate, true) %>
+															<br>
+															Teilnehmer: <%= recentVoteList[i].nrVoters %>
+														</p>
+													</div>
+													<span class="divider"><span></span></span>
+												</div>
+											<% } %>
+											<% }else{%>
+												<div class="col-lg-6 col-lg-offset-3 text-center">
+													<p>
+														Es gibt noch keine kürzlich aktualisierten Vorschläge
+													</p>
+												</div>
 											<% } %>
 
 										</div>

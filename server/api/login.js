@@ -112,6 +112,7 @@ internals.applyRoutes = function (server, next) {
                     town: request.pre.user.town,
                     description:request.pre.user.description,
                     coopid: request.pre.user.coopid,
+                    avatar: request.pre.user.avatar,
                     verknExtended: request.pre.user.verknExtended,
                     altersvorsorge: request.pre.user.altersvorsorge,
                     sozialakademie: request.pre.user.sozialakademie,

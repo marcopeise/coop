@@ -25,7 +25,8 @@ internals.applyRoutes = function (server, next) {
                     email: Joi.string().email().lowercase().required(),
                     username: Joi.string().token().lowercase().required(),
                     mobile: Joi.any().optional(),
-                    town: Joi.any().optional()
+                    town: Joi.any().optional(),
+                    avatar: Joi.string().required()
                 }
             },
             pre: [{
@@ -138,8 +139,9 @@ internals.applyRoutes = function (server, next) {
                     const mobile = request.payload.mobile;
                     const town = request.payload.town;
                     const coopid = request.payload.coopid;
+                    const avatar = request.payload.avatar;
 
-                    User.create(username, password, email, mobile, town, done);
+                    User.create(username, password, email, mobile, town, avatar, done);
                 },
                 account: ['user', function (results, done) {
 
@@ -223,7 +225,8 @@ internals.applyRoutes = function (server, next) {
                         roles: user.roles,
                         mobile: user.mobile,
                         town: user.town,
-                        coopid: user.coopid
+                        coopid: user.coopid,
+                        avatar: user.avatar
                     },
                     session: results.session,
                     authHeader

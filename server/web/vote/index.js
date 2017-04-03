@@ -165,12 +165,72 @@ internals.applyRoutes = function (server, next) {
                         //console.log("nrVoters: ", voteList[i].nrVoters);
                     }
 
+                    var pastVoteList = [];
+                    var activeVoteList = [];
+                    var recentVoteList = [];
+
+                    // get specific list of votes
+                    for (var i = 0; i < voteList.length; i++) {
+                        //console.log("isBefore today: ", Moment(voteList[i].endDate).isBefore(new Date()));
+                        // get past Votes moment('today').isBefore('endDate');
+                        if (Moment(voteList[i].endDate).isBefore(new Date())) {
+                            //console.log("vote is already done");
+                            pastVoteList.push(voteList[i]);
+                        }else{
+                            //console.log("vote is still active");
+                            activeVoteList.push(voteList[i]);
+                        }
+                        //TODO: get recent vote
+                        /*if (voteList[i].comments != undefined && voteList[i].comments.length > 0) {
+                            var commentList = [];
+                            for (var m = 0; m < voteList[i].comments.length; m++) {
+                                if (voteList[i].comments[m].id == request.params.id) {
+                                    //console.log("user is commenting");
+                                    //console.log("pushing voteList[i].comments[m]: ", voteList[i].comments[m]);
+                                    commentList.push(voteList[i].comments[m]);
+                                    voteList[i].commentList = commentList;
+                                }
+                            }
+                            if(commentList.length>0){
+                                //console.log("pushing voteList[i]: ", voteList[i]);
+                                userIsCommentingList.push(voteList[i]);
+                            }
+                        }*/
+                    }
+
+                    pastVoteList.sort(function(a, b) {
+                        a = a.endDate;
+                        b = b.endDate;
+                        return a>b ? -1 : a<b ? 1 : 0;
+                    });
+
+                    activeVoteList.sort(function(a, b) {
+                        a = a.endDate;
+                        b = b.endDate;
+                        return a<b ? -1 : a>b ? 1 : 0;
+                    });
+
+                    recentVoteList.sort(function(a, b) {
+                        a = a.endDate;
+                        b = b.endDate;
+                        return a<b ? -1 : a>b ? 1 : 0;
+                    });
+
+                    console.log("pastVoteList: ", pastVoteList.length);
+                    //console.log("pastVoteList print: ", pastVoteList);
+                    console.log("activeVoteList: ", activeVoteList.length);
+                    //console.log("activeVoteList print: ", activeVoteList);
+                    console.log("recentVoteList: ", recentVoteList.length);
+
                     return reply.view('listvotes',{
-                        auth:       JSON.stringify(request.auth),
-                        session:    JSON.stringify(request.session),
-                        isLoggedIn: request.auth.isAuthenticated,
-                        voteList:   getVotesResponse.result.data,
-                        moment:     Moment
+                        auth:           JSON.stringify(request.auth),
+                        session:        JSON.stringify(request.session),
+                        isLoggedIn:     request.auth.isAuthenticated,
+                        voteList:       getVotesResponse.result.data,
+                        pastVoteList:   pastVoteList,
+                        activeVoteList: activeVoteList,
+                        recentVoteList: recentVoteList,
+                        moment:         Moment
                     });
                 }
             });

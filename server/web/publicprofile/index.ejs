@@ -97,6 +97,20 @@
 												auf dessen Angaben sein Anteil registriert ist:
 												<br>
 												<div class="col-lg-6 col-lg-offset-3 text-center">
+
+													<div class="form-group">
+														<label for="name">PROFILBILD</label>
+														<% if( avatar ==='empathy'){%>
+															<img src="/public/files/images/COO_Avatare_abwägend_empathisch.jpg" style="width:100%; border: 3px solid #000000;">
+														<%}%>
+														<% if(avatar==='happy'){%>
+															<img src="/public/files/images/COO_Avatare_frohgemut_prinzipiell.jpg" style="width:100%; border: 3px solid #000000;">
+														<%}%>
+														<% if(avatar==='impulsive'){%>
+															<img src="/public/files/images/COO_Avatare_impulsiv_kumpelig.jpg" style="width:100%; border: 3px solid #000000;">
+														<%}%>
+													</div>
+
 													<div class="form-group">
 														<label for="name">Nick/Name</label>
 														<input type="text" class="form-control" name="username" id="username" value=<%=username%> disabled>

@@ -98,6 +98,20 @@
 												Folgendes COOP 3000 Mitglied haben wir für Dich gefunden:
 												<br>
 											<div class="col-lg-6 col-lg-offset-3 text-center">
+
+												<div class="form-group">
+													<label for="name">PROFILBILD</label>
+													<% if( foundUser.avatar ==='empathy'){%>
+														<img src="/public/files/images/COO_Avatare_abwägend_empathisch.jpg" style="width:100%; border: 3px solid #000000;">
+													<%}%>
+													<% if(foundUser.avatar==='happy'){%>
+														<img src="/public/files/images/COO_Avatare_frohgemut_prinzipiell.jpg" style="width:100%; border: 3px solid #000000;">
+													<%}%>
+													<% if(foundUser.avatar==='impulsive'){%>
+														<img src="/public/files/images/COO_Avatare_impulsiv_kumpelig.jpg" style="width:100%; border: 3px solid #000000;">
+													<%}%>
+												</div>
+
 												<div class="form-group">
 													<label for="name">Nick/Name</label>
 													<input type="text" class="form-control" name="username" id="username" value=<%=foundUser.username%> disabled>
@@ -110,10 +124,10 @@
 
 												<div class="form-group">
 													<label for="comment">Kurzbeschreibung</label>
-													<% if(typeof description !== "undefined" && description.length>0){%>
-													<textarea class="form-control" name="description" style="overflow:hidden" style="resize: none" id="description" rows="3" cols="70" maxlength="140" disabled><%= foundUser.description %></textarea>
+													<% if(typeof foundUser.description !== "undefined" && foundUser.description.length>0){%>
+														<textarea class="form-control" name="description" style="overflow:hidden" style="resize: none" id="description" rows="3" cols="70" maxlength="140" disabled><%= foundUser.description %></textarea>
 													<%}else{%>
-													<textarea class="form-control" name="description" style="overflow:hidden" style="resize: none" id="description" rows="3" cols="70" maxlength="140" disabled></textarea>
+														<textarea class="form-control" name="description" style="overflow:hidden" style="resize: none" id="description" rows="3" cols="70" maxlength="140" disabled></textarea>
 													<%}%>
 												</div>
 

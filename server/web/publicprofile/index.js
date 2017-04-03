@@ -40,6 +40,7 @@ internals.applyRoutes = function (server, next) {
                         town:       response.result.town,
                         coopid:     response.result.coopid,
                         description:response.result.description,
+                        avatar:     response.result.avatar,
                         id:         request.params.id
                     });
                 }

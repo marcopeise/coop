@@ -70,6 +70,7 @@ internals.applyRoutes = function (server, next) {
                         town:       response.result.user.town,
                         coopid:     response.result.user.coopid,
                         description:response.result.user.description,
+                        avatar:     response.result.user.avatar,
                         id:         response.result.user._id
                     });
                 }
@@ -120,6 +121,7 @@ internals.applyRoutes = function (server, next) {
                         town:       response.result.town,
                         coopid:     response.result.coopid,
                         description:response.result.description,
+                        avatar:     response.result.avatar,
                         id:         response.result._id
                     });
                 }
@@ -152,6 +154,7 @@ internals.applyRoutes = function (server, next) {
                     town:       request.payload.town,
                     coopid:     request.payload.idhelper,
                     description:request.payload.description,
+                    avatar:     request.payload.avatar,
                     isActive:   true,
                     isAdmin:    false
                 }
@@ -180,6 +183,7 @@ internals.applyRoutes = function (server, next) {
                         town:       response.result.town,
                         coopid:     response.result.coopid,
                         description:response.result.description,
+                        avatar:     response.result.avatar,
                         id:         response.result._id
                     });
                 }
@@ -259,6 +263,7 @@ internals.applyRoutes = function (server, next) {
                         town:       response.result.town,
                         coopid:     response.result.coopid,
                         description:response.result.description,
+                        avatar:     response.result.avatar,
                         id:         response.result._id
                     });
                 }

@@ -30,7 +30,7 @@ internals.applyRoutes = function (server, next) {
                 assign: 'abuseDetected',
                 method: function (request, reply) {
 
-                    const ip = request.info.remoteAddress;
+                    const ip = request.headers['x-forwarded-for'] || request.info.remoteAddress;
                     const username = request.payload.username;
 
                     AuthAttempt.abuseDetected(ip, username, (err, detected) => {
@@ -70,7 +70,7 @@ internals.applyRoutes = function (server, next) {
                         return reply();
                     }
 
-                    const ip = request.info.remoteAddress;
+                    const ip = request.headers['x-forwarded-for'] || request.info.remoteAddress;
                     const username = request.payload.username;
 
                     AuthAttempt.create(ip, username, (err, authAttempt) => {

@@ -19,7 +19,7 @@ const config = {
             $filter: 'env',
             test: 9090,
             production: process.env.PORT,
-            $default: 9000
+            $default: 12345
         }
     },
     authAttempts: {

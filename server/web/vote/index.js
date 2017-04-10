@@ -180,22 +180,12 @@ internals.applyRoutes = function (server, next) {
                             //console.log("vote is still active");
                             activeVoteList.push(voteList[i]);
                         }
-                        //TODO: get recent vote
-                        /*if (voteList[i].comments != undefined && voteList[i].comments.length > 0) {
+                        //get recent vote
+                        if (voteList[i].comments != undefined && voteList[i].comments.length > 0) {
                             var commentList = [];
-                            for (var m = 0; m < voteList[i].comments.length; m++) {
-                                if (voteList[i].comments[m].id == request.params.id) {
-                                    //console.log("user is commenting");
-                                    //console.log("pushing voteList[i].comments[m]: ", voteList[i].comments[m]);
-                                    commentList.push(voteList[i].comments[m]);
-                                    voteList[i].commentList = commentList;
-                                }
-                            }
-                            if(commentList.length>0){
-                                //console.log("pushing voteList[i]: ", voteList[i]);
-                                userIsCommentingList.push(voteList[i]);
-                            }
-                        }*/
+                            //console.log("last comment created: ", voteList[i].comments[voteList[i].comments.length-1].timeCreated);
+                            recentVoteList.push(voteList[i]);
+                        }
                     }
 
                     pastVoteList.sort(function(a, b) {
@@ -211,9 +201,9 @@ internals.applyRoutes = function (server, next) {
                     });
 
                     recentVoteList.sort(function(a, b) {
-                        a = a.endDate;
-                        b = b.endDate;
-                        return a<b ? -1 : a>b ? 1 : 0;
+                        a = a.comments[a.comments.length-1].timeCreated;
+                        b = b.comments[b.comments.length-1].timeCreated;
+                        return a>b ? -1 : a<b ? 1 : 0;
                     });
 
                     console.log("pastVoteList: ", pastVoteList.length);

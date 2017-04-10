@@ -31,4 +31,18 @@ $(document).ready(function(){
 		minDate: 0,
 		maxDate: new Date(2018, 31, 12)
 	});
+
+	if($('#filterform').length){
+		$('.voteswitch').each(function() {
+			if($( this ).is(':checked')){
+				$('#' + $(this).attr('id') + 'Container').show();
+			}			
+		});
+		
+		
+	    $('.voteswitch').change(function(){
+	    	$('.votecontainer').hide();
+	    	$('#' + $(this).attr('id') + 'Container').show();
+	    });
+	}
 });

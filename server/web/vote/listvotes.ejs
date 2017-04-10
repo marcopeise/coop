@@ -114,83 +114,155 @@
 												Hier findest du alle aktuellen Vorschläge von Anteilseigner*innen des Concerns
 												<br />
 												<br />
-												<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Erstelle einen neuen Vorschlag</button>
 											</p>
-											<h3>GESCHLOSSEN</h3>
-											<% if(pastVoteList.length>0){%>
-												<% for(var i=0; i<pastVoteList.length; i++) {%>
-													<div class="col-lg-6 col-lg-offset-3 text-center">
-														<div class="votetopic">
-															<span>Titel: <a href="/getvote/<%=pastVoteList[i]._id%>"><%= pastVoteList[i].title %></a></span>
-															<p>
-																Beendet seit: <%= moment().to(pastVoteList[i].endDate, true) %>
-																<br>
-																Teilnehmer: <%= pastVoteList[i].nrVoters %>
-															</p>
-														</div>
-														<span class="divider"><span></span></span>
+											
+											<span class="divider"><span></span></span>
+											<h3>Auswahl</h3>
+											<div class="col-lg-6 col-lg-offset-3">												
+												<form id="filterform">
+													<div class="form-group mycheckboxdiv">
+													    <div class="squaredTwo">
+													    	<input type="radio" name="showList" id="allVotes" value="allVotes" class="voteswitch" checked="checked">
+													    	<label for="allVotes"></label>
+													    </div>
+													    
+													    <label>
+													        Alle (x)												        
+													    </label>
+													    <span class="clearer"></span>
 													</div>
-												<% } %>
-											<% }else{%>
-												<div class="col-lg-6 col-lg-offset-3 text-center">
-													<p>
-														Es gibt noch keine geschlossenen Vorschläge
-													</p>
-													<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Hier kannst Du einen Vorschlag erstellen</button>
-												</div>
-											<% } %>
-
-											<div class="col-lg-6 col-lg-offset-3 text-center">
-												<h3>OFFEN</h3>
-											</div>
-											<% if(activeVoteList.length>0){%>
-												<% for(var i=0; i<activeVoteList.length; i++) {%>
-													<div class="col-lg-6 col-lg-offset-3 text-center">
-														<div class="votetopic">
-															<span>Titel: <a href="/getvote/<%=activeVoteList[i]._id%>"><%= activeVoteList[i].title %></a></span>
-															<p>
-																Schließt in: <%= moment().to(activeVoteList[i].endDate, true) %>
-																<br>
-																Teilnehmer: <%= activeVoteList[i].nrVoters %>
-															</p>
-														</div>
-														<span class="divider"><span></span></span>
+													
+													<div class="form-group mycheckboxdiv">
+													    <div class="squaredTwo">
+													    	<input type="radio" name="showList" id="activeVotes" value="activeVotes" class="voteswitch">
+													    	<label for="activeVotes"></label>
+													    </div>
+													    
+													    <label>
+													        Offen (x)												        
+													    </label>
+													    <span class="clearer"></span>
 													</div>
-												<% } %>
-											<% }else{%>
-												<div class="col-lg-6 col-lg-offset-3 text-center">
-													<p>
-														Es gibt noch keine offenen Vorschläge
-													</p>
-													<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Hier kannst Du einen Vorschlag erstellen</button>
-												</div>
-											<% } %>
-
-											<div class="col-lg-6 col-lg-offset-3 text-center">
-												<h3>KÜRZLICH AKUALISIERT</h3>
+													
+													<div class="form-group mycheckboxdiv">
+													    <div class="squaredTwo">
+													    	<input type="radio" name="showList" id="pastVotes" value="pastVotes" class="voteswitch">
+													    	<label for="pastVotes"></label>
+													    </div>
+													    
+													    <label>
+													        Geschlossen (x)												        
+													    </label>
+													    <span class="clearer"></span>
+													</div>
+													
+													<div class="form-group mycheckboxdiv">
+													    <div class="squaredTwo">
+													    	<input type="radio" name="showList" id="recentVotes" value="recentVotes" class="voteswitch">
+													    	<label for="recentVotes"></label>
+													    </div>
+													    
+													    <label>
+													        Kürzlich aktualisiert (x)												        
+													    </label>
+													    <span class="clearer"></span>
+													</div>
+													<span class="clearer"></span>	
+												</form>
+												<span class="clearer"></span>
 											</div>
-											<% if(recentVoteList.length>0){%>
-												<% for(var i=0; i<recentVoteList.length; i++) {%>
-												<div class="col-lg-6 col-lg-offset-3 text-center">
-													<div class="votetopic">
-														<span>Titel: <a href="/getvote/<%=recentVoteList[i]._id%>"><%= recentVoteList[i].title %></a></span>
-														<p>
-															Schließt in: <%= moment().to(recentVoteList[i].endDate, true) %>
+											<span class="clearer"></span>
+											<span class="divider"><span></span></span>
+											
+											<div class="col-lg-6 col-lg-offset-3 text-center votecontainer" id="allVotesContainer">
+												<h3>Alle Vorschläge</h3>
+												<% if(voteList.length>0){%>
+													<% for(var i=0; i<voteList.length; i++) {%>
+														<div class="votetopic">
+															<span>Titel: <a href="/getvote/<%=voteList[i]._id%>"><%= voteList[i].title %></a></span>
+															<p>
+															<% if(moment().diff(voteList[i].endDate, 'days')>=0){%>
+																Beendet seit: <%= moment().to(voteList[i].endDate, true) %>
+															<% }else { %>
+																Schließt in: <%= moment().to(voteList[i].endDate, true) %>
+															<% } %>
 															<br>
-															Teilnehmer: <%= recentVoteList[i].nrVoters %>
+															Teilnehmer: <%= voteList[i].nrVoters %>
+															</p>
+														</div>
+														<span class="divider"><span></span></span>
+													<% } %>
+												<% }else{%>
+													<p>Es gibt noch keine Vorschläge
+													<br></p>
+													<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Hier kannst Du einen Vorschlag erstellen</button>
+												<% } %>
+											</div>
+																						
+											<div class="col-lg-6 col-lg-offset-3 text-center votecontainer" id="pastVotesContainer">
+												<h3>GESCHLOSSEN</h3>
+												<% if(pastVoteList.length>0){%>
+													<% for(var i=0; i<pastVoteList.length; i++) {%>
+															<div class="votetopic">
+																<span>Titel: <a href="/getvote/<%=pastVoteList[i]._id%>"><%= pastVoteList[i].title %></a></span>
+																<p>
+																	Beendet seit: <%= moment().to(pastVoteList[i].endDate, true) %>
+																	<br>
+																	Teilnehmer: <%= pastVoteList[i].nrVoters %>
+																</p>
+															</div>
+															<span class="divider"><span></span></span>
+													<% } %>
+												<% }else{%>
+														<p>
+															Es gibt noch keine geschlossenen Vorschläge
 														</p>
-													</div>
-													<span class="divider"><span></span></span>
-												</div>
-											<% } %>
-											<% }else{%>
-												<div class="col-lg-6 col-lg-offset-3 text-center">
-													<p>
-														Es gibt noch keine kürzlich aktualisierten Vorschläge
-													</p>
-												</div>
-											<% } %>
-
+														<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Hier kannst Du einen Vorschlag erstellen</button>
+												<% } %>
+											</div>
+											
+											<div class="col-lg-6 col-lg-offset-3 text-center votecontainer" id="activeVotesContainer">
+												<h3>OFFEN</h3>
+												<% if(activeVoteList.length>0){%>
+													<% for(var i=0; i<activeVoteList.length; i++) {%>
+															<div class="votetopic">
+																<span>Titel: <a href="/getvote/<%=activeVoteList[i]._id%>"><%= activeVoteList[i].title %></a></span>
+																<p>
+																	Schließt in: <%= moment().to(activeVoteList[i].endDate, true) %>
+																	<br>
+																	Teilnehmer: <%= activeVoteList[i].nrVoters %>
+																</p>
+															</div>
+															<span class="divider"><span></span></span>
+													<% } %>
+												<% }else{%>
+														<p>
+															Es gibt noch keine offenen Vorschläge
+														</p>
+														<button class="smallButton buttonHover" onclick="window.location.href = '/createvote';">Hier kannst Du einen Vorschlag erstellen</button>
+												<% } %>
+											</div>
+											
+											<div class="col-lg-6 col-lg-offset-3 text-center votecontainer" id="recentVotesContainer">
+												<h3>KÜRZLICH AKUALISIERT</h3>
+												<% if(recentVoteList.length>0){%>
+													<% for(var i=0; i<recentVoteList.length; i++) {%>
+															<div class="votetopic">
+																<span>Titel: <a href="/getvote/<%=recentVoteList[i]._id%>"><%= recentVoteList[i].title %></a></span>
+																<p>
+																	Schließt in: <%= moment().to(recentVoteList[i].endDate, true) %>
+																	<br>
+																	Teilnehmer: <%= recentVoteList[i].nrVoters %>
+																</p>
+															</div>
+															<span class="divider"><span></span></span>
+													<% } %>
+												<% } else{%>
+														<p>
+															Es gibt noch keine kürzlich aktualisierten Vorschläge
+														</p>
+												<% } %>
+											</div>
 										</div>
 									</div>
 								</div>

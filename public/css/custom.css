@@ -941,7 +941,7 @@ h2 .subline {
 	letter-spacing: 2px;
 }
 
-#profil #coopform .form-group label:first-of-type  {
+#profil #coopform .form-group label:first-of-type {
 	text-align: left;
 	float: left;
 	width: auto;
@@ -997,12 +997,33 @@ h2 .subline {
   opacity: 0.3;
   font-size: 20px !important;
 }
-.squaredTwo input[type=checkbox] {
+.squaredTwo input[type=checkbox],
+.squaredTwo input[type=radio] {
   visibility: hidden;
 }
-.squaredTwo input[type=checkbox]:checked + label:after {
+
+.squaredTwo input[type=checkbox]:checked + label:after,
+.squaredTwo input[type=radio]:checked + label:after {
   opacity: 1;
 }
+
+#filterform .mycheckboxdiv,
+#filterform .mycheckboxdiv label {
+	text-align: left;
+	font-family: 'Minion Pro' !important;
+	text-transform: none;
+}
+
+#filterform .squaredTwo,
+#filterform .squaredTwo + label  {
+	float: left;
+}
+
+#filterform .squaredTwo + label {
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
 
 .votetopic span,
 .votetopic span * {
@@ -1026,10 +1047,6 @@ h2 .subline {
 .votetopic p {
 	font-size: 14px;
 	line-height: 20px;
-}
-
-.topic .description {
-	
 }
 
 .topic .created,

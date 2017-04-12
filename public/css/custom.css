@@ -433,6 +433,12 @@ input[type="date"]::-webkit-input-placeholder{
 	left: 50%;
 }
 
+.scroll3 {
+	position: relative;
+	top: 75px;
+	left: 50%;
+}
+
 .scroll span {
 	text-align: center;
 	color: #ffffff;
@@ -667,6 +673,30 @@ section .container-fluid {
 	color: #000000;
 	letter-spacing: 3px;
 }
+
+#section3 {
+    background-color: #ffc605;
+}
+
+#section3 .container-fluid {
+	background-image: url('../files/images/COO_COLLAGEN_WASBRAUCHSTDU_170412.jpg');
+	background-position: 50% 50px;
+	background-size: 70%;
+}
+
+#section3 .force-to-bottom {
+  bottom: 30%;
+}
+
+#section3 .smallButton {
+	display: block;
+	position: absolute;
+	top: 400%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -80px;
+}
+
 
 div.message,
 p.message {

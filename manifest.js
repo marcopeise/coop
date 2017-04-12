@@ -227,6 +227,9 @@ const manifest = {
         },
         {
             plugin: './server/web/publicprofile'
+        },
+        {
+            plugin: './server/web/brauchen'
         }
         
     ]

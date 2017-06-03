@@ -23,7 +23,7 @@ const config = {
         }
     },
     authAttempts: {
-        forIp: 50,
+        forIp: 50000,
         forIpAndUser: 7
     },
     cookieSecret: {

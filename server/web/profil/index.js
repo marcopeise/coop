@@ -60,7 +60,7 @@ internals.applyRoutes = function (server, next) {
                     //console.log("request.cookieAuth: ", request.cookieAuth);
                     //console.log("request.auth: ", request.auth);
                     //console.log("request.auth.isAuthenticated: ", request.auth.isAuthenticated);
-                    return reply.view('index',{
+                    /*return reply.view('index',{
                         auth:       JSON.stringify(request.auth),
                         session:    JSON.stringify(request.session),
                         isLoggedIn: request.auth.isAuthenticated,
@@ -72,7 +72,8 @@ internals.applyRoutes = function (server, next) {
                         description:response.result.user.description,
                         avatar:     response.result.user.avatar,
                         id:         response.result.user._id
-                    });
+                    });*/
+                    reply.redirect('/listvotes');
                 }
             });
         }

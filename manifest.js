@@ -230,6 +230,12 @@ const manifest = {
         },
         {
             plugin: './server/web/brauchen'
+        },
+        {
+            plugin: './server/web/wasbishergeschah'
+        },
+        {
+            plugin: './server/web/wasbishergeschah02'
         }
         
     ]

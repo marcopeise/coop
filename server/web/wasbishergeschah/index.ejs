@@ -36,8 +36,20 @@
 			ga('send', 'pageview');
 		</script>
 		<!-- End Google Analytics -->
+		<script>
+			$(function() {
+				var isLoggedIn = ('<%=isLoggedIn%>' === 'true');
+				if( isLoggedIn ) {
+					$('.showLogout').show();
+					$('.showLogin').hide();
+				} else {
+					$('.showLogout').hide();
+					$('.showLogin').show();
+				}
+			});
+		</script>
 	</head>
-	<body id="profil" class="search">
+	<body id="fuellhorn">
 		
 		<div id="nav-icon">
 			<span></span>
@@ -69,11 +81,11 @@
 			<section class="section" id="section0">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-12">
+						<div>
 							<div id="header">
 								<a href="/">
-									<img src="/public/files/images/COO_03_Registrierung_Logo.png" class="header-logo" title="Logo Coop3000" />
-								</a>	
+									<img src="/public/files/images/COO_Fuellhorn_Logo.png" class="header-logo" title="Logo Coop3000" />
+								</a>
 							</div>
 							
 							<div class="container">
@@ -81,60 +93,52 @@
 									<div class="col-lg-8 col-lg-offset-2">
 										<div class="content">
 											<h1>
-												Profil
+												Was bisher geschah
 											</h1>
 
 											<ul class="subnav">
-												<li><a href="/listvotes">ALLE VORSCHLÄGE</a></li>
-												<li><a href="/voteactivity">MEINE VORSCHLÄGE</a></li>
-												<li><a href="/coops">Anteile</a></li>
-												<li><a href="/follow">Anhängen</a></li>
-												<li><span>SUCHEN</span></li>
-												<li><a href="/profil">Profil</a></li>
-												<li><a href="/logout">Logout</a></li>
+												<li><span>DAS FÜLLHORN</span></li>
+												<li><a href="/wasbishergeschah02">SUPPERTHEORIEPARTIES</a></li>
 											</ul>
 
 											<h1>
-												SUCHEN
+												DAS FÜLLHORN
+												<span class="subline">
+													Stufe 1 / Oktober 016
+												</span>
 											</h1>
 
+											<img src="/public/files/images/Fuellhorn.jpg" />
+
 											<p>
-												Hier kannst du andere Anteilseigner*innen suchen & dir anschauen, was sie vorschlagen oder wofür sie stimmen.
-												<br><br>
-											</p>
-											<p class="message">
-												<%= message %>
+												Zum Abschluss des Festivals FAVORITEN feiert COOP 3000 seinen Auftakt als FÜLLHORN und lädt zum Tanz: Im Ballsaal des alten Sozialstaats führt die kollektive Lohntütenveräußerung zur Damen-Herren-Wahl, Festreden auf vergangene Reichtümer der Gesellschaft wechseln mit Tanzeinlagen der neuen Solidarität, während es Bitcoins aufs Parkett regnet und alle Gäste zu Shareholdern eines utopischen Versprechens werden. Betreten Sie den Ballsaal für eine Nacht, in der sich das Loblied auf die alte Solidarität des Ruhrgebiets mit vielfältigen neuen Praktiken vermengt. Unser geschultes Personal hilft Ihnen zum angemessenen Style, während die Live-Musik von Stefan "Pele" Götzer & Combo die Tanzenden umgarnt. Wer seine Schritte nicht mehr genau erinnert, erhält bei den Experten der Tanzschule Gödde einen Crash-Kurs. Die Stimmen ehemaliger Arbeiter*innen und Gewerkschafter*innen von Hoesch, Opel und diversen Ruhrgebiets-Zechen berichten von den vergangenen Grundlagen, die Solidarität erst ermöglichten. Derweil bringen das Team der Afro-World und tamilische Make Up-Artists gemeinsam mit den deutsch-türkischen Goldtag-Spezialistinnen ihre eigenen Beispiele neosolidarischer Praktiken ins Treiben des Ballabends mit ein.
 											</p>
 
-												
-												<form action="/search" method="POST" id="reg-form" enctype="application/json">
-													<div class="col-lg-12 col-lg-offset-0 text-center">
-														<label for="coopid">COOPID</label>
-														<p>Gib die COOP Nummer der Person ein, die Du suchst. </p>
-													</div>
-													<div class="col-lg-6 col-lg-offset-3 text-center" style="margin-bottom: 30px;">
-														<div class="form-group">
-															<input type="text" class="form-control" name="coopid" id="coopid" placeholder="" pattern="^[0-9-_\.]{5,5}$" title="Diese COOP3000 ID gibt es nicht." required>
-														</div>
-														<button class="buttonHover" onclick="FillName(this.form)">SUCHEN</button>
-													</div>
-												</form>
-											
-												<br><br>
-												<form action="/search" method="POST" id="reg-form" enctype="application/json">
-													<div class="col-lg-12 col-lg-offset-0 text-center">
-														<label for="coopid">Nick/Name</label>
-														<p>Gib den Nick/Name der Person ein, die Du suchst.<p>
-													</div>
-													<div class="col-lg-6 col-lg-offset-3 text-center">
-														<div class="form-group">
-															<input type="text" class="form-control" name="username" id="username" placeholder="" required pattern="^[A-Za-z0-9_.]+$" title="Bitte gib Deinen Namen ein mit dem Dich der COOP3000 anreden darf. Keine Sonderzeichen. Nur Buchstaben und Zahlen.">
-														</div>
-														<button class="buttonHover" onclick="FillName(this.form)">SUCHEN</button>
-													</div>
-												</form>
+											<p>
+												Auch das Barpersonal trägt mit raffinierten Drinks und unerschöpflichen Bowle-Reserven zum Schwung des Abends bei: Sei es um die Spannung bei der Verleihung der Festival-Preise entspannter auszuhalten oder um den krönenden Abschluss der Feier, bei dem alle Gäste zu Shareholdern eines utopischen Versprechens werden, gebührend zu zelebrieren.
+											</p>
+
+											<p><strong>
+													Ort: Aula der Berufskollegs / SHOWSPIELHAUS<br />
+													Termin: 2. Oktober, 19:30 Uhr<br />
+													Open End, inklusive Preisverleihung<br />
+													Eintritt frei
+												</strong>
+											</p>
+
+											<p>
+												Inszenierung: Lukas Matthaei / Ausstattung: Dorothea Ronneburg / Dramaturgie: Amanda Bailey / Produktionsassistenz: Lina Jung, Julia Hülsken / Ausstattungsassistenz: Liselotte Herms /
+												Video: Ayse Kalmaz / u.v.a. Mitwirkende aus Dortmund und dem Ruhrgebiet
+											</p>
+
+											<p>
+												Ein Projekt von <a href="//www.urbanekuensteruhr.de" target="_blank">Urbane Künste Ruhr</a> mit <a href="//matthaei-und-konsorten.de" target="_blank">matthaei &amp; konsorten</a> und <a href="//favoriten2016.de" target="_blank">FAVORITEN 2016</a>, in Kooperation mit dem NRW Landesbüro Freie Darstellende Künste e.V. und der FH Dortmund – FB Angewandte Sozialwissenschaften
+											</p>
+
+											<iframe src="https://player.vimeo.com/video/197966174?byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
 										</div>
-									</div>
+									</div>							
 								</div>
 							</div>
 						</div>

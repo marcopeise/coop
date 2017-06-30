@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	    <title>Coop 3000</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="/public/css/jquery.fullPage.css" />
+		<link rel="stylesheet" href="/public/css/custom.css">
+	
+		<script type="text/javascript" src="/public/js/jquery-3.1.0.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+	
+		<script type="text/javascript" src="/public/js/scrolloverflow.js"></script>
+	
+		<script type="text/javascript" src="/public/js/jquery.fullPage.min.js"></script>
+
+	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+						(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-84474181-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		<!-- End Google Analytics -->
+		<script>
+			$(function() {
+				var isLoggedIn = ('<%=isLoggedIn%>' === 'true');
+				if( isLoggedIn ) {
+					$('.showLogout').show();
+					$('.showLogin').hide();
+				} else {
+					$('.showLogout').hide();
+					$('.showLogin').show();
+				}
+			});
+		</script>
+	</head>
+	<body id="suppertheorieparties">
+		
+		<div id="nav-icon">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		
+		<nav id="main-nav">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div id="header">
+							<a href="/">
+								<img src="/public/files/images/COO_STP_Logo.jpg" class="header-logo" title="Logo Coop3000" />
+							</a>								
+						</div>
+						<div class="content">
+							<nav>
+								<% include ../elements/navigation %>
+							</nav>
+						</div>						
+					</div>
+				</div>					
+			</div>
+		</nav>
+		
+		<div id="fullpage">
+			<section class="section" id="section0">
+				<div class="container-fluid">
+					<div class="row">
+						<div>
+							<div id="header">
+								<a href="/">
+									<img src="/public/files/images/COO_Bildungswerke_Logo.png" class="header-logo" title="Logo Coop3000" />
+								</a>
+							</div>
+							
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-8 col-lg-offset-2">
+										<div class="content">
+											<h1>
+												Was bisher geschah
+											</h1>
+											
+											<ul class="subnav">
+												<li><a href="/wasbishergeschah">DAS FÜLLHORN</a></li>
+												<li><span>SUPPERTHEORIEPARTIES</span></li>
+											</ul>
+
+											<h1>
+												Die Suppertheorieparties
+												<span class="subline">
+													Stufe 2 / April-Juni 017
+												</span>
+											</h1>
+
+											<img src="/public/files/images/COO_COLLAGEN_STP_170203_01.jpg" />
+
+											<p>
+												Nach dem FÜLLHORN, der Ausschüttung von Anteilen am Concern im Oktober 016, läuft jetzt die 2. Stufe: Auf zur SUPPERTHEORIEPARTY!
+											</p>
+
+											<p>
+												SUPPERTHEORIEPARTIES sind praktische Gesprächsformate, bei denen die Ideen & das Wissen aller Anwesenden neu gemixt werden. Vielleicht kommen gepimpte Hausrezepte bei raus, vielleicht auch Quark. Oder Tiefkühlrationen für andere Zeiten. Mit Sicherheit aber werden alle Gäste wie beim cleveren Direktvertrieb von Tupperware reich beschenkt von der Gastgeberin & gut informiert von den Berater*innen glücklicher nach Hause gehen. Garantiert. (Vorabinfos zur “<a href="https://www.tupperware.at/party/gast" target="_blank">Party mit Kultcharakter</a>”)
+											</p>
+
+											<p>
+												Von April bis Juni richtet COOP 3000 vier SUPPERTHEORIEPARTIES aus, an außergewöhnlichen Orten & im Austausch mit diversen Communities im Ruhrgebiet. Entsprechend einem Thema der Neosolidarität laden wir dazu lokale & auswärtige Expert*innen ein, mit uns & allen Gästen ihr Wissen & ihre Erfahrungen in offener Runde zu teilen & gemeinsam neue Kombinationen auszuprobieren.
+											</p>
+
+											<p>
+												Damit erweitern die SUPPERTHEORIEPARTIES die Grundlagen von COOP3000, vertiefen das Fundament des Concerns & bereiten so auf die 3. Stufe vor, die im Sommer 017 alle Geschäftsbereiche der Öffentlichkeit übereignen wird.
+											</p>
+
+											<p>
+												Diskurs-Sharing & radikaler Lokalaktionismus, Saugnäpfe en masse & Guerilla-Radio: Alle Anteilseigner*innen des Concerns & alle Interessierten sind herzlich eingeladen! Schürzen & Plastikbehälter können mitgebracht werden, sind aber nicht Voraussetzung der Teilnahme.
+											</p>
+
+											<p>
+												<strong>
+													<br>
+													SUPPERTHEORIEPARTY 1 : OLD SCHOOL NEW TRICKS
+												</strong>
+											</p>
+
+											<p>
+												<strong>
+													8. April / 17.30h<br>
+													Start: Gaststätte Ruhrstadt Kegelbahnen, Ruhrstraße 76a, Witten
+												</strong>
+											</p>
+
+											<p>
+												In Witten, der Stadt zwischen früherer Edelstahlindustrie und deutschem Hip-Hop, beginnen wir in auf der holzgetäfelten Traditions-Kegelbahn & landen im leeren Laden der Mall, wo wir uns fröhlich einschließen lassen, wenn die Rollläden runtergehen vor den üblichen Ketten.
+											</p>
+
+											<p>
+												Unter der fachkundigen Anleitung von Seniorinnen werden die besten kalten Häppchen des Wirtschaftswunders nachgebaut, während wir mit Karin Derichs-Kunstmann sprechen, die früher das Institut für Arbeiterbildung in Recklinghausen leitete. Über die alten westdeutschen Ziele und Kämpfe um Arbeit und Bildung, insbesondere für Frauen. Welche Rolle spielte Bildung für die Arbeiter*innen, die mit 14 im Betrieb anfingen? Was hat sie zu den Anführer*innen befähigt, die später derartig wirkungsvolle Arbeitskämpfe mitgestalten konnten. Da möchten wir mehr drüber erfahren & neues denken, angesichts unserer Normalität, daß Bildung Arbeit & Wohlstand voraussetzt & schleichende gesellschaftliche Entkopplung winkt. Den historischen Hinweis dazu haben wir übrigens aus den Interviews mit den Kämpfer*innen von Hoesch, Krupp & Opel gewonnen, wie sie hier noch mal nachzuhören sind: <a href="/bildungswerke" target="_blank">https://coop3000.net/bildungswerke</a>
+											</p>
+
+											<p>
+												Beim Obstsalat kommt dann als Kontrastprogramm Börries Hornemann dazu, der als Digital Native und Absolvent der Wittener Privatuni eher optimistische Konzepte vertritt – von Peer-to-Peer Versicherungen, Life-long-Learning in der durch Digitalisierung neu gewonnenen Lebenszeit sowie absolut notwendigem Grundeinkommen angesichts des baldigen Wegfalls von bis zu 50% der bisherigen Arbeitsplätze… Nachzulesen im Buch “Sozialrevolution” mit Beiträgen von Yannis Varoufakis bis Gerald Hüther und Albert Wenger. <a href="https://www.sozialrevolution.de" target="_blank">https://www.sozialrevolution.de</a>
+											</p>
+
+											<p>
+												<strong>
+													<br>
+													SUPPERTHEORIEPARTY 2 : WAS HEISST HIER SOLIDARITÄT FÜR ALLE?
+												</strong>
+											</p>
+
+											<p>
+												<strong>
+													23. April / 15h<br>
+													Start: Friseursalon „Marion’s Abschnitt“, Dürener Str. 37, 44145 Dortmund
+												</strong>
+											</p>
+
+											<p>
+												Special Guest ist die spanische Künstlerin Núria Güell, die in den Tagen vorher einen COOP-Workshop mit Student*innen des Fachbereichs Soziale Arbeit der FH Dortmund geleitet haben wird. Núria Güell hinterfragt auf sehr konkrete & gleichzeitig spielerische Weise mit teils brutalen Einsichten unsere Systeme von Justiz, Kapital & Nationalstaat, indem sie mit unterschiedlichsten Menschen arbeitet, die von deren Dynamiken betroffen sind. Für den Workshop & für ihre Präsentation im Rahmen der SUPPERTHEORIEPARTY wird sie sich auf Fragen von Moral & Macht sogenannten solidarischen Handelns fokussieren: Wer entscheidet, wem geholfen werden soll. Welche Werte werden darin reproduziert. Aus welchem Interesse & mit welchen Folgen für die Beteiligten. Die Arbeiten von Núria Güell waren bislang auf Biennalen und in Museen in Europa, Lateinamerika, der Karibik, dem Nahen Osten & in den Vereinigten Staaten zu sehen, mehr unter <a href="http://nuriaguell.net/" target="_blank">http://nuriaguell.net/</a>
+											</p>
+
+											<p>
+												Anschließend spinnen wir in offener Runde subversive Strategien & kreative Lösungsansätze für ein solidarischeres Miteinander vor Ort. Supported werden wir dabei von 2 lokalen Solidaritätsexpert*innen, die Input zur aktuellen Lage des Zusammenhaltes in der bunt-ambivalenten Nachbarschaft am Borsigplatz geben:
+											</p>
+
+											<p>
+												Marion Bress betreibt seit mehr als 15 Jahren ihren eigenen Friseursalon & ist für viele Anwohner*innen aus der Nachbarschaft eine wichtige Anlaufstelle, die nicht nur für ihre Frisuren zuständig ist. Eine drohende Pleite konnte sie über einen Mikrokredit der Genossenschaft „Nordhand“ abwenden, ein Instrument, das man sonst eher aus dem Globalen Süden kennt. Der Deutsch-Angolaner Sebastiao Sala ist schon viele Jahre als Musiker, Künstler & Sozialaktivist am Borsigplatz unterwegs & gründete jüngst einen Verein für interkulturelle Verständigung, in dem sich Mitglieder in allen Lebenslagen unter die Arme greifen.
+											</p>
+
+											<p>
+												Die Party findet in englischer & deutscher Sprache statt. Inhalte werden durchgehend übersetzt.
+											</p>
+
+											<p>
+												<strong>
+													<br>
+													SUPPERTHEORIEPARTY 3: DIE MASSENBEWEGER
+												</strong>
+											</p>
+
+											<p>
+												<strong>
+													12. Mai / 18h<br>
+													Start: Alevitische Gemeinde Duisburg-Rheinhausen, Friedrich-Alfred-Str. 182, 47226 Duisburg (ehem. Werkskantine des Kruppwerks Rheinhausen)
+												</strong>
+											</p>
+
+											<p>
+												Was war das für eine bleiern-bewegte Zeit im tiefen Westen 87/88: Politiker hatten noch so klingende Namen wie Rau und Kohl, Mittag und Honecker. Globalisierung war ein Fremdwort für Eingeweihte, doch die Eiserne Lady hatte schon den Anfang vom Ende der stolzen Arbeiter eingeprügelt – als plötzlich das Hüttenwerk Rheinhausen zur Schließung freigegeben wurde. Tief bewegt schauen wir die alten TV-Kamellen auf leiernden VHS-Kopien, wie der ungläubig zuversichtliche Protest und die Solidarität mit den Arbeiter*innen derartig anwuchsen, dass die Schließung zunächst verzögert werden konnte: Brücken wurden besetzt, rhetorische Hammer-Reden prasselten aus Lautsprecherwagen, Schüler*innen, Stadtangestellte und Kumpel anderer Werke zogen durchs ganze Revier. Dazu sangen die Heinzefrauen: “So wie ein Baum beständig steht am Wasser, keiner schiebt uns weg.”
+											</p>
+
+											<p>
+												Die Kantine des Hüttenwerks lag knapp vorm Werkstor, so daß hier die Solidaritäts-Versammlungen von Arbeiter*innen & Bürger*innen stattfinden konnten, während die Produktionsprozesse im Werk phasenweise schon von den Arbeiter*innen selbst kontrolliert wurden.
+											</p>
+
+											<p>
+												Doch heute ist vom Hüttenwerk, dessen Schließung das Fanal für die westdeutsche Stahlkrise darstellte, nix mehr zu sehen — der „Logport“, ein riesiger Sprawl aus Container-Lagern & LKW-Straßen hat den Traditionsort der Schwerindustrie erinnerungslos überwuchert. & in die ehem. Kantine ist schon seit langem der Hochzeitssaal der alevitischen Gemeinde eingezogen.
+											</p>
+
+											<p>
+												Experte des Abends ist Theo Steegmann, der 87/88 einer der prominentesten Köpfe & Stratege der wirkungsvollen & langen Proteste war. Mit ihm wird es ums Pathos der Mobilisierung gehen, den Kampf um die Würde in der Niederlage & die Kollektivierung von Gefühlen als Mittel des Widerstands.
+											</p>
+
+											<p>
+												Im Anschluß gehts weiter in die „Heimatgärten Rheinhausen“: In einigen bereits zum Abriß freigegebenen Wohnriegeln der Kruppianer hat sich inzwischen die Stadt langfristig eingemietet, um Neuankömmlinge aus Syrien & Afghanistan unterzubringen, was bei manchen der Altbewohner*innen zu starken Reaktionen führte.
+											</p>
+
+											<p>
+												Eine Antwort der Wohnungsgenossenschaft darauf sind die „Heimatgärten“ – eine Art Urban Gardening, durch 2-Euro-Jobber ermöglicht & den Anwohner*innen zur Verfügung gestellt. Während die arabischen Familien besonders Petersilie in großen Mengen anbauten, seien die anderen Gemüsevorlieben eigentlich ziemlich ähnlich, wurde uns berichtet.
+											</p>
+
+											<p>
+												Nah am Grill & fröhlich hockend unter diesen schicken weißen Plastikpavillons, werden wir hier versuchen gemeinsam mit diversen Anwohner*innen rauszufinden, was sie selbst bräuchten, um ihre neuen Nachbarschaften wachsen zu lassen. & vielleicht mit Hilfe des gestandenen Arbeitskämpfers ein paar neosolidarische Modelle entwerfen, weit diesseits der alten Industriearbeitsplätze & ihrer Siedlungen.
+											</p>
+
+											<p>
+												<strong>
+													<br>
+													SUPPERTHEORIEPARTY 4
+												</strong>
+											</p>
+
+											<p>
+												<strong>
+													1. Juni / 18.30h<br>
+													Start: Das Labor, Alleestraße 50, 44793 Bochum
+												</strong>
+											</p>
+
+											<p>
+												COOP 3000 steht kurz vor der großen Concern-Gründung im Juli und jetzt gehts noch mal daran, das Wesentliche zu feiern! Dazu werden wir im Hackerspace „Das Labor“ und in „The Lord‘s Citadel“ zu Gast sein. Zwei Orte, an denen Immaterielles unterschiedliche Arten von Communities produziert. Mit greifbaren Konsequenzen. Wie passend, daß das Thema von SUPPERTHEORIEPARTY Numero 4 denn auch Community Values ist. Welche Communities schöpfen welche Arten von Werten? Welche Werte produzieren welche Arten von Communities? Oder wie schon die Band Bilderbuch auf ihrem Album „Schick-Schock“ singt: „Er kennt den Preis, doch den Wert, den kennt er nicht.“ Und was passiert, wenn Geld ins Spiel kommt? Oder aus dem Spiel gekickt wird?
+											</p>
+
+											<p>
+												Post Money Utopias sind ein Spezialgebiet unserer neuen Expertin Ela Kagel vom „Supermarkt Berlin“: Gründungsmitglied von CZY WRK (aka Cozy Work). Ela arbeitet in internationalen Netzwerken an der Zukunft digitaler Kulturen und kollaborativer Ökonomien, wie u.a. Plattform-Kooperativismus und Post Money Utopias.
+											</p>
+
+											<p>
+												Dazu kommt Antje Tönnis aus der Welt des alten Geldes (mit neuen Zielen): Bei der GLS Bank Bochum leitet sie die Abteilung Kommunikation und Stiftung Neue Energie. Fokus ihrer Arbeit ist die Bedeutung von Schenken und Gemeingütern.
+											</p>
+
+											<p>
+												& mit dabei ist auch Kai Ruttmann von <a href="http://Botopia.org" target="_blank">Botopia.org</a>, der lokalen Plattform zur Verknüpfung von gesellschaftlichen Initiativen für eine kollaborative Stadtgesellschaft. Worüber wir uns besonders freuen, denn in Bochum wirds ja weitergehen.
+											</p>
+
+											<p>
+												Leistungsdruck und neoliberaler Pseudo-Darwinismus fordern immer neue Formen des Zusammenspiels von individuellem Leben & Effizienzoptimierung über den gesamten Prozess der Wertschöpfungskette. Doch: Wie kann man gegen Formen von Sharing Economy vorgehen, die zwischenmenschliche Begegnungen kommerzialisieren und bei denen die eigentliche Kapitalsammlung auf einem anderen Kontinent stattfindet? Wie individuellen & gesellschaftlichen Widerstand leisten bzw. welche anderen Werte und neue Modelle der Kooperation dagegensetzen?
+											</p>
+
+											<p>
+												Wir werden‘s rausfinden. Mit euch. Oder wie der große praktische Philosoph Michael Schanze nicht müde wurde zu prophezeien: „Ob ihr wirklich richtig steht – seht ihr, wenn das Licht angeht!“
+											</p>
+
+											<p>
+												Aktuelle Infos gibts über unseren <a href="/newsletter">Newsletter</a>.<br /><br /> Oder durch eine SMS an die Nummer 0177 1782375 mit dem Kennwort “SUPPERTHEORIEPARTY”
+											</p>
+
+											<p>
+												Inszenierung: Lukas Matthaei / Ausstattung: Dorothea Ronneburg / Dramaturgie: Amanda Bailey / Mitarbeit: Helene Ewert, Julia Hülsken, Lina Jung, Anja Plonka, Josefine Rose / Video: Florian Krauß, Anja Plonka, Carsten Pütz
+											</p>
+										</div>
+									</div>							
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	    
+	    <script src="/public/js/jquery.easing.min.js"></script>
+	    <script src="/public/js/jquery.fullPage.min.js"></script>
+	    <script src="/public/js/custom.js"></script>
+	</body>
+</html>

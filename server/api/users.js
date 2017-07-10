@@ -198,7 +198,7 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             const id = request.auth.credentials.user._id.toString();
-            const fields = User.fieldsAdapter('username email roles isActive mobile town coopid connections description follows followsHistory followedBy followedByHistory verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues token expires timeCreated avatar');
+            const fields = User.fieldsAdapter('username timeaccount email roles isActive mobile town coopid connections description follows followsHistory followedBy followedByHistory verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues token expires timeCreated avatar');
 
             User.findById(id, fields, (err, user) => {
 
@@ -223,7 +223,7 @@ internals.applyRoutes = function (server, next) {
         handler: function (request, reply) {
 
             const id = request.params.id;
-            const fields = User.fieldsAdapter('username town coopid connections description follows followedBy verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues avatar');
+            const fields = User.fieldsAdapter('username town coopid connections description follows followedBy verknExtended altersvorsorge sozialakademie knappenbar gemuesefond gluecklichtage paybackpele walzer diskofox chachacha wienerwalzer swing rumba foxtrott blues avatar timeaccount');
 
             User.findById(id, fields, (err, user) => {
 
@@ -419,7 +419,8 @@ internals.applyRoutes = function (server, next) {
                         swing: request.payload.swing,
                         rumba: request.payload.rumba,
                         foxtrott: request.payload.foxtrott,
-                        blues: request.payload.blues
+                        blues: request.payload.blues,
+                        timeaccount: request.payload.timeaccount
                     }
                 };
             }
@@ -888,6 +889,56 @@ internals.applyRoutes = function (server, next) {
                 );
 
             });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/timeaccount/{id}',
+        handler: function (request, reply) {
+
+            console.log("input userid: ", request.params.id);
+            console.log("input operator: ", request.params.operator);
+            console.log("input amount: ", request.params.amount);
+
+            const id = request.params.id;
+            const operator = request.params.operator;
+            const amount = request.params.amount;
+
+            if(operator==='plus'){
+                User.findByIdAndUpdate(
+                    id,
+                    {
+                        $set: {
+                            timeaccount: {
+                                $add: [ "$timeaccount", amount ]
+                            }
+                        }
+                    }, function(err) {
+                        if(err){
+                            return reply(err);
+                        }
+                        reply(true);
+                    }
+                );
+            }else{
+                User.findByIdAndUpdate(
+                    id,
+                    {
+                        $set: {
+                            timeaccount: {
+                                $subtract: [ "$timeaccount", amount ]
+                            }
+                        }
+                    }, function(err) {
+                        if(err){
+                            return reply(err);
+                        }
+                        reply(true);
+                    }
+                );
+            }
+
         }
     });
 

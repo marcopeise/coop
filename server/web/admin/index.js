@@ -51,6 +51,7 @@ internals.applyRoutes = function (server, next) {
                 console.log("User found: ", response.result);
                 var verknExtended = '', altersvorsorge = '', sozialakademie = '', knappenbar = '', gemuesefond = '', gluecklichtage = '', paybackpele = '';
                 var walzer = '', diskofox = '', chachacha = '', wienerwalzer = '', swing = '', rumba = '', foxtrott = '', blues = '';
+                var timeaccount = 0;
                 if (response.result.verknExtended || response.result.verknExtended == true) verknExtended = 'checked';
                 if (response.result.altersvorsorge || response.result.altersvorsorge == true) altersvorsorge = 'checked';
                 if (response.result.sozialakademie || response.result.sozialakademie == true) sozialakademie = 'checked';
@@ -66,6 +67,9 @@ internals.applyRoutes = function (server, next) {
                 if (response.result.rumba || response.result.rumba == true) rumba = 'checked';
                 if (response.result.foxtrott || response.result.foxtrott == true) foxtrott = 'checked';
                 if (response.result.blues || response.result.blues == true) blues = 'checked';
+                if(typeof response.result.timeaccount != 'undefined' ){
+                    timeaccount = response.result.timeaccount;
+                }
                 //console.log("verknExtended: ", verknExtended);
 
                 /*var eventsList = [];
@@ -148,7 +152,8 @@ internals.applyRoutes = function (server, next) {
                             rumba: rumba,
                             foxtrott: foxtrott,
                             blues: blues,
-                            events: eventResponse.result.data
+                            events: eventResponse.result.data,
+                            timeaccount: timeaccount
                         });
                     }
                 });
@@ -273,6 +278,7 @@ internals.applyRoutes = function (server, next) {
             if(request.payload.rumba && request.payload.rumba == 'on') rumba = true;
             if(request.payload.foxtrott && request.payload.foxtrott == 'on') foxtrott = true;
             if(request.payload.blues && request.payload.blues == 'on') blues = true;
+
             var options ={
                 method: 'PUT',
                 url: '/api/users/' + request.payload.id,
@@ -300,7 +306,8 @@ internals.applyRoutes = function (server, next) {
                     swing: swing,
                     rumba: rumba,
                     foxtrott: foxtrott,
-                    blues: blues
+                    blues: blues,
+                    timeaccount: request.payload.timeaccount
                 }
             };
 

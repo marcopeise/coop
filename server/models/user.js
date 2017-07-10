@@ -276,7 +276,8 @@ User.schema = Joi.object().keys({
         expires: Joi.date().required()
     }),
     timeCreated: Joi.date(),
-    avartar: Joi.string().required()
+    avartar: Joi.string().required(),
+    timeaccount: Joi.number().default(0)
 });
 
 

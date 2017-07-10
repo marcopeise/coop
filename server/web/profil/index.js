@@ -669,6 +669,12 @@ internals.applyRoutes = function (server, next) {
                     if(response.result.foxtrott){foxtrott = 'checked'}
                     if(response.result.blues){blues = 'checked'}
 
+                    var timeaccount = 0;
+                    console.log("timeaccount: ", response.result.timeaccount);
+                    if(typeof response.result.timeaccount != 'undefined' ){
+                        timeaccount = response.result.timeaccount;
+                    }
+
                     var options ={
                         method: 'GET',
                         url: '/api/events',
@@ -715,7 +721,8 @@ internals.applyRoutes = function (server, next) {
                                 rumba: rumba,
                                 foxtrott: foxtrott,
                                 blues: blues,
-                                events: eventResponse.result.data
+                                events: eventResponse.result.data,
+                                timeaccount:timeaccount
                             });
                         }
                     });

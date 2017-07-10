@@ -639,10 +639,6 @@ section .container-fluid {
     background-color: #07A7FF;
 }
 
-#section1 .container-fluid {
-	background-image: url('../files/images/COO_COLLAGEN_STP_170203_01.jpg');
-}
-
 #section1 .force-to-bottom {
   bottom: 30%;
 }

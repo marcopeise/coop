@@ -250,6 +250,14 @@
 				],
 				elements: coopElementJSON.elements
 			});
+
+			cy.on('tap', 'node', function(){
+				try { // your browser may block popups
+					window.open( this.data('href') );
+				} catch(e){ // fall back on url change
+					window.location.href = this.data('href');
+				}
+			});
 		</script>
 	    <script src="/public/js/jquery.easing.min.js"></script>
 	    <script src="/public/js/jquery.fullPage.min.js"></script>

@@ -84,7 +84,8 @@ internals.applyRoutes = function (server, next) {
                                     data: {
                                         id: user._id,
                                         name: user.username + ' ' + user.coopid, // + ' ' + timeaccount + ' ' + timeaccountsize,
-                                        timeaccountsize: timeaccountsize
+                                        timeaccountsize: timeaccountsize,
+                                        href: 'http://coop3000.net/profile/' + user._id
                                     }
                                 });
                             }

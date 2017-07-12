@@ -110,7 +110,9 @@ internals.applyRoutes = function (server, next) {
                                         //add to array
                                         coop3000Objects.elements.push({
                                             data: {
-                                                id: user._id + connection.user.id
+                                                id: user._id + connection.user.id,
+                                                source: '',
+                                                target: ''
                                             }
                                         });
                                     }

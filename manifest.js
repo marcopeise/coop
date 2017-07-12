@@ -211,6 +211,12 @@ const manifest = {
             plugin: './server/web/live'
         },
         {
+            plugin: './server/web/anteilsbilanz'
+        },
+        {
+            plugin: './server/web/konzernbilanz'
+        },
+        {
             plugin: './server/web/aktuelles'
         },
         {
